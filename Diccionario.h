@@ -1,7 +1,7 @@
 #ifndef miDicc
 #define miDicc
 
-#define VERTICE int
+#define VERTICE char
 
 #include <iostream>
 #include <vector>
