@@ -7,7 +7,6 @@ Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 
 
 void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, int vertice, int*VP, int*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
-	#if 1
 	R11 r11; 
 	Diccionario D;
 	D.iniciar(); 
@@ -56,7 +55,6 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, int vertice, int*VP, int*VVA)
 
 	D.destruir(); 
 	r11.destruir();
-	#endif
 }
 
 
@@ -147,7 +145,61 @@ D.destruir();
 
 
 void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {
-		
+CC cc; APO apo; 
+cc.iniciar(grafo.numVertices());
+apo.iniciar();  
+int v = grafo.primerVertice(); 
+int index_conjunto = 0; 
+while (v != verticeNulo) {
+	cc.agregarConjunto(index_conjunto);
+	cc.agregarAConjunto(v, index_conjunto);
+	
+	int v_ady = grafo.primerVerticeAdy(v);
+	while (v_ady != verticeNulo) {
+		apo.insertar(v,v_ady, grafo.peso(v, v_ady));
+		v_ady = grafo.siguienteVerticeAdy(v,v_ady);  	
+	}
+		 
+	++index_conjunto; 
+	v = grafo.siguienteVertice(v); 
+	 	
+}
+
+#if 1
+std::cout << "imprimiendo CC : " << std::endl; 
+std::cout << cc.printCC() << std::endl; 
+std::cout << "imprimiendo APO : " << std::endl; 
+std::cout << apo.printAPO() << std::endl; 
+#endif 
+
+
+#if 1
+
+int aristas_escogidas = 0; 
+std::cout << "aristas seleccionadas : " << std::endl; 
+while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar n-1 aristas / n = cantidad de vertices. 
+	arista_t* arista = apo.sacar(); 
+		if (arista != NULL) { 
+		int conjunto_1 = cc.conjuntoAlQuePertenece(arista->vertice_origen);
+		int conjunto_2 = cc.conjuntoAlQuePertenece(arista->vertice_destino); 
+		if (conjunto_1 != conjunto_2) {
+			++aristas_escogidas; 
+			cc.unir(conjunto_1, conjunto_2);
+			std::cout << "vertice origen : " << arista->vertice_origen << " vertice destino : " << arista->vertice_destino << " peso : " << arista->peso << std::endl; 
+		}
+		else {
+			//esa arista genera ciclo, por lo tanto no sirve, seguir buscando. 
+		} 
+	}
+	else {
+		std::cout << "algo salio mal" << std::endl; 
+	}
+} 
+
+#endif 
+
+
+
 }
 
 
@@ -182,14 +234,17 @@ void CC::agregarAConjunto(int vertice, int conjunto) {
 
 int CC::conjuntoAlQuePertenece(int vertice) {
 	int conjunto = -1; 
+	bool found = false; 
 	for (int c = 0; c < this->amount_c; ++c) {			//conjunto
 		for (int v = 1; v <= this->cc[c][0]; ++v) {		//vertice
 			if (this->cc[c][v] == vertice) {
 				conjunto = c; 
-				c = this->amount_c;
-				v = this->cc[c][0]+1; 
+				v = (this->cc[c][0]+1); 
 			}
-		}	
+		}
+		if (found) {
+			c = this->amount_c;	
+		}				
 	}
 	return conjunto; 
 }

@@ -91,6 +91,9 @@ std::cout << ss.str() << std::endl;
 //algoritmos.Prim(grafo, 0);
 
 
+
+algoritmos.Kruskal(grafo); 
+
 } 
 #endif 
 
