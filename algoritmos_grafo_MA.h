@@ -4,6 +4,7 @@
 
 #define INFINITY 999999999
 #define TAMANYO 10		//misma cantidad de vertices del grafo. 
+#define LONGITUDAPO 30
 
 
 class Algoritmos_grafo_MA {
@@ -51,4 +52,27 @@ class Diccionario {
 	void destruir(); 
 	string printD(); 
 	
+}; 
+
+
+typedef struct {
+	int vertice_origen; 
+	int vertice_destino; 
+	int peso; 	
+} arista_t; 
+
+class APO {
+	
+	private:
+	arista_t* heap_vector; 
+	int ultimaPosicion;
+	int cantidadNodos; 
+	
+	public:
+	APO(); 
+	void iniciar(); 
+	void insertar(int vertice_origen, int vertice_destino, int peso);  
+	arista_t* sacar(); 
+	string printAPO(); 
+		
 }; 

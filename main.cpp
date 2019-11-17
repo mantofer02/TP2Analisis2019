@@ -88,8 +88,37 @@ std::cout << ss.str() << std::endl;
 
 #endif 
 
-algoritmos.Prim(grafo, 0); 
+//algoritmos.Prim(grafo, 0);
 
+APO apo; 
+apo.iniciar(); 
+apo.insertar(0,0,10); 
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,7); 
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,1); 
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,5); 
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,4);
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,1);
+std::cout << apo.printAPO() << std::endl; 
+apo.insertar(0,0,3);
+std::cout << apo.printAPO() << std::endl; 
+
+
+apo.sacar(); 
+std::cout << apo.printAPO() << std::endl; 
+apo.sacar(); 
+std::cout << apo.printAPO() << std::endl; 
+apo.sacar(); 
+std::cout << apo.printAPO() << std::endl; 
+//apo.insertar(0,0,7); 
+//apo.insertar(0,0,8);    
+ 
+
+std::cout << apo.printAPO() << std::endl; 
 } 
 
 
