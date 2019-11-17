@@ -209,63 +209,66 @@ void APO::insertar(int vertice_origen, int vertice_destino, int peso) {
 
 
 arista_t* APO::sacar() {
+ if (this->cantidadNodos != 0) {
+	arista_t* arista = new arista_t(); 
+	arista->vertice_origen = this->heap_vector[1].vertice_origen; 
+	arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
+	arista->peso = this->heap_vector[1].peso; 	
+	--cantidadNodos; 
 
-arista_t* arista = new arista_t(); 
-arista->vertice_origen = this->heap_vector[1].vertice_origen; 
-arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
-arista->peso = this->heap_vector[1].peso; 	
---cantidadNodos; 
-
-bool finished = false; 
-int last_position = this->ultimaPosicion; 
-if (this->cantidadNodos != 0) {
-	int weight = this->heap_vector[ultimaPosicion-1].peso; 
-	int index = 1; 
-	int son_selected = 0; 
-	int weight_s1; 
-	int weight_s2; 
-	while (!finished) {
-		int pos_s1 = index*2; 
-		int pos_s2 = (index*2)+1; 
-		weight_s1 = INFINITY; 
-		weight_s2 = INFINITY; 
-		if (pos_s1 < last_position-1) {				//si es una posicion valida. 
-			weight_s1 = this->heap_vector[pos_s1].peso;  //tome su peso. 
-		}
-		if (pos_s2 < last_position-1) {				//si es una posicion valida. 
-			weight_s2 = this->heap_vector[pos_s2].peso; //tome su peso. 
-		} 
-		
-		if (weight_s1 != INFINITY || weight_s2 != INFINITY) {	//si alguna posicion es valida. 	
+	bool finished = false; 
+	int last_position = this->ultimaPosicion; 
+	if (this->cantidadNodos != 0) {
+		int weight = this->heap_vector[ultimaPosicion-1].peso; 
+		int index = 1; 
+		int son_selected = 0; 
+		int weight_s1; 
+		int weight_s2; 
+		while (!finished) {
+			int pos_s1 = index*2; 
+			int pos_s2 = (index*2)+1; 
+			weight_s1 = INFINITY; 
+			weight_s2 = INFINITY; 
+			if (pos_s1 < last_position-1) {				//si es una posicion valida. 
+				weight_s1 = this->heap_vector[pos_s1].peso;  //tome su peso. 
+			}
+			if (pos_s2 < last_position-1) {				//si es una posicion valida. 
+				weight_s2 = this->heap_vector[pos_s2].peso; //tome su peso. 
+			} 
 			
-			if (weight > weight_s1 || weight > weight_s2) {		//el padre tiene que ser menor o igual que sus hijos. 
-				if (weight_s1 < weight_s2) {				//se intercambia con el hijo menor. 
-					son_selected = pos_s1;  
+			if (weight_s1 != INFINITY || weight_s2 != INFINITY) {	//si alguna posicion es valida. 	
+				
+				if (weight > weight_s1 || weight > weight_s2) {		//el padre tiene que ser menor o igual que sus hijos. 
+					if (weight_s1 < weight_s2) {				//se intercambia con el hijo menor. 
+						son_selected = pos_s1;  
+					}
+					else {
+						son_selected = pos_s2;  
+					}
+					
+					this->heap_vector[index].vertice_origen = this->heap_vector[son_selected].vertice_origen; 
+					this->heap_vector[index].vertice_destino = this->heap_vector[son_selected].vertice_destino; 
+					this->heap_vector[index].peso = this->heap_vector[son_selected].peso; 
+					index = son_selected; 
 				}
 				else {
-					son_selected = pos_s2;  
-				}
+					finished = true; 			//el padre es menor que sus hijos, dejar en esa posicion. 
+				}	
 				
-				this->heap_vector[index].vertice_origen = this->heap_vector[son_selected].vertice_origen; 
-				this->heap_vector[index].vertice_destino = this->heap_vector[son_selected].vertice_destino; 
-				this->heap_vector[index].peso = this->heap_vector[son_selected].peso; 
-				index = son_selected; 
+			} 
+			else {								//el padre no tiene hijos, dejar en esa posicion. 
+				finished = true; 
 			}
-			else {
-				finished = true; 			//el padre es menor que sus hijos, dejar en esa posicion. 
-			}	
-			
-		} 
-		else {								//el padre no tiene hijos, dejar en esa posicion. 
-			finished = true; 
 		}
+		this->heap_vector[index].vertice_origen = this->heap_vector[this->ultimaPosicion-1].vertice_origen; 
+		this->heap_vector[index].vertice_destino = this->heap_vector[this->ultimaPosicion-1].vertice_destino; 
+		this->heap_vector[index].peso =  this->heap_vector[this->ultimaPosicion-1].peso; 	
 	}
-	this->heap_vector[index].vertice_origen = this->heap_vector[this->ultimaPosicion-1].vertice_origen; 
-	this->heap_vector[index].vertice_destino = this->heap_vector[this->ultimaPosicion-1].vertice_destino; 
-	this->heap_vector[index].peso =  this->heap_vector[this->ultimaPosicion-1].peso; 	
-}
---this->ultimaPosicion; 
-	
+	--this->ultimaPosicion; 
+ }
+ else {
+	std::cout << "ya no hay elementos en el APO" << std::endl;  
+  }
 }
 
 
