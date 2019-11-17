@@ -28,7 +28,7 @@ grafo.agregarArista(1,5,8);
 Algoritmos_grafo_MA algoritmos; 
 
 
-#if 0
+#if 0				//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 int* VVA = (int*)calloc((grafo.numVertices()-1), sizeof(int)); 	//vector vertice anterior 
 
@@ -52,7 +52,7 @@ std::cout << std::endl;
 #endif 
 
 
-#if 0 
+#if 0 				//PRUEBA DE FLOYD 
 int** MP = (int**)malloc(grafo.numVertices()*sizeof(int*)); 	//matriz de peso
 int** MVI = (int**)malloc(grafo.numVertices()*sizeof(int*)); 	//matriz de vertice intermedio. 
 
@@ -88,11 +88,14 @@ std::cout << ss.str() << std::endl;
 
 #endif 
 
-//algoritmos.Prim(grafo, 0);
+#if 0 	//PRUEBA DE PRIM
+algoritmos.Prim(grafo, 0);			
+#endif 
 
 
-
-algoritmos.Kruskal(grafo); 
+#if 0 	//PRUEBA DE KRUSKAL
+algoritmos.Kruskal(grafo); 			
+#endif 
 
 } 
 #endif 

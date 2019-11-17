@@ -165,15 +165,13 @@ while (v != verticeNulo) {
 	 	
 }
 
-#if 1
+#if 0
 std::cout << "imprimiendo CC : " << std::endl; 
 std::cout << cc.printCC() << std::endl; 
 std::cout << "imprimiendo APO : " << std::endl; 
 std::cout << apo.printAPO() << std::endl; 
 #endif 
 
-
-#if 1
 
 int aristas_escogidas = 0; 
 std::cout << "aristas seleccionadas : " << std::endl; 
@@ -195,11 +193,6 @@ while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar 
 		std::cout << "algo salio mal" << std::endl; 
 	}
 } 
-
-#endif 
-
-
-
 }
 
 
