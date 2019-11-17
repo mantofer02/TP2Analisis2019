@@ -147,13 +147,92 @@ D.destruir();
 
 
 void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {
-	
+		
+}
+
+
+CC::CC() {
 	
 }
 
 
+void CC::iniciar(int max_amount_elements) {
+	this->cc = (int**)calloc(max_amount_elements, sizeof(int*));
+	for (int conjunto = 0; conjunto < max_amount_elements; ++conjunto) {
+		this->cc[conjunto] = (int*)calloc(max_amount_elements+1, sizeof(int)); 	//la posicion 0 va a decir cuantos elementos posee a partir del 1. 
+	}																			//por eso una columna mas que filas. 		
+	this->amount_c = 0;   																			
+}
 
 
+void CC::agregarConjunto(int conjunto) {
+	++this->amount_c; 	
+	this->cc[conjunto][this->amount_c-1] = 0; 
+}
+
+void CC::agregarAConjunto(int vertice, int conjunto) {
+	if (conjunto < this->amount_c) {
+		++this->cc[conjunto][0]; 
+		this->cc[conjunto][this->cc[conjunto][0]] = vertice; 
+	}
+	else {
+		std::cout << "se quiere añadir a un conjunto que no existe" << std::endl; 
+	}	
+}
+
+int CC::conjuntoAlQuePertenece(int vertice) {
+	int conjunto = -1; 
+	for (int c = 0; c < this->amount_c; ++c) {			//conjunto
+		for (int v = 1; v <= this->cc[c][0]; ++v) {		//vertice
+			if (this->cc[c][v] == vertice) {
+				conjunto = c; 
+				c = this->amount_c;
+				v = this->cc[c][0]+1; 
+			}
+		}	
+	}
+	return conjunto; 
+}
+
+
+void CC::unir(int conjunto_1, int conjunto_2) {
+	if (conjunto_2 < conjunto_1) {
+		int aux = conjunto_1; 
+		conjunto_1 = conjunto_2; 
+		conjunto_2 = aux; 
+	}		//conjunto_1 tiene que ser menor a conjunto_2
+	
+	for (int vertice = 1; vertice <= this->cc[conjunto_2][0]; ++vertice) {
+		agregarAConjunto(this->cc[conjunto_2][vertice], conjunto_1); 	
+	}
+	this->cc[conjunto_2][0] = 0; 
+	
+	int last_conjunto = this->amount_c-1; 
+	
+	for (int vertice = 1; vertice <= this->cc[last_conjunto][0]; ++vertice) {
+		agregarAConjunto(this->cc[last_conjunto][vertice], conjunto_2); 		
+	} 
+--this->amount_c; 			
+}
+
+
+string CC::printCC() {
+stringstream ss; 	
+
+for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
+	for (int vertice = 1; vertice <= this->cc[conjunto][0]; ++vertice) {
+		if (vertice != this->cc[conjunto][0]) {
+			ss << this->cc[conjunto][vertice] << ", "; 
+		}
+		else {
+			ss << this->cc[conjunto][vertice]; 
+		}
+	}
+	ss << "\n"; 
+}	
+	
+return ss.str(); 	
+}
 
 APO::APO() {
 	
@@ -209,8 +288,9 @@ void APO::insertar(int vertice_origen, int vertice_destino, int peso) {
 
 
 arista_t* APO::sacar() {
+	arista_t* arista  = NULL; 
  if (this->cantidadNodos != 0) {
-	arista_t* arista = new arista_t(); 
+	arista = new arista_t(); 
 	arista->vertice_origen = this->heap_vector[1].vertice_origen; 
 	arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
 	arista->peso = this->heap_vector[1].peso; 	
@@ -252,7 +332,7 @@ arista_t* APO::sacar() {
 					index = son_selected; 
 				}
 				else {
-					finished = true; 			//el padre es menor que sus hijos, dejar en esa posicion. 
+					finished = true; 			//el padre es menor que sus hijos(los que tenga, 1 o 2), dejar en esa posicion. 
 				}	
 				
 			} 
@@ -269,6 +349,8 @@ arista_t* APO::sacar() {
  else {
 	std::cout << "ya no hay elementos en el APO" << std::endl;  
   }
+  
+ return arista; 
 }
 
 

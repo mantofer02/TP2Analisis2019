@@ -3,8 +3,8 @@
 
 
 #define INFINITY 999999999
-#define TAMANYO 10		//misma cantidad de vertices del grafo. 
-#define LONGITUDAPO 30
+#define TAMANYO 30		//misma cantidad de vertices del grafo. 
+#define LONGITUDAPO 50
 
 
 class Algoritmos_grafo_MA {
@@ -75,4 +75,20 @@ class APO {
 	arista_t* sacar(); 
 	string printAPO(); 
 		
+}; 
+
+class CC {
+
+	private: 
+	int** cc; 
+	int amount_c; 
+	
+	public: 
+	CC(); 
+	void iniciar(int max_amount_elements); 
+	void agregarConjunto(int conjunto);
+	void agregarAConjunto(int vertice, int conjunto);  
+	int conjuntoAlQuePertenece(int vertice);//retorna conjunto. . 
+	void unir(int conjunto_1, int conjunto_2);  
+	string printCC(); 
 }; 

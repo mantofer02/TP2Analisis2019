@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std; 
 
-#define SIZEGRAFO 10
+#define SIZEGRAFO 30
 #define verticeNulo -1
 
 typedef struct {
