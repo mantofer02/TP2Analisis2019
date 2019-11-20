@@ -1,5 +1,4 @@
 #include "algoritmos_grafo_MA.h"
-#include <queue>
 
 Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 	
@@ -257,6 +256,66 @@ void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
 	 vertice = grafo.siguienteVertice(vertice); 
  }	
 } 
+
+
+void Algoritmos_grafo_MA::aislarVertice(Grafo_MA&grafo, int vertice) {
+	int v_ady = grafo.primerVerticeAdy(vertice); 
+	while (v_ady != verticeNulo) {
+		grafo.eliminarArista(vertice, v_ady);
+		grafo.eliminarArista(v_ady, vertice);		//porque es no dirigido. 
+		v_ady = grafo.siguienteVerticeAdy(vertice, v_ady);   
+	} 	
+}
+
+
+bool is_it_already(std::list<int>&L, int vertice) {
+	//buscar si ese vertice ya esta en la lista 
+	bool is_there = false; 
+	
+	return is_there; 	
+}
+
+
+bool Algoritmos_grafo_MA::is_there_cycles(Grafo_MA&grafo) {
+ bool is_there = false; 
+ 
+ if (!grafo.vacio()) {
+	 int v = grafo.primerVertice();
+	 Diccionario D; 
+	 list<int> L; 
+	 D.iniciar();  
+	 while (v != verticeNulo && !is_there) {
+		if (!D.pertenece(v)) {
+			is_there_cyclesR(grafo, v, D, L, is_there); 
+		} 
+		v = grafo.siguienteVertice(v);  
+	 } 	
+}
+return is_there; 	
+}
+
+
+void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, int vertice, Diccionario&D, std::list<int>&L, bool&is_there) {
+		D.agregar(vertice);
+		L.push_back(vertice); 
+		int v_ady = grafo.primerVerticeAdy(vertice);
+		while (v_ady != verticeNulo && !is_there) {
+			if (!D.pertenece(v_ady)) {
+				is_there_cyclesR(grafo, v_ady, D, L, is_there);
+				L.pop_back();  
+			}
+			else {		//tengo que revisar si se genera ciclo. 
+				is_there = is_it_already(L, v_ady); 
+			}
+			v_ady = grafo.siguienteVerticeAdy(vertice, v_ady); 	
+		} 
+	
+	
+
+	
+}
+
+
 
 
 CC::CC() {

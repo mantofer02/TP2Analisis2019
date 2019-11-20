@@ -103,10 +103,25 @@ algoritmos.profundidadPrimero(grafo);
 #endif 
 
 
-#if 1 
+#if 0
 algoritmos.anchoPrimero(grafo); 
 #endif 
+
+#if 0
+algoritmos.aislarVertice(grafo, 1); 
+#endif 
+
+#if 1 
+if (algoritmos.is_there_cycles(grafo)) {
+	std::cout << "si hay " << std::endl; 
+}
+else {
+	std::cout << "no hay" << std::endl; 
+}
+#endif 
+
 } 
+
 #endif 
 
 
