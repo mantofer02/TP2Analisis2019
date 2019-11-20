@@ -145,7 +145,7 @@ D.destruir();
 
 
 void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {
-CC cc; APO apo; 
+CC cc; APO<int> apo; 
 cc.iniciar(grafo.numVertices());
 apo.iniciar();  
 int v = grafo.primerVertice(); 
@@ -176,7 +176,7 @@ std::cout << apo.printAPO() << std::endl;
 int aristas_escogidas = 0; 
 std::cout << "aristas seleccionadas : " << std::endl; 
 while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar n-1 aristas / n = cantidad de vertices. 
-	arista_t* arista = apo.sacar(); 
+	arista_t<int>* arista = apo.sacar(); 
 		if (arista != NULL) { 
 		int conjunto_1 = cc.conjuntoAlQuePertenece(arista->vertice_origen);
 		int conjunto_2 = cc.conjuntoAlQuePertenece(arista->vertice_destino); 
@@ -194,6 +194,45 @@ while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar 
 	}
 } 
 }
+
+
+
+void Algoritmos_grafo_MA::profundidadPrimero(Grafo_MA&grafo) {
+	if (!grafo.vacio()) {
+		Diccionario D; 
+		D.iniciar(); 
+		int v = grafo.primerVertice(); 
+		while (v != verticeNulo) {
+			if (!D.pertenece(v)) {
+				profundidadPrimeroR(grafo, v, D); 
+			}
+			v = grafo.siguienteVertice(v); 
+		}
+		D.destruir(); 
+	}
+	else {
+		std::cout << "el grafo esta vacio " << std::endl; 
+	}
+}
+
+
+void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, int vertice, Diccionario&D) {
+	D.agregar(vertice); 
+	std::cout << grafo.etiqueta(vertice) << std::endl; 
+	int v_ady = grafo.primerVerticeAdy(vertice); 
+	while (v_ady != verticeNulo) {
+		if (!D.pertenece(v_ady)) {
+			profundidadPrimeroR(grafo, v_ady, D); 
+		}
+		v_ady = grafo.siguienteVerticeAdy(vertice, v_ady); 		
+	}
+}
+
+
+void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
+
+	
+} 
 
 
 CC::CC() {
@@ -282,139 +321,6 @@ for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
 return ss.str(); 	
 }
 
-APO::APO() {
-	
-	
-}
-
-void APO::iniciar() {
-this->heap_vector = (arista_t*)calloc(LONGITUDAPO, sizeof(int)); 	
-this->cantidadNodos = 0; 
-this->ultimaPosicion = 1; 
-}
-
-void APO::insertar(int vertice_origen, int vertice_destino, int peso) {
-	int index = this->ultimaPosicion;  
-	bool finished = false;
-	int father = 0; 
-	if (this->cantidadNodos != 0) {
-	
-		while (!finished) {		//si aun no se acomoda y no soy la raiz. 	
-			if (index %2 == 0) {				//soy el hijo izquierdo de alguien. 
-				father = index/2; 
-			}
-			else {								//soy el hijo derecho de alguien. 
-				father = (index-1)/2; 
-			}
-			if (peso < this->heap_vector[father].peso) {	//si mi peso es menor al de mi padre. 
-				this->heap_vector[index].vertice_origen = this->heap_vector[father].vertice_origen; 
-				this->heap_vector[index].vertice_destino = this->heap_vector[father].vertice_destino; 
-				this->heap_vector[index].peso = this->heap_vector[father].peso; 
-				index = father; 
-				
-				if (index == 1) {					//llegue a la raiz 
-					finished = true; 	
-				} 
-			}
-			else {									//ya no puedo seguir subiendo, posicion valida. 
-				finished = true; 
-			}
-			
-		}	
-	}
-
-	this->heap_vector[index].vertice_origen = vertice_origen; 
-	this->heap_vector[index].vertice_destino = vertice_destino; 
-	this->heap_vector[index].peso = peso; 
-
-	
-	++this->cantidadNodos; 
-	++this->ultimaPosicion;  
-	
-}
-
-
-
-arista_t* APO::sacar() {
-	arista_t* arista  = NULL; 
- if (this->cantidadNodos != 0) {
-	arista = new arista_t(); 
-	arista->vertice_origen = this->heap_vector[1].vertice_origen; 
-	arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
-	arista->peso = this->heap_vector[1].peso; 	
-	--cantidadNodos; 
-
-	bool finished = false; 
-	int last_position = this->ultimaPosicion; 
-	if (this->cantidadNodos != 0) {
-		int weight = this->heap_vector[ultimaPosicion-1].peso; 
-		int index = 1; 
-		int son_selected = 0; 
-		int weight_s1; 
-		int weight_s2; 
-		while (!finished) {
-			int pos_s1 = index*2; 
-			int pos_s2 = (index*2)+1; 
-			weight_s1 = INFINITY; 
-			weight_s2 = INFINITY; 
-			if (pos_s1 < last_position-1) {				//si es una posicion valida. 
-				weight_s1 = this->heap_vector[pos_s1].peso;  //tome su peso. 
-			}
-			if (pos_s2 < last_position-1) {				//si es una posicion valida. 
-				weight_s2 = this->heap_vector[pos_s2].peso; //tome su peso. 
-			} 
-			
-			if (weight_s1 != INFINITY || weight_s2 != INFINITY) {	//si alguna posicion es valida. 	
-				
-				if (weight > weight_s1 || weight > weight_s2) {		//el padre tiene que ser menor o igual que sus hijos. 
-					if (weight_s1 < weight_s2) {				//se intercambia con el hijo menor. 
-						son_selected = pos_s1;  
-					}
-					else {
-						son_selected = pos_s2;  
-					}
-					
-					this->heap_vector[index].vertice_origen = this->heap_vector[son_selected].vertice_origen; 
-					this->heap_vector[index].vertice_destino = this->heap_vector[son_selected].vertice_destino; 
-					this->heap_vector[index].peso = this->heap_vector[son_selected].peso; 
-					index = son_selected; 
-				}
-				else {
-					finished = true; 			//el padre es menor que sus hijos(los que tenga, 1 o 2), dejar en esa posicion. 
-				}	
-				
-			} 
-			else {								//el padre no tiene hijos, dejar en esa posicion. 
-				finished = true; 
-			}
-		}
-		this->heap_vector[index].vertice_origen = this->heap_vector[this->ultimaPosicion-1].vertice_origen; 
-		this->heap_vector[index].vertice_destino = this->heap_vector[this->ultimaPosicion-1].vertice_destino; 
-		this->heap_vector[index].peso =  this->heap_vector[this->ultimaPosicion-1].peso; 	
-	}
-	--this->ultimaPosicion; 
- }
- else {
-	std::cout << "ya no hay elementos en el APO" << std::endl;  
-  }
-  
- return arista; 
-}
-
-
-string APO::printAPO() {
-	stringstream ss; 
-	for (int index = 1; index < this->ultimaPosicion; ++index) {
-		if (index != this->ultimaPosicion -1) { 
-			ss << this->heap_vector[index].peso << ", ";
-		}
-		else {
-			ss << this->heap_vector[index].peso; 
-		} 
-	}
-	ss << "\n";  	
-return ss.str();
-}
 
 Diccionario::Diccionario() {	
 }

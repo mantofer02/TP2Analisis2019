@@ -31,9 +31,9 @@ void destruir();
 void vaciar(); 
 bool vacio(); 
 int agregarVertice(int etiqueta); 
-void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  
-void eliminarArista(int vertice_1, int vertice_2); 
-void eliminarVertice(int vertice); 
+void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
+void eliminarArista(int vertice_1, int vertice_2); 												//MODIFICAR.
+void eliminarVertice(int vertice); 																
 bool existeArista(int vertice_1, int vertice_2); //optional
 int peso(int vertice_1, int vertice_2); 
 void modificarPeso(int vertice_1, int vertice_2, int peso); 

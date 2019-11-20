@@ -1,6 +1,6 @@
 #include "algoritmos_grafo_MA.h"
 
-#if 1						
+#if 1					
 
 int main (int argc, char* argv[]) {
 
@@ -28,7 +28,7 @@ grafo.agregarArista(1,5,8);
 Algoritmos_grafo_MA algoritmos; 
 
 
-#if 0				//PRUEBA DE DIJKSTRA 
+#if 0			//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 int* VVA = (int*)calloc((grafo.numVertices()-1), sizeof(int)); 	//vector vertice anterior 
 
@@ -93,8 +93,13 @@ algoritmos.Prim(grafo, 0);
 #endif 
 
 
-#if 0 	//PRUEBA DE KRUSKAL
+#if 0	//PRUEBA DE KRUSKAL
 algoritmos.Kruskal(grafo); 			
+#endif 
+
+
+#if 0
+algoritmos.profundidadPrimero(grafo); 
 #endif 
 
 } 
@@ -162,33 +167,8 @@ std::cout << grafo.printEtiquetas() << std::endl;
 
 std::cout << "MATRIZ DESPUES DE ELIMINAR EL VERTICE" << std::endl; 
 std::cout << grafo.printMatrix() << std::endl; 
- 
-
-//grafo.eliminarVertice(); 
-
 
 }
 
 #endif 
 
-
-
-
-/*
-std::cout << "imprimiendo R11 : " << std::endl; 
-std::cout << r11.printR11() << std::endl; 
-
-std::cout << "imprimiendo VP : " << std::endl; 
-for (int index = 0; index < grafo.numVertices()-1; ++index) {
-	std::cout << VP[index] << ", "; 
-}
-
-std::cout << std::endl; 
-
-std::cout << "imprimiendo VVA : " << std::endl; 
-for (int index = 0; index < grafo.numVertices()-1;  ++index) {
-	std::cout << VVA[index] << ", "; 
-}
-
-std::cout << std::endl; 
-*/

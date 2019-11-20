@@ -58,6 +58,8 @@ void Grafo_MA :: agregarArista(int vertice_1, int vertice_2, int peso) {
 	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno && vertice_1 != vertice_2) {
 		this->matrix[vertice_1][vertice_2].conexion = true;	//se crea la conexion en la matriz de adyacencia.  
 		this->matrix[vertice_1][vertice_2].peso = peso; 
+		this->matrix[vertice_2][vertice_1].conexion = true;			//hay desperdicio por simetria, pero es no dirigido.  
+		this->matrix[vertice_2][vertice_1].peso = peso; 
 	}
 	else {
 		std::cout << "la arista no se pudo agregar porque uno o ambos vertices ingresados son invalidos" << std::endl; 
@@ -67,6 +69,7 @@ void Grafo_MA :: agregarArista(int vertice_1, int vertice_2, int peso) {
 void Grafo_MA :: eliminarArista(int vertice_1, int vertice_2) {
 	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno) {
 		this->matrix[vertice_1][vertice_2].conexion = false; 	
+		this->matrix[vertice_2][vertice_1].conexion = false; 
 	}
 	else {
 		std::cout << "la arista no se pudo eliminar puesto que no existe" << std::endl; 

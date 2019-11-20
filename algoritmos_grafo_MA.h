@@ -1,10 +1,23 @@
-#include <sstream>
 #include "grafo_MA.h"
-
-
+#include "apo.h"
 #define INFINITY 999999999
 #define TAMANYO 30		//misma cantidad de vertices del grafo. 
-#define LONGITUDAPO 50
+
+class Diccionario {
+	private: 
+	int* vector; 
+	int ultimoLleno; 
+	
+	public: 
+	Diccionario(); 
+	void iniciar(); 
+	void agregar(int vertice);
+	bool pertenece(int vertice); 
+	int numElem();  
+	void destruir(); 
+	string printD(); 
+	
+}; 
 
 
 class Algoritmos_grafo_MA {
@@ -16,7 +29,10 @@ class Algoritmos_grafo_MA {
 	void Dijkstra(Grafo_MA&grafo, int vertice, int*VP, int*VVA); 
 	void Floyd(Grafo_MA&grafo, int** MP, int** MVI); 
 	void Prim(Grafo_MA&grafo, int vertice);
-	void Kruskal(Grafo_MA&grafo);  
+	void Kruskal(Grafo_MA&grafo); 
+	void profundidadPrimero(Grafo_MA&grafo); 
+	void profundidadPrimeroR(Grafo_MA&grafo, int vertice, Diccionario&D); 
+	void anchoPrimero(Grafo_MA&grafo);  
 	
 }; 
 
@@ -37,45 +53,6 @@ class R11 {
 }; 
 
 
-
-class Diccionario {
-	private: 
-	int* vector; 
-	int ultimoLleno; 
-	
-	public: 
-	Diccionario(); 
-	void iniciar(); 
-	void agregar(int vertice);
-	bool pertenece(int vertice); 
-	int numElem();  
-	void destruir(); 
-	string printD(); 
-	
-}; 
-
-
-typedef struct {
-	int vertice_origen; 
-	int vertice_destino; 
-	int peso; 	
-} arista_t; 
-
-class APO {
-	
-	private:
-	arista_t* heap_vector; 
-	int ultimaPosicion;
-	int cantidadNodos; 
-	
-	public:
-	APO(); 
-	void iniciar(); 
-	void insertar(int vertice_origen, int vertice_destino, int peso);  
-	arista_t* sacar(); 
-	string printAPO(); 
-		
-}; 
 
 class CC {
 
