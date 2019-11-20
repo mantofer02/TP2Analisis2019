@@ -1,4 +1,5 @@
 #include "algoritmos_grafo_MA.h"
+#include <queue>
 
 Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 	
@@ -231,7 +232,30 @@ void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, int vertice, Dicci
 
 void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
 
-	
+ int vertice = grafo.primerVertice();
+ Diccionario D; 
+ queue<int> C; 
+ D.iniciar();  
+ while (vertice != verticeNulo) {
+	 if (!D.pertenece(vertice)) {
+		C.push(vertice); 
+		D.agregar(vertice); 
+		while (!C.empty()) {
+			int v = C.front(); 
+			std::cout << grafo.etiqueta(v) << std::endl; 
+			C.pop(); 
+			int v_ady = grafo.primerVerticeAdy(v);
+			while (v_ady != verticeNulo) {
+				if (!D.pertenece(v_ady)) {
+					C.push(v_ady); 
+					D.agregar(v_ady); 
+				}
+				v_ady = grafo.siguienteVerticeAdy(v,v_ady); 	
+			}			
+		}
+	 }
+	 vertice = grafo.siguienteVertice(vertice); 
+ }	
 } 
 
 

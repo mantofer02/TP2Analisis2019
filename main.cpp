@@ -102,6 +102,10 @@ algoritmos.Kruskal(grafo);
 algoritmos.profundidadPrimero(grafo); 
 #endif 
 
+
+#if 1 
+algoritmos.anchoPrimero(grafo); 
+#endif 
 } 
 #endif 
 
