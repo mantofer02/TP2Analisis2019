@@ -39,7 +39,7 @@ APO<T>::APO() {
 
 template <class T>
 void APO<T>::iniciar() {
-this->heap_vector = (arista_t<T>*)calloc(LONGITUDAPO, sizeof(int)); 	
+this->heap_vector = (arista_t<T>*)calloc(LONGITUDAPO, sizeof(T)); 	
 this->cantidadNodos = 0; 
 this->ultimaPosicion = 1; 
 }
