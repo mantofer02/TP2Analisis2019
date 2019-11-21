@@ -120,7 +120,7 @@ else {
 #endif
  
 
-
+#if 1 
 Diccionario D; 
 D.iniciar(); 
 int* Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
@@ -145,7 +145,7 @@ for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
 ss << "\n"; 
 std::cout << "la mejor solucion corresponde a : " << std::endl; 
 std::cout << ss.str() << std::endl;   
- 
+#endif  
 } 
 
 #endif 
