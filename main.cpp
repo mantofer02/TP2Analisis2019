@@ -97,20 +97,20 @@ algoritmos.Kruskal(grafo);
 #endif 
 
 
-#if 0
+#if 0	//PRUEBA IMPRIMIR ETIQUETAS USANDO PROFUNDIDAD PRIMERO
 algoritmos.profundidadPrimero(grafo); 
 #endif 
 
 
-#if 0
+#if 0	//PRUEBA IMPRIMIR ETIQUETAS USANDO ANCHO PRIMERO. 
 algoritmos.anchoPrimero(grafo); 
 #endif 
 
-#if 0
+#if 0	//PRUEBA AISLAR VERTICE. 
 algoritmos.aislarVertice(grafo, 1); 
 #endif 
 
-#if 0
+#if 0	//PRUEBA DE SI HAY CICLOS EN UN GRAFO 
 if (algoritmos.is_there_cycles(grafo)) {
 	std::cout << "si hay ciclo" << std::endl; 
 }
@@ -120,7 +120,7 @@ else {
 #endif
  
 
-#if 1 
+#if 1 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
 Diccionario D; 
 D.iniciar(); 
 int* Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
