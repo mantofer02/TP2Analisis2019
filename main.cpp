@@ -24,7 +24,6 @@ grafo.agregarArista(5,4,5);
 grafo.agregarArista(1,2,90);
 grafo.agregarArista(1,5,8);  
 
-
 Algoritmos_grafo_MA algoritmos; 
 
 
@@ -111,12 +110,12 @@ algoritmos.anchoPrimero(grafo);
 algoritmos.aislarVertice(grafo, 1); 
 #endif 
 
-#if 1 
+#if 1
 if (algoritmos.is_there_cycles(grafo)) {
-	std::cout << "si hay " << std::endl; 
+	std::cout << "si hay ciclo" << std::endl; 
 }
 else {
-	std::cout << "no hay" << std::endl; 
+	std::cout << "no hay ciclo" << std::endl; 
 }
 #endif 
 

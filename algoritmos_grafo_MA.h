@@ -38,7 +38,7 @@ class Algoritmos_grafo_MA {
 	void anchoPrimero(Grafo_MA&grafo);  
 	void aislarVertice(Grafo_MA&grafo, int vertice); 
 	bool is_there_cycles(Grafo_MA&grafo); 	//se implementa haciendo profundidad primero. //PENDIENTE
-	void is_there_cyclesR(Grafo_MA&grafo, int vertice, Diccionario&D, std::list<int>&L, bool&is_there); 
+	void is_there_cyclesR(Grafo_MA&grafo, int vertice, int vertice_anterior, Diccionario&D, std::list<int>&L, bool&is_there); 
 	void CH(Grafo_MA&grafo); 				//circuito hamilton de menor costo. //PENDIENTE
 	void colorear_grafo(Grafo_MA&grafo);	//usando la menor cantidad de colores posibles.  //PENDIENTE
 	void componentesConexos(Grafo_MA&grafo); 				//averiguar cuantos componentes conexos tiene un grafo. //PENDIENTE 

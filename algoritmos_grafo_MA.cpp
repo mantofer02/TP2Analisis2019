@@ -271,7 +271,15 @@ void Algoritmos_grafo_MA::aislarVertice(Grafo_MA&grafo, int vertice) {
 bool is_it_already(std::list<int>&L, int vertice) {
 	//buscar si ese vertice ya esta en la lista 
 	bool is_there = false; 
-	
+	list<int>::iterator current_element;
+	current_element = L.begin();  
+	for (int iteration = 0; iteration < L.size(); ++iteration) {
+		if (*current_element == vertice) {
+			is_there = true; 
+			iteration = L.size(); 
+		}
+		++current_element; 
+	}
 	return is_there; 	
 }
 
@@ -286,7 +294,7 @@ bool Algoritmos_grafo_MA::is_there_cycles(Grafo_MA&grafo) {
 	 D.iniciar();  
 	 while (v != verticeNulo && !is_there) {
 		if (!D.pertenece(v)) {
-			is_there_cyclesR(grafo, v, D, L, is_there); 
+			is_there_cyclesR(grafo, v, -1,  D, L, is_there); 
 		} 
 		v = grafo.siguienteVertice(v);  
 	 } 	
@@ -295,26 +303,46 @@ return is_there;
 }
 
 
-void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, int vertice, Diccionario&D, std::list<int>&L, bool&is_there) {
+void showlist(list <int>&g) 
+{ 
+    list <int> :: iterator it; 
+    for(it = g.begin(); it != g.end(); ++it) 
+        cout << '\t' << *it; 
+    cout << '\n'; 
+} 
+  
+  
+void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, int vertice, int vertice_anterior,  Diccionario&D, std::list<int>&L, bool&is_there) {
 		D.agregar(vertice);
 		L.push_back(vertice); 
 		int v_ady = grafo.primerVerticeAdy(vertice);
 		while (v_ady != verticeNulo && !is_there) {
 			if (!D.pertenece(v_ady)) {
-				is_there_cyclesR(grafo, v_ady, D, L, is_there);
+				is_there_cyclesR(grafo, v_ady, vertice, D, L, is_there);
 				L.pop_back();  
 			}
-			else {		//tengo que revisar si se genera ciclo. 
-				is_there = is_it_already(L, v_ady); 
+			else {
+				if (v_ady != vertice_anterior) {	//dado que es grafo no dirigido, siempre va a tener de adyacente de donde vengo, eso no cuenta como ciclo. 
+					is_there = is_it_already(L, v_ady); 
+				}
+				if (is_there) {
+					std::cout << "el ciclo se genera del vertice : " << vertice << " al vertice : " << v_ady << std::endl; 
+					std::cout << "el recorrido que llevaba la recursividad corresponde a : " << std::endl; 
+					showlist(L);   
+				}
 			}
 			v_ady = grafo.siguienteVerticeAdy(vertice, v_ady); 	
 		} 
-	
-	
-
+		//showlist(L); 
 	
 }
 
+/*
+int best_path = 0; 
+int amount_solutions = 0; 
+int* sol = NULL; 
+Diccionario D; 
+*/
 
 
 
