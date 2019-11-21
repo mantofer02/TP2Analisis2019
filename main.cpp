@@ -110,15 +110,42 @@ algoritmos.anchoPrimero(grafo);
 algoritmos.aislarVertice(grafo, 1); 
 #endif 
 
-#if 1
+#if 0
 if (algoritmos.is_there_cycles(grafo)) {
 	std::cout << "si hay ciclo" << std::endl; 
 }
 else {
 	std::cout << "no hay ciclo" << std::endl; 
 }
-#endif 
+#endif
+ 
 
+
+Diccionario D; 
+D.iniciar(); 
+int* Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
+int* mejor_Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
+int costo = 0; 
+int mejor_costo = INFINITY; 
+int contador_soluciones = 0; 
+Sol[0] = grafo.primerVertice(); 
+algoritmos.CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, 1);   
+
+std::cout << "se finalizo con exito" << std::endl; 
+std::cout << "soluciones factibles : " << contador_soluciones << std::endl; 
+stringstream ss; 
+for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
+	if (index_sol != grafo.numVertices()) {
+		ss << mejor_Sol[index_sol] << ", "; 
+	}
+	else {
+		ss << mejor_Sol[index_sol]; 
+	}	
+}
+ss << "\n"; 
+std::cout << "la mejor solucion corresponde a : " << std::endl; 
+std::cout << ss.str() << std::endl;   
+ 
 } 
 
 #endif 

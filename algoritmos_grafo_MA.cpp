@@ -332,9 +332,7 @@ void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, int vertice, int vert
 				}
 			}
 			v_ady = grafo.siguienteVerticeAdy(vertice, v_ady); 	
-		} 
-		//showlist(L); 
-	
+		} 	
 }
 
 /*
@@ -343,6 +341,47 @@ int amount_solutions = 0;
 int* sol = NULL; 
 Diccionario D; 
 */
+
+void Algoritmos_grafo_MA::CH(Grafo_MA&grafo, Diccionario&D, int* Sol, int* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
+
+int v = Sol[indice-1]; 
+D.agregar(v); 
+
+
+if (indice == grafo.numVertices()) {		//llegue a una posible solucion factible. 
+	if (grafo.existeArista(v,Sol[0])) {		//tengo una solucion factible. 
+		++contador_soluciones; 
+		costo+= grafo.peso(v,Sol[0]); 
+		std::cout << "se encontro una solucion factible" << std::endl; 
+		if (costo < mejor_costo) {
+			mejor_costo = costo; 
+			Sol[indice] = Sol[0];
+			for (int index = 0; index <= grafo.numVertices(); ++index) {
+				mejor_Sol[index] = Sol[index]; 
+			}
+		}
+		//arrepentimiento 
+		costo-= grafo.peso(v, Sol[0]);
+	}
+
+}	
+else {	
+	int v_ady = grafo.primerVerticeAdy(v); 
+	while (v_ady != verticeNulo) {
+		if (!D.pertenece(v_ady)) {
+			Sol[indice] = v_ady; 
+			costo+= grafo.peso(v,v_ady); 
+			CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, indice+1);
+			D.pop(); 
+			costo-= grafo.peso(v,v_ady);  
+		}
+		v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
+	}
+}
+	
+}
+
+
 
 
 
@@ -440,6 +479,9 @@ void Diccionario::destruir() {
 	free(this->vector); 
 }
 
+void Diccionario::pop() {
+	--this->ultimoLleno; 
+}
 
 void Diccionario::iniciar() {
 	this->vector = (int*)malloc(TAMANYO*sizeof(int)); 

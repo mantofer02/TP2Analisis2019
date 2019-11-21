@@ -16,6 +16,7 @@ class Diccionario {
 	void iniciar(); 
 	void agregar(int vertice);
 	bool pertenece(int vertice); 
+	void pop(); 
 	int numElem();  
 	void destruir(); 
 	string printD(); 
@@ -37,9 +38,9 @@ class Algoritmos_grafo_MA {
 	void profundidadPrimeroR(Grafo_MA&grafo, int vertice, Diccionario&D); 
 	void anchoPrimero(Grafo_MA&grafo);  
 	void aislarVertice(Grafo_MA&grafo, int vertice); 
-	bool is_there_cycles(Grafo_MA&grafo); 	//se implementa haciendo profundidad primero. //PENDIENTE
+	bool is_there_cycles(Grafo_MA&grafo); 
 	void is_there_cyclesR(Grafo_MA&grafo, int vertice, int vertice_anterior, Diccionario&D, std::list<int>&L, bool&is_there); 
-	void CH(Grafo_MA&grafo); 				//circuito hamilton de menor costo. //PENDIENTE
+	void CH(Grafo_MA&grafo, Diccionario&D, int* Sol, int* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
 	void colorear_grafo(Grafo_MA&grafo);	//usando la menor cantidad de colores posibles.  //PENDIENTE
 	void componentesConexos(Grafo_MA&grafo); 				//averiguar cuantos componentes conexos tiene un grafo. //PENDIENTE 
 	void encontrarPuntosArticulacion(Grafo_MA&grafo);		//PENDIENTE
