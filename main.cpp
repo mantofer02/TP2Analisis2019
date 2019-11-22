@@ -120,7 +120,7 @@ else {
 #endif
  
 
-#if 1 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
+#if 0 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
 Diccionario D; 
 D.iniciar(); 
 int* Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
@@ -145,7 +145,27 @@ for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
 ss << "\n"; 
 std::cout << "la mejor solucion corresponde a : " << std::endl; 
 std::cout << ss.str() << std::endl;   
-#endif  
+#endif
+
+
+#if 1 
+//hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
+int* puntos = (int*)calloc(grafo.numVertices(), sizeof(int)); 
+algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
+std::cout << "imprimiendo los puntos de articulacion : " << std::endl; 
+stringstream ss; 
+for (int index = 1; index <= puntos[0]; ++index) {
+	if (index != puntos[0]) {
+		ss << puntos[index] << ", "; 
+	}
+	else {
+		ss << puntos[index]; 
+	}
+}
+ss << "\n"; 
+std::cout << ss.str() << std::endl; 
+
+#endif   
 } 
 
 #endif 

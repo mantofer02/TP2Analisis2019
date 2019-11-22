@@ -24,6 +24,22 @@ class Diccionario {
 }; 
 
 
+class R11 {
+	private: 
+	int** matrix; 
+	int ultimoLleno; 
+	
+	public:
+	R11();
+	void agregar(int vertice, int indice); 
+	void iniciar();
+	int indice(int vertice); 
+	int vertice(int indice);  
+	void destruir(); 
+	string printR11(); 	
+}; 
+
+
 class Algoritmos_grafo_MA {
 	
 	private: 
@@ -43,25 +59,11 @@ class Algoritmos_grafo_MA {
 	void CH(Grafo_MA&grafo, Diccionario&D, int* Sol, int* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
 	void colorear_grafo(Grafo_MA&grafo);	//usando la menor cantidad de colores posibles.  //PENDIENTE
 	void componentesConexos(Grafo_MA&grafo); 				//averiguar cuantos componentes conexos tiene un grafo. //PENDIENTE 
-	void encontrarPuntosArticulacion(Grafo_MA&grafo);		//PENDIENTE
+	void encontrarPuntosArticulacion(Grafo_MA&grafo, int*puntos);		//PENDIENTE
+	void puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, int*puntos, int v, int indice); 
 	bool existeCaminoEntreTodoParDeVertices(Grafo_MA&grafo);	// 	PENDIENTE
 }; 
 
-
-class R11 {
-	private: 
-	int** matrix; 
-	int ultimoLleno; 
-	
-	public:
-	R11();
-	void agregar(int vertice, int indice); 
-	void iniciar();
-	int indice(int vertice); 
-	int vertice(int indice);  
-	void destruir(); 
-	string printR11(); 	
-}; 
 
 
 
