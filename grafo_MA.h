@@ -26,28 +26,28 @@ int ultimoLleno;
 	
 	
 public: 	
-void iniciar(); 
-void destruir(); 
-void vaciar(); 
-bool vacio(); 
-int agregarVertice(int etiqueta); 
-void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
-void eliminarArista(int vertice_1, int vertice_2); 												//MODIFICAR.
-void eliminarVertice(int vertice); 																
-bool existeArista(int vertice_1, int vertice_2); //optional
-int peso(int vertice_1, int vertice_2); 
-void modificarPeso(int vertice_1, int vertice_2, int peso); 
-void modificarEtiqueta(int vertice, int etiqueta); 
-int etiqueta(int vertice); 
-int numVertices(); 
-int numAristas(); 
-int numVerticesAdy(int vertice); 
-int primerVerticeAdy(int vertice); 
-int siguienteVerticeAdy(int vertice, int actual_vertice_ady); 
-int primerVertice(); 
-int siguienteVertice(int vertice); 
-string printEtiquetas(); 
-string printMatrix(); 
+	void iniciar(); 
+	void destruir(); 
+	void vaciar(); 
+	bool vacio(); 
+	int agregarVertice(int etiqueta); 
+	void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
+	void eliminarArista(int vertice_1, int vertice_2); 												//MODIFICAR.
+	void eliminarVertice(int vertice); 																
+	bool existeArista(int vertice_1, int vertice_2); //optional
+	int peso(int vertice_1, int vertice_2); 
+	void modificarPeso(int vertice_1, int vertice_2, int peso); 
+	void modificarEtiqueta(int vertice, int etiqueta); 
+	int etiqueta(int vertice); 
+	int numVertices(); 
+	int numAristas(); 
+	int numVerticesAdy(int vertice); 
+	int primerVerticeAdy(int vertice); 
+	int siguienteVerticeAdy(int vertice, int actual_vertice_ady); 
+	int primerVertice(); 
+	int siguienteVertice(int vertice); 
+	string printEtiquetas(); 
+	string printMatrix(); 
 
 };
 
