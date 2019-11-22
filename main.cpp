@@ -148,7 +148,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1 
+#if 1 		//PRUEBA PUNTOS DE ARTICULACION.
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
 int* puntos = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
