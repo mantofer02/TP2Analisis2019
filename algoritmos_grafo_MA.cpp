@@ -382,9 +382,81 @@ else {
 }
 
 
+void Algoritmos_grafo_MA::encontrarPuntosArticulacion(Grafo_MA&grafo, int*puntos) {
+	
+	if (!grafo.vacio()) {
+		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
+		int* mas_bajo = (int*)calloc(grafo.numVertices(), sizeof(int));
+		Diccionario D; 	D.iniciar(); 
+		R11 r11; 	r11.iniciar(); 
+		int v = grafo.primerVertice();
+		int contador_vertice = 0;  
+		while (v != verticeNulo) {
+			r11.agregar(v, contador_vertice);
+			++contador_vertice; 
+			v = grafo.siguienteVertice(v);  
+		}
+		v = grafo.primerVertice(); 
+		while (v != verticeNulo) {
+			if (!D.pertenece(v)) {
+				puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos,v , 0); 	
+			}
+			v = grafo.siguienteVertice(v); 
+		}
+		
+		free(orden); 
+		free(mas_bajo);  
+		D.destruir(); 
+		r11.destruir(); 
+	}
+	else {
+		//no hay nada que hacer. 
+	}
+}
+
+int min(int a, int b) {
+	if (a < b) {
+		return a; 
+	}
+	else {
+		return b; 
+	}
+}
+
+void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, int*puntos, int v, int indice) {
+	D.agregar(v); 
+	mas_bajo[r11.indice(v)] = indice; 
+	orden[r11.indice(v)] = indice; 
+	int sons = 0; 
+	int v_ady = grafo.primerVerticeAdy(v); 
+	while (v_ady != verticeNulo) {
+		if (!D.pertenece(v_ady)) {
+			++sons; 
+			puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos, v_ady, indice+1); 
+			if (mas_bajo[r11.indice(v_ady)] >= orden[r11.indice(v)]) {		//encontre un punto de articulacion. 
+				puntos[puntos[0]+1] = v;
+				++puntos[0];
+			}
+			mas_bajo[r11.indice(v)] = min(mas_bajo[r11.indice(v)], mas_bajo[r11.indice(v_ady)]); 
+		}
+		else {	//hay un ciclo. 
+			mas_bajo[r11.indice(v)] = min(mas_bajo[r11.indice(v_ady)], orden[r11.indice(v_ady)]);  
+		}
+		v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
+	}
+	if (indice == 0 && sons >= 2) {
+		puntos[puntos[0]+1] = v;
+		++puntos[0];
+	}
+}
 
 
-
+			/*
+			if (mas_bajo[r11.indice(v_ady)] < mas_bajo[r11.indice(v)]) {
+				mas_bajo[r11.indice(v_ady)] = mas_bajo[r11.indice(v)]; 
+			}
+			*/
+			
 CC::CC() {
 	
 }
