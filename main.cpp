@@ -148,7 +148,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1 		//PRUEBA PUNTOS DE ARTICULACION.
+#if 0 		//PRUEBA PUNTOS DE ARTICULACION.
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
 int* puntos = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
@@ -165,7 +165,18 @@ for (int index = 1; index <= puntos[0]; ++index) {
 ss << "\n"; 
 std::cout << ss.str() << std::endl; 
 
-#endif   
+#endif
+
+
+#if 1 
+CC mejor_sol; 
+mejor_sol.iniciar(grafo.numVertices());
+int menor_cantidad = INFINITY; 
+int colores = 0; 
+int contador_soluciones = 0; 
+algoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones); 
+
+#endif    
 } 
 
 #endif 
