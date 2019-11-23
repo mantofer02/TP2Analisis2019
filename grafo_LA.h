@@ -16,11 +16,13 @@ class Grafo{
     private:
         struct vertice{
             vertice(ETIQUETA);
+            vertice(ETIQUETA, int);
             vertice();
             ETIQUETA etiqueta;
             int indice;
         };
         int cantidadDeVertices;
+        int cantidadDeAristas;
         std :: vector <vertice> l1;
         std :: vector <std :: vector<std :: pair<int, int>>> l2;
         
@@ -44,12 +46,12 @@ class Grafo{
         int vacia();
         int peso( vertice, vertice);
         int existeArista( vertice, vertice);
-        // void modificarEtiqueta(vertice, ETIQUETA);
-        // void modificarPeso(vertice, vertice, int);
-        // void agregarArista(vertice, vertice, int);
-        // void agregarVertice(ETIQUETA);
-        // void eliminarArista(vertice, vertice);
-        // void eliminarVertice(vertice); //Se supone que es aislado
+        void modificarEtiqueta(vertice, ETIQUETA);
+        void modificarPeso(vertice, vertice, int);
+        void agregarArista(vertice, vertice, int);
+        void agregarVertice(ETIQUETA);
+        void eliminarArista(vertice, vertice);
+        void eliminarVertice(vertice); //Se supone que es aislado
         // void numVerticesAdyacentes(vertice);
         // int numVertices();
         // int numAristas();
@@ -57,5 +59,6 @@ class Grafo{
         // vertice steVertice(vertice);
         // vertice primerVtcAdyacente(vertice);
         // vertice steVtcAdyacente(vertice);
+        // void aislarVertice(vertice)
 };
 #endif
