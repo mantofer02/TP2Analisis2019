@@ -4,11 +4,13 @@
 #include <utility>
 #include <string>
 #include <vector>
+#include <iostream>
+
 
 // using namespace std;
 
 typedef std :: string ETIQUETA;
-
+ 
 /* Implementado Por Lista de Adyacencia */
 /* NO PUEDEN HABER 2 VERTICES CON ETIQUETAS IGUALES, SI NO SE CAE TODO*/
 // OJO, AGREGAR LOS GRAFOS POR REFERENCIA, PARA QUE SI MODIFICO LA ETIQUETA DE LA PRIMERA LISTA, SE MODIFIQUE EL DE LA SEGUNDA
@@ -25,7 +27,7 @@ class Grafo{
         int cantidadDeAristas;
         std :: vector <vertice> l1;
         std :: vector <std :: vector<std :: pair<int, int>>> l2;
-        
+        vertice verticeNulo;
         /*
         ------------PARA EL PAIR-------
         first = indice del vertice en L1
@@ -52,13 +54,15 @@ class Grafo{
         void agregarVertice(ETIQUETA);
         void eliminarArista(vertice, vertice);
         void eliminarVertice(vertice); //Se supone que es aislado
-        // void numVerticesAdyacentes(vertice);
-        // int numVertices();
-        // int numAristas();
-        // vertice primerVertice();
-        // vertice steVertice(vertice);
-        // vertice primerVtcAdyacente(vertice);
-        // vertice steVtcAdyacente(vertice);
+        int numVerticesAdyacentes(vertice);
+        int numVertices();
+        int numAristas();
+        vertice primerVertice();
+        vertice steVertice(vertice);
+        vertice primerVtcAdyacente(vertice);
+        vertice steVtcAdyacente(vertice, vertice);
+        void imprimirGrafo();
+        vertice getVertice(ETIQUETA);
         // void aislarVertice(vertice)
 };
 #endif
