@@ -20,13 +20,14 @@ class Grafo{
             vertice(ETIQUETA);
             vertice(ETIQUETA, int);
             vertice();
+            void imprimir();
             ETIQUETA etiqueta;
             int indice;
         };
         int cantidadDeVertices;
         int cantidadDeAristas;
-        std :: vector <vertice> l1;
-        std :: vector <std :: vector<std :: pair<int, int>>> l2;
+        // std :: vector <vertice> l1;
+        // std :: vector <std :: vector<std :: pair<int, int>>> l2;
         vertice verticeNulo;
         /*
         ------------PARA EL PAIR-------
@@ -41,6 +42,8 @@ class Grafo{
        */
     
     public:
+        std :: vector <vertice> l1;
+        std :: vector <std :: vector<std :: pair<int, int>>> l2;
         Grafo();
         void iniciar();
         void destruir();

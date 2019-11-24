@@ -74,16 +74,13 @@ Grafo :: vertice Grafo :: getVertice(ETIQUETA laEtiqueta){
 
 int Grafo :: existeArista( vertice v1, vertice v2){
     int existe = 0;
-    int indice1 = v1.indice;
-    if(indice1 < cantidadDeVertices){
-        int fila1 = indice1;
-        int columna1 = 0;
-        while(columna1 < l2[fila1].size() && l2[fila1][columna1].first != v2.indice){
-            columna1++;
-        }
-        if(l2[fila1][columna1].first == v2.indice){
-            existe = 1;
-        }
+    int columna1 = 0;
+    int fila1 = v1.indice;
+    while(columna1 < l2[fila1].size() && l2[fila1][columna1].first != v2.indice){
+        columna1++;
+    }
+    if(columna1 < l2[fila1].size()){
+        existe = 1;
     }
     return existe;
 }
@@ -133,7 +130,9 @@ void Grafo :: agregarVertice(ETIQUETA laEtiqueta){
     vertice nuevo(laEtiqueta, cantidadDeVertices);
     l1.push_back(nuevo);
     cantidadDeVertices++;
-    std :: cout << "Se agrego" << std :: endl;
+    std :: vector <std :: pair<int, int>> listaNueva;
+    l2.push_back(listaNueva);
+    // std :: cout << "Se agrego" << std :: endl;
 }
 
 void Grafo :: eliminarArista(vertice v1, vertice v2){
@@ -207,17 +206,23 @@ Grafo :: vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
     }
 }
 
+void Grafo :: vertice :: imprimir(){
+    std :: cout << " Etiqueta :  " << this->etiqueta;
+}
+
 void Grafo :: imprimirGrafo(){
-    std :: cout << "aqui" << std :: endl;
+    // std :: cout << "aqui" << std :: endl;
     if(!vacia()){
-        std :: cout << "TAMA;O" << l1.size();    
+        // std :: cout << "TAMA;O" << l1.size();    
         for(int i = 0; i < cantidadDeVertices; i++){
             std :: cout << " Etiqueta :  " << l1[i].etiqueta << " ||  ";
-            if(!l2[i].empty()){
-                for(int j = 0; j < l2[i].size(); j++){
-                    std :: cout << " Etiqueta :  " << l1[l2[i][j].first].etiqueta << " ---> ";
-                }
-            }
+            // if(!l2.empty()){
+                // if(l2[i].empty()){
+                    for(int j = 0; j < l2[i].size(); j++){
+                        std :: cout << " < Etiqueta :  " << l1[l2[i][j].first].etiqueta << " | Peso : " << l2[i][j].second << " > ---> ";
+                    }
+                // }
+            // }
             std :: cout << std :: endl;
         }
     }
