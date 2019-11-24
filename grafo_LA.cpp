@@ -187,8 +187,10 @@ Grafo :: vertice Grafo :: steVertice(vertice v1){
 Grafo :: vertice Grafo :: primerVtcAdyacente(vertice v1){       
     if(l2[v1.indice].size()){
         return l1[l2[v1.indice][0].first];
+        l1[l2[v1.indice][0].first].imprimir();
     }else{
         return verticeNulo;
+        verticeNulo.imprimir();
     }
 }
 

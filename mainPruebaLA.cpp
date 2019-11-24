@@ -19,6 +19,9 @@ int main(){
     mio.agregarArista(mio.getVertice("A"),mio.getVertice("B"), 89);
     mio.agregarArista(mio.getVertice("C"),mio.getVertice("E"), 89);
     
+    mio.primerVtcAdyacente(mio.getVertice("A"));
+    mio.primerVtcAdyacente(mio.getVertice("D"));
+
     // std :: cout << mio.existeArista(mio.getVertice("C"),mio.getVertice("B"));
     mio.imprimirGrafo();
     return 0;
