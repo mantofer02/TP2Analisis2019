@@ -145,7 +145,7 @@ D.destruir();
 
 
 void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {
-CC cc; APO<vertice> apo; 
+CC<vertice> cc; APO<vertice> apo; 
 cc.iniciar(grafo.numVertices());
 apo.iniciar();  
 vertice v = grafo.primerVertice(); 
@@ -451,11 +451,11 @@ void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice
 }
 
 
-void Algoritmos_grafo_MA::colorear_grafo(Grafo_MA&grafo, CC&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
+void Algoritmos_grafo_MA::colorear_grafo(Grafo_MA&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
 if (!grafo.vacio()) {
-	CC ccc; 
+	CC<vertice> ccc; 
 	ccc.iniciar(grafo.numVertices()); 
-	CC cca; 
+	CC<vertice> cca; 
 	cca.iniciar(grafo.numVertices()); 
 	int index_conjunto = 0; 
 	while (index_conjunto < grafo.numVertices()) {
@@ -490,7 +490,7 @@ if (!grafo.vacio()) {
 }
 
 
-void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC&mejor_sol, CC&ccc, CC&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones){
+void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones){
 
  if (v == verticeNulo) {
 	 ++contador_soluciones; 
@@ -526,7 +526,7 @@ void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC&mejor_sol, CC&ccc, CC&cca,
 	
 }
 
-			
+/*			
 CC::CC() {
 	
 }
@@ -635,6 +635,7 @@ for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
 return ss.str(); 	
 }
 
+*/
 
 void iniciarM(int** matrix, int rows, int columns) {
 	matrix = (int**)malloc(rows*sizeof(int*));
