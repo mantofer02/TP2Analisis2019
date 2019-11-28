@@ -8,7 +8,7 @@ Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 
 void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
 	R11<vertice> r11; 
-	Diccionario D;
+	Diccionario<vertice> D;
 	D.iniciar(); 
 	r11.iniciar(); 
 	vertice v = grafo.primerVertice();
@@ -105,7 +105,7 @@ for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) {
 } 
 
 void Algoritmos_grafo_MA::Prim(Grafo_MA&grafo, vertice ver) {
-Diccionario D; 
+Diccionario<vertice> D; 
 D.iniciar(); 	
 D.agregar(ver); 
 vertice v; 
@@ -199,7 +199,7 @@ while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar 
 
 void Algoritmos_grafo_MA::profundidadPrimero(Grafo_MA&grafo) {
 	if (!grafo.vacio()) {
-		Diccionario D; 
+		Diccionario<vertice> D; 
 		D.iniciar(); 
 		vertice v = grafo.primerVertice(); 
 		while (v != verticeNulo) {
@@ -216,7 +216,7 @@ void Algoritmos_grafo_MA::profundidadPrimero(Grafo_MA&grafo) {
 }
 
 
-void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Diccionario&D) {
+void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Diccionario<vertice>&D) {
 	D.agregar(ver); 
 	std::cout << grafo.etiqueta(ver) << std::endl; 
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
@@ -232,7 +232,7 @@ void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Dicci
 void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
 
  vertice ver = grafo.primerVertice();
- Diccionario D; 
+ Diccionario<vertice> D; 
  queue<vertice> C; 
  D.iniciar();  
  while (ver != verticeNulo) {
@@ -289,7 +289,7 @@ bool Algoritmos_grafo_MA::is_there_cycles(Grafo_MA&grafo) {
  
  if (!grafo.vacio()) {
 	 vertice v = grafo.primerVertice();
-	 Diccionario D; 
+	 Diccionario<vertice> D; 
 	 list<vertice> L; 
 	 D.iniciar();  
 	 while (v != verticeNulo && !is_there) {
@@ -312,7 +312,7 @@ void showlist(list <vertice>&g)
 } 
   
   
-void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior,  Diccionario&D, std::list<vertice>&L, bool&is_there) {
+void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior,  Diccionario<vertice>&D, std::list<vertice>&L, bool&is_there) {
 		D.agregar(ver);
 		L.push_back(ver); 
 		vertice v_ady = grafo.primerVerticeAdy(ver);
@@ -342,7 +342,7 @@ int* sol = NULL;
 Diccionario D; 
 */
 
-void Algoritmos_grafo_MA::CH(Grafo_MA&grafo, Diccionario&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
+void Algoritmos_grafo_MA::CH(Grafo_MA&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
 
 vertice v = Sol[indice-1]; 
 D.agregar(v); 
@@ -387,7 +387,7 @@ void Algoritmos_grafo_MA::encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*pu
 	if (!grafo.vacio()) {
 		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 		int* mas_bajo = (int*)calloc(grafo.numVertices(), sizeof(int));
-		Diccionario D; 	D.iniciar(); 
+		Diccionario<vertice> D; 	D.iniciar(); 
 		R11<vertice> r11; 	r11.iniciar(); 
 		vertice v = grafo.primerVertice();
 		int contador_vertice = 0;  
@@ -423,7 +423,7 @@ int min(int a, int b) {
 	}
 }
 
-void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
+void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
 	orden[r11.indice(v)] = indice; 
@@ -635,56 +635,6 @@ for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
 return ss.str(); 	
 }
 
-
-Diccionario::Diccionario() {	
-}
-
-void Diccionario::destruir() {
-	free(this->vector); 
-}
-
-void Diccionario::pop() {
-	--this->ultimoLleno; 
-}
-
-void Diccionario::iniciar() {
-	this->vector = (int*)malloc(TAMANYO*sizeof(int)); 
-	this->ultimoLleno = 0; 
-}
-
-void Diccionario::agregar(int vertice) {
-	this->vector[this->ultimoLleno] = vertice; 
-	++this->ultimoLleno; 
-}
-
-bool Diccionario::pertenece(int vertice) {
-	bool found = false; 
-	for (int index = 0; index < this->ultimoLleno; ++index) {
-		if (this->vector[index] == vertice) {
-			found = true; index = this->ultimoLleno; 
-		}
-	}
-	return found; 	
-}
-
-
-int Diccionario::numElem() {
-	return this->ultimoLleno; 
-}
-	
-string Diccionario::printD() {
-	stringstream ss; 
-	for (int index = 0; index < this->ultimoLleno; ++index) {
-		if (index != this->ultimoLleno-1) {
-			ss << this->vector[index] << ", "; 
-		}
-		else {
-			ss << this->vector[index]; 
-		}
-	}
-	return ss.str(); 
-}
-	
 
 void iniciarM(int** matrix, int rows, int columns) {
 	matrix = (int**)malloc(rows*sizeof(int*));
