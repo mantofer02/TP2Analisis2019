@@ -104,8 +104,8 @@ for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) {
 
 } 
 
-void Algoritmos_grafo_MA::Prim(Grafo_MA&grafo, vertice ver) {
-Diccionario<vertice> D; 
+void Algoritmos_grafo_MA::Prim(Grafo_MA&grafo, vertice ver) {			//ESTE ALGORITMO VA IMPRIMIENDO, SE LE PODRIA PONER UN BOOL, PARA QUE IMPRIMA DE FORMAS 
+Diccionario<vertice> D; 												//DIFERENTES. 	
 D.iniciar(); 	
 D.agregar(ver); 
 vertice v; 
@@ -136,17 +136,17 @@ while (D.numElem() < grafo.numVertices()) {
 		}
 		v = grafo.siguienteVertice(v); 
 	}
-	D.agregar(v_minimo); 
+	D.agregar(v_minimo); 													//PORQUE AQUI YO IMPRIMO MI VERTICE COMO SI NADA, PERO PARA LA LISTA NO
 	std::cout << "vertice origen : " << v_padre << " vertice destino : " << v_minimo << " peso : " << peso_minimo << std::endl; 	
-}
-
+}																			//AMENOS QUE SE SOBRECARGUE EL OPERADOR PARA QUE SE PUEDA IMPRIMIR EL OBJETO. 			
+																			//COMO UN TIPO TOSTRING DE JAVA. 
 D.destruir(); 	
 }
 
 
-void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {
-CC<vertice> cc; APO<vertice> apo; 
-cc.iniciar(grafo.numVertices());
+void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {								//LA MISMA COSA DE PRIM, AQUI SE VA IMPRIMIENDO. 
+CC<vertice> cc; APO<vertice> apo; 												//O SE PODRIA METER LOS RESUTLADOS EN ALGUN LADO Y QUE LOS RETORNE. 
+cc.iniciar(grafo.numVertices());												//YA AHI CADA QUIEN QUE IMPRIMA COMO QUIERA. 
 apo.iniciar();  
 vertice v = grafo.primerVertice(); 
 int index_conjunto = 0; 
@@ -312,6 +312,7 @@ void showlist(list <vertice>&g)
 } 
   
   
+			//AQUI ES EL MISMO PROBLEMA DE PRIM Y KRUSKAL, SE VA IMPRIMIENDO. LO MISMO QUE DIJE ARRIBA. 
 void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior,  Diccionario<vertice>&D, std::list<vertice>&L, bool&is_there) {
 		D.agregar(ver);
 		L.push_back(ver); 
@@ -335,12 +336,6 @@ void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice 
 		} 	
 }
 
-/*
-int best_path = 0; 
-int amount_solutions = 0; 
-int* sol = NULL; 
-Diccionario D; 
-*/
 
 void Algoritmos_grafo_MA::CH(Grafo_MA&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
 
@@ -423,6 +418,8 @@ int min(int a, int b) {
 	}
 }
 
+//YO AQUI TENIA EN PUNTOS EN LA POS 0, UN CONTADOR, CLARAMENTE SI SE PLANEA QUE SEA UN VECTOR DE VERTICES, ya eso no sirve, 
+//ENTONCES LO DE LA LINEA 434 HABRÍA QUE SACARLO AFUERA O QUE IGUAL SE PASA POR REFERENCIA, PERO COMO UN VECTOR EXTRA QUE ALMANECE ESOS VALORES. 
 void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
