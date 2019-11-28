@@ -87,7 +87,7 @@ std::cout << ss.str() << std::endl;
 
 #endif 
 
-#if 0 	//PRUEBA DE PRIM
+#if 0	//PRUEBA DE PRIM
 algoritmos.Prim(grafo, 0);			
 #endif 
 
@@ -148,7 +148,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 0 		//PRUEBA PUNTOS DE ARTICULACION.
+#if 0		//PRUEBA PUNTOS DE ARTICULACION.
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
 int* puntos = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
@@ -168,7 +168,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1 
+#if 0
 CC mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 

@@ -64,21 +64,21 @@ class Algoritmos_grafo_MA {
 	
 	public: 
 	Algoritmos_grafo_MA(); 
-	void Dijkstra(Grafo_MA&grafo, int vertice, int*VP, int*VVA); 
+	void Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA); 
 	void Floyd(Grafo_MA&grafo, int** MP, int** MVI); 
-	void Prim(Grafo_MA&grafo, int vertice);
+	void Prim(Grafo_MA&grafo, vertice ver);
 	void Kruskal(Grafo_MA&grafo); 
 	void profundidadPrimero(Grafo_MA&grafo); 
-	void profundidadPrimeroR(Grafo_MA&grafo, int vertice, Diccionario&D); 
+	void profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Diccionario&D); 
 	void anchoPrimero(Grafo_MA&grafo);  
-	void aislarVertice(Grafo_MA&grafo, int vertice); 
+	void aislarVertice(Grafo_MA&grafo, vertice ver); 
 	bool is_there_cycles(Grafo_MA&grafo); 
-	void is_there_cyclesR(Grafo_MA&grafo, int vertice, int vertice_anterior, Diccionario&D, std::list<int>&L, bool&is_there); 
-	void CH(Grafo_MA&grafo, Diccionario&D, int* Sol, int* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
-	void encontrarPuntosArticulacion(Grafo_MA&grafo, int*puntos);
-	void puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, int*puntos, int v, int indice); 
+	void is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior, Diccionario&D, std::list<vertice>&L, bool&is_there); 
+	void CH(Grafo_MA&grafo, Diccionario&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
+	void encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*puntos);
+	void puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, vertice*puntos, vertice v, int indice); 
 	void colorear_grafo(Grafo_MA&grafo, CC&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones);	//usando la menor cantidad de colores posibles.  //PENDIENTE
-	void colorear(Grafo_MA&grafo, CC&mejor_sol, CC&ccc, CC&cca, int v, int&colores, int&menor_cantidad, int&contador_soluciones); 
+	void colorear(Grafo_MA&grafo, CC&mejor_sol, CC&ccc, CC&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones); 
 	bool existeCaminoEntreTodoParDeVertices(Grafo_MA&grafo);	// 	PENDIENTE
 }; 
 

@@ -3,10 +3,13 @@
 
 #include <sstream>
 #include <iostream>
+
 using namespace std; 
 
 #define SIZEGRAFO 30
 #define verticeNulo -1
+
+typedef int vertice; 
 
 typedef struct {
 	bool conexion; 
