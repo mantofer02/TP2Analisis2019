@@ -16,7 +16,7 @@ class CC {
 	void agregarAConjunto(T ver, int conjunto);  
 	int conjuntoAlQuePertenece(T ver);//retorna conjunto. . 
 	void unir(int conjunto_1, int conjunto_2);
-	bool existeInterseccion(int conjunto, CC&cc_1, int conjunto_cc1);   
+	bool existeInterseccion(int conjunto, CC<T>&cc_1, int conjunto_cc1);   
 	void sacarDeConjunto(int conjunto, T ver); 
 	int obtConjunto(int index); 
 	string printCC(); 
@@ -28,7 +28,7 @@ CC<T>::CC() {
 }
 
 template <class T>
-bool CC<T>::existeInterseccion(int conjunto, CC&cc_1, int conjunto_cc1) {
+bool CC<T>::existeInterseccion(int conjunto, CC<T>&cc_1, int conjunto_cc1) {
 	bool exist = false; 
 	for (int index = 1; index <= this->counter_ver_c[conjunto]/*this->cc[conjunto][0]*/; ++index) {
 		for (int index_cc = 1; index_cc <= cc_1.counter_ver_c[conjunto_cc1]/*cc_1.cc[conjunto_cc1][0]*/; ++index_cc) {

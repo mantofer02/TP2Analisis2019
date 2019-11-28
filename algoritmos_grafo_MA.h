@@ -9,28 +9,6 @@
 #define INFINITY 999999999
 #define TAMANYO 30		//misma cantidad de vertices del grafo. 
 
-/*
-class CC {
-
-	private: 
-	int** cc; 
-	int amount_c; 
-	
-	public: 
-	CC(); 
-	void iniciar(int max_amount_elements); 
-	void agregarConjunto(int conjunto);
-	void agregarAConjunto(int vertice, int conjunto);  
-	int conjuntoAlQuePertenece(int vertice);//retorna conjunto. . 
-	void unir(int conjunto_1, int conjunto_2);
-	bool existeInterseccion(int conjunto, CC&cc_1, int conjunto_cc1);   
-	void sacarDeConjunto(int conjunto, int vertice); 
-	int obtConjunto(int index); 
-	string printCC(); 
-}; 
-
-*/
-
 class Algoritmos_grafo_MA {
 	
 	private: 
