@@ -1,4 +1,4 @@
-#include "algoritmos_grafo_MA.h"
+#include "algoritmos_grafo.h"
 
 #if 1					
 
