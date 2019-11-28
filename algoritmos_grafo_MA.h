@@ -15,8 +15,8 @@ class Algoritmos_grafo_MA {
 	
 	public: 
 	Algoritmos_grafo_MA(); 
-	void Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA); 
-	void Floyd(Grafo_MA&grafo, int** MP, int** MVI); 
+	void Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*VVA); 
+	void Floyd(Grafo_MA&grafo, int** MP, vertice** MVI); 
 	void Prim(Grafo_MA&grafo, vertice ver);
 	void Kruskal(Grafo_MA&grafo); 
 	void profundidadPrimero(Grafo_MA&grafo); 

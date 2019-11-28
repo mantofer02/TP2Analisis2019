@@ -6,7 +6,7 @@ Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 }
 
 
-void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
+void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
 	R11<vertice> r11; 
 	Diccionario<vertice> D;
 	D.iniciar(); 
@@ -60,7 +60,7 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA)
 
 
 
-void Algoritmos_grafo_MA::Floyd(Grafo_MA&grafo, int** MP, int** MVI) {
+void Algoritmos_grafo_MA::Floyd(Grafo_MA&grafo, int** MP, vertice** MVI) {
 R11<vertice> r11; 
 r11.iniciar(); 
 vertice v = grafo.primerVertice(); int contador_vertice = 0; 
