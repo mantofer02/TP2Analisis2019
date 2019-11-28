@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
+#include "verticeLA.h"
 
 // using namespace std;
 
@@ -16,14 +16,6 @@ typedef std :: string ETIQUETA;
 // OJO, AGREGAR LOS GRAFOS POR REFERENCIA, PARA QUE SI MODIFICO LA ETIQUETA DE LA PRIMERA LISTA, SE MODIFIQUE EL DE LA SEGUNDA
 class Grafo{
     private:
-        struct vertice{
-            vertice(ETIQUETA);
-            vertice(ETIQUETA, int);
-            vertice();
-            void imprimir();
-            ETIQUETA etiqueta;
-            int indice;
-        };
         int cantidadDeVertices;
         int cantidadDeAristas;
         // std :: vector <vertice> l1;
