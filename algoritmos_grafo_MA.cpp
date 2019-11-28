@@ -7,7 +7,7 @@ Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
 
 
 void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
-	R11 r11; 
+	R11<vertice> r11; 
 	Diccionario D;
 	D.iniciar(); 
 	r11.iniciar(); 
@@ -61,7 +61,7 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, int*VVA)
 
 
 void Algoritmos_grafo_MA::Floyd(Grafo_MA&grafo, int** MP, int** MVI) {
-R11 r11; 
+R11<vertice> r11; 
 r11.iniciar(); 
 vertice v = grafo.primerVertice(); int contador_vertice = 0; 
 while (v != verticeNulo) {
@@ -388,7 +388,7 @@ void Algoritmos_grafo_MA::encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*pu
 		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 		int* mas_bajo = (int*)calloc(grafo.numVertices(), sizeof(int));
 		Diccionario D; 	D.iniciar(); 
-		R11 r11; 	r11.iniciar(); 
+		R11<vertice> r11; 	r11.iniciar(); 
 		vertice v = grafo.primerVertice();
 		int contador_vertice = 0;  
 		while (v != verticeNulo) {
@@ -423,7 +423,7 @@ int min(int a, int b) {
 	}
 }
 
-void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, vertice*puntos, vertice v, int indice) {
+void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
 	orden[r11.indice(v)] = indice; 
@@ -685,83 +685,6 @@ string Diccionario::printD() {
 	return ss.str(); 
 }
 	
-
-R11::R11() {
-}
-
-void R11::destruir() {
-	
-	for (int index = 0; index < this->ultimoLleno; ++index) {
-		free(this->matrix[index]);
-	}
-	free(this->matrix);
-	
-}
-
-void R11::iniciar() {
-	this->matrix = (int**)calloc(TAMANYO,sizeof(int*));
-	for (int row = 0; row < TAMANYO; ++row) {
-		this->matrix[row] = (int*)calloc(2,sizeof(int)); 
-	} 
-	this->ultimoLleno = 0; 
-}
-
-
-void R11::agregar(int vertice, int indice) {
-	if (this->ultimoLleno < TAMANYO) {
-		matrix[ultimoLleno][0] = vertice; 
-		matrix[ultimoLleno][1] = indice; 
-		++this->ultimoLleno; 
-	}
-	else {
-		std::cout << "la R11 ya esta llena, no deberia de meterse mas vectores de los que existen" << std::endl; 
-	}
-	
-}
-
-int R11::indice(int vertice) {
-	int index = 0;
-	int image = -1; 
-	bool found = false;  
-	while (index < this->ultimoLleno && !found) {
-		if (this->matrix[index][0] == vertice) {
-			found = true;
-			image = this->matrix[index][1];  
-		}
-		else {
-			index++; 		
-		}	
-	}
-	
-	 return image; 
-}
-
-
-int R11::vertice(int indice) {
-	int index = 0; 
-	bool found = false; 
-	int image = -1; 
-	while (index < this->ultimoLleno && !found) {
-		if (this->matrix[index][1] == indice) {
-			found = true; 
-			image = this->matrix[index][0]; 
-		}
-		else {
-			index++; 
-		} 	
-	}
-	 return image; 	
-}
-
-string R11::printR11() {
-stringstream ss; 
-for (int index = 0; index < this->ultimoLleno; ++index) {
-	ss << this->matrix[index][0] << " = " << this->matrix[index][1] << "\n"; 
-}
-
-return ss.str(); 	
-}
-
 
 void iniciarM(int** matrix, int rows, int columns) {
 	matrix = (int**)malloc(rows*sizeof(int*));

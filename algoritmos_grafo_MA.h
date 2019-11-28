@@ -1,5 +1,6 @@
 #include "grafo_MA.h"
 #include "apo.h"
+#include "r11.h"
 #include <queue>
 #include <list>
 
@@ -23,21 +24,6 @@ class Diccionario {
 	
 }; 
 
-
-class R11 {
-	private: 
-	int** matrix; 
-	int ultimoLleno; 
-	
-	public:
-	R11();
-	void agregar(int vertice, int indice); 
-	void iniciar();
-	int indice(int vertice); 
-	int vertice(int indice);  
-	void destruir(); 
-	string printR11(); 	
-}; 
 
 class CC {
 
@@ -76,7 +62,7 @@ class Algoritmos_grafo_MA {
 	void is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior, Diccionario&D, std::list<vertice>&L, bool&is_there); 
 	void CH(Grafo_MA&grafo, Diccionario&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
 	void encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*puntos);
-	void puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11&r11, vertice*puntos, vertice v, int indice); 
+	void puntosArticulacion(Grafo_MA&grafo, Diccionario&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice); 
 	void colorear_grafo(Grafo_MA&grafo, CC&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones);	//usando la menor cantidad de colores posibles.  //PENDIENTE
 	void colorear(Grafo_MA&grafo, CC&mejor_sol, CC&ccc, CC&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones); 
 	bool existeCaminoEntreTodoParDeVertices(Grafo_MA&grafo);	// 	PENDIENTE
