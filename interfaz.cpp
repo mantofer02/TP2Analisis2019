@@ -39,6 +39,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 4){
+                string etiqueta; 
                 cout << "El grafo fue inicializado exitosamente." << endl;
                 desplegarMenu();
 
