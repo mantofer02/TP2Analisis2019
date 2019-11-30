@@ -14,7 +14,7 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*
 	vertice v = grafo.primerVertice();
 	int contador_vertice = 0;  
 	while (v != verticeNulo) {						//inicializar VP y VVA. 
-		if (v != ver) {
+			if (v != ver) {
 			r11.agregar(v,contador_vertice++);
 			if (grafo.existeArista(ver, v)) {
 				VP[r11.indice(v)] = grafo.peso(ver, v); 
@@ -26,9 +26,7 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*
 		}	
 		v = grafo.siguienteVertice(v); 
 	} 
-
 	D.agregar(ver); 
-
 	int menor; int contador; int peso_menor; 
 	while (D.numElem() < grafo.numVertices()) {	//hay que recorer todos los vertices, se necesitan n-1 pivotes. 
 		menor = -1; peso_menor = INFINITY; contador = 0; 
@@ -105,17 +103,15 @@ for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) {
 } 
 
 void Algoritmos_grafo_MA::Prim(Grafo_MA&grafo, vertice ver) {			//ESTE ALGORITMO VA IMPRIMIENDO, SE LE PODRIA PONER UN BOOL, PARA QUE IMPRIMA DE FORMAS 
-Diccionario<vertice> D; 												//DIFERENTES. 	
-D.iniciar(); 	
-D.agregar(ver); 
-vertice v; 
-vertice v_ady; 
-int peso_minimo; 				//peso de la arista con menor peso.
-vertice v_padre;  					//vertice de origen de dicha arista.
-vertice v_minimo;  					//vertice de destino de dicha arista. 
-
-
-std::cout << "aristas seleccionadas : " << std::endl; 
+	Diccionario<vertice> D; 												//DIFERENTES. 	
+	D.iniciar(); 	
+	D.agregar(ver); 
+	vertice v; 
+	vertice v_ady; 
+	int peso_minimo; 				//peso de la arista con menor peso.
+	vertice v_padre;  					//vertice de origen de dicha arista.
+	vertice v_minimo;  					//vertice de destino de dicha arista. 
+	std::cout << "aristas seleccionadas : " << std::endl; 
 
 while (D.numElem() < grafo.numVertices()) {
 	v = grafo.primerVertice(); 

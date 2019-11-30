@@ -10,16 +10,16 @@ class CC {
 	int amount_c; 
 	
 	public: 
-	CC(); 
-	void iniciar(int max_amount_elements); 
-	void agregarConjunto(int conjunto);
-	void agregarAConjunto(T ver, int conjunto);  
-	int conjuntoAlQuePertenece(T ver);//retorna conjunto. . 
-	void unir(int conjunto_1, int conjunto_2);
-	bool existeInterseccion(int conjunto, CC<T>&cc_1, int conjunto_cc1);   
-	void sacarDeConjunto(int conjunto, T ver); 
-	int obtConjunto(int index); 
-	string printCC(); 
+		CC(); 
+		void iniciar(int max_amount_elements); 
+		void agregarConjunto(int conjunto);
+		void agregarAConjunto(T ver, int conjunto);  
+		int conjuntoAlQuePertenece(T ver);//retorna conjunto. . 
+		void unir(int conjunto_1, int conjunto_2);
+		bool existeInterseccion(int conjunto, CC<T>&cc_1, int conjunto_cc1);   
+		void sacarDeConjunto(int conjunto, T ver); 
+		int obtConjunto(int index); 
+		string printCC(); 
 }; 
 
 template <class T>
