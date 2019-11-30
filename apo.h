@@ -14,7 +14,6 @@ struct arista_t{
 
 template<class T>
 class APO {
-	
 	private:
 	arista_t<T>* heap_vector; 
 	int ultimaPosicion;
@@ -32,20 +31,18 @@ class APO {
 
 
 template<class T>
-APO<T>::APO() {
-	
-	
+	APO<T>::APO() {	
 }
 
 template <class T>
 void APO<T>::iniciar() {
-this->heap_vector = (arista_t<T>*)calloc(LONGITUDAPO, sizeof(T)); 	
-this->cantidadNodos = 0; 
-this->ultimaPosicion = 1; 
+	this->heap_vector = (arista_t<T>*)calloc(LONGITUDAPO, sizeof(T)); 	
+	this->cantidadNodos = 0; 
+	this->ultimaPosicion = 1; 
 }
 
 template <class T>
-void APO<T>::insertar(T vertice_origen, T vertice_destino, int peso) {
+void APO<T>::insertar(T vertice_origen, T vertice_destino, int peso){
 	int index = this->ultimaPosicion;  
 	bool finished = false;
 	int father = 0; 
@@ -70,16 +67,12 @@ void APO<T>::insertar(T vertice_origen, T vertice_destino, int peso) {
 			}
 			else {									//ya no puedo seguir subiendo, posicion valida. 
 				finished = true; 
-			}
-			
+			}		
 		}	
 	}
-
 	this->heap_vector[index].vertice_origen = vertice_origen; 
 	this->heap_vector[index].vertice_destino = vertice_destino; 
 	this->heap_vector[index].peso = peso; 
-
-	
 	++this->cantidadNodos; 
 	++this->ultimaPosicion;  
 	
@@ -87,44 +80,42 @@ void APO<T>::insertar(T vertice_origen, T vertice_destino, int peso) {
 
 
 template <class T>
-arista_t<T>* APO<T>::sacar() {
+arista_t<T>* APO<T>::sacar(){
 	arista_t<T>* arista  = NULL; 
- if (this->cantidadNodos != 0) {
-	arista = new arista_t<T>(); 
-	arista->vertice_origen = this->heap_vector[1].vertice_origen; 
-	arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
-	arista->peso = this->heap_vector[1].peso; 	
-	--cantidadNodos; 
+	if (this->cantidadNodos != 0){
+		arista = new arista_t<T>(); 
+		arista->vertice_origen = this->heap_vector[1].vertice_origen; 
+		arista->vertice_destino = this->heap_vector[1].vertice_destino; 	
+		arista->peso = this->heap_vector[1].peso; 	
+		--cantidadNodos; 
 
-	bool finished = false; 
-	int last_position = this->ultimaPosicion; 
-	if (this->cantidadNodos != 0) {
-		int weight = this->heap_vector[ultimaPosicion-1].peso; 
-		int index = 1; 
-		int son_selected = 0; 
-		int weight_s1; 
-		int weight_s2; 
-		while (!finished) {
-			int pos_s1 = index*2; 
-			int pos_s2 = (index*2)+1; 
-			weight_s1 = INFINITY; 
-			weight_s2 = INFINITY; 
-			if (pos_s1 < last_position-1) {				//si es una posicion valida. 
-				weight_s1 = this->heap_vector[pos_s1].peso;  //tome su peso. 
-			}
-			if (pos_s2 < last_position-1) {				//si es una posicion valida. 
-				weight_s2 = this->heap_vector[pos_s2].peso; //tome su peso. 
-			} 
-			
-			if (weight_s1 != INFINITY || weight_s2 != INFINITY) {	//si alguna posicion es valida. 	
-				
-				if (weight > weight_s1 || weight > weight_s2) {		//el padre tiene que ser menor o igual que sus hijos. 
-					if (weight_s1 < weight_s2) {				//se intercambia con el hijo menor. 
-						son_selected = pos_s1;  
-					}
-					else {
-						son_selected = pos_s2;  
-					}
+		bool finished = false; 
+		int last_position = this->ultimaPosicion; 
+		if (this->cantidadNodos != 0) {
+			int weight = this->heap_vector[ultimaPosicion-1].peso; 
+			int index = 1; 
+			int son_selected = 0; 
+			int weight_s1; 
+			int weight_s2; 
+			while (!finished){
+				int pos_s1 = index*2; 
+				int pos_s2 = (index*2)+1; 
+				weight_s1 = INFINITY; 
+				weight_s2 = INFINITY; 
+				if (pos_s1 < last_position-1) {				//si es una posicion valida. 
+					weight_s1 = this->heap_vector[pos_s1].peso;  //tome su peso. 
+				}
+				if (pos_s2 < last_position-1) {				//si es una posicion valida. 
+					weight_s2 = this->heap_vector[pos_s2].peso; //tome su peso. 
+				} 
+				if (weight_s1 != INFINITY || weight_s2 != INFINITY) {	//si alguna posicion es valida. 	
+					if (weight > weight_s1 || weight > weight_s2) {		//el padre tiene que ser menor o igual que sus hijos. 
+						if (weight_s1 < weight_s2) {				//se intercambia con el hijo menor. 
+							son_selected = pos_s1;  
+						}
+						else{
+							son_selected = pos_s2;  
+						}
 					
 					this->heap_vector[index].vertice_origen = this->heap_vector[son_selected].vertice_origen; 
 					this->heap_vector[index].vertice_destino = this->heap_vector[son_selected].vertice_destino; 
@@ -134,7 +125,6 @@ arista_t<T>* APO<T>::sacar() {
 				else {
 					finished = true; 			//el padre es menor que sus hijos(los que tenga, 1 o 2), dejar en esa posicion. 
 				}	
-				
 			} 
 			else {								//el padre no tiene hijos, dejar en esa posicion. 
 				finished = true; 
@@ -145,12 +135,11 @@ arista_t<T>* APO<T>::sacar() {
 		this->heap_vector[index].peso =  this->heap_vector[this->ultimaPosicion-1].peso; 	
 	}
 	--this->ultimaPosicion; 
- }
- else {
-	std::cout << "ya no hay elementos en el APO" << std::endl;  
-  }
-  
- return arista; 
+	}
+	else {
+		std::cout << "ya no hay elementos en el APO" << std::endl;  
+	}
+	return arista; 
 }
 
 
@@ -166,7 +155,7 @@ string APO<T>::printAPO() {
 		} 
 	}
 	ss << "\n";  	
-return ss.str();
+	return ss.str();
 }
 
 

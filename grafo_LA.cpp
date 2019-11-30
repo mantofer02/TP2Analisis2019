@@ -192,20 +192,28 @@ vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
     }
 }
 
+void Grafo :: borrarVertice(vertice v1){
+    int indiceDelBorrado = v1.indice;
+    l1.erase(l1.begin() + indiceDelBorrado);
+    l2.erase(l2.begin() + indiceDelBorrado);
+    cantidadDeVertices--;
+    for(int i = 0; i < cantidadDeAristas; i++){
+        if(l1[i].indice > indiceDelBorrado)
+            l1[i].indice -= 1;
+        for(int j = 0; j < l2[i].size(); j++){
+            if(l2[i][j].first > indiceDelBorrado)
+                l2[i][j].first -=1;
+        }
+    }
+}
 
 void Grafo :: imprimirGrafo(){
-    // std :: cout << "aqui" << std :: endl;
-    if(!vacia()){
-        // std :: cout << "TAMA;O" << l1.size();    
+    if(!vacia()){    
         for(int i = 0; i < cantidadDeVertices; i++){
             std :: cout << " Etiqueta :  " << l1[i].etiqueta << " ||  ";
-            // if(!l2.empty()){
-                // if(l2[i].empty()){
                     for(int j = 0; j < l2[i].size(); j++){
                         std :: cout << " < Etiqueta :  " << l1[l2[i][j].first].etiqueta << " | Peso : " << l2[i][j].second << " > ---> ";
                     }
-                // }
-            // }
             std :: cout << std :: endl;
         }
     }
