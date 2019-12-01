@@ -150,7 +150,7 @@ while (v != verticeNulo) {
 	cc.agregarConjunto(index_conjunto);
 	cc.agregarAConjunto(v, index_conjunto);
 	
-	int v_ady = grafo.primerVerticeAdy(v);
+	vertice v_ady = grafo.primerVerticeAdy(v);
 	while (v_ady != verticeNulo) {
 		apo.insertar(v,v_ady, grafo.peso(v, v_ady));
 		v_ady = grafo.siguienteVerticeAdy(v,v_ady);  	
@@ -449,7 +449,12 @@ if (!grafo.vacio()) {
 	CC<vertice> ccc; 
 	ccc.iniciar(grafo.numVertices()); 
 	CC<vertice> cca; 
-	cca.iniciar(grafo.numVertices()); 
+	cca.iniciar(grafo.numVertices());
+	
+	R11<vertice> r11;
+	r11.iniciar(); 
+	
+	 
 	int index_conjunto = 0; 
 	while (index_conjunto < grafo.numVertices()) {
 		ccc.agregarConjunto(index_conjunto);
@@ -460,17 +465,19 @@ if (!grafo.vacio()) {
 	vertice v = grafo.primerVertice(); 
 	int index_v = 0; 
 	while (v != verticeNulo) {
+		r11.agregar(v, index_v);
 		vertice v_ady = grafo.primerVerticeAdy(v); 
 		while (v_ady != verticeNulo) {
 			cca.agregarAConjunto(index_v, v_ady); 
 			v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
 		}
 		v = grafo.siguienteVertice(v); 
-		++index_v;  
+		++index_v; 
+		 
 	}
 	
 	v = grafo.primerVertice(); 
-	colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones); 
+	colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones, r11); 
 	/*
 	std::cout << "ya se inicializo todo : " << std::endl; 
 	std::cout << "imprimiendo la picha : " << std::endl; 
@@ -483,7 +490,7 @@ if (!grafo.vacio()) {
 }
 
 
-void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones){
+void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
 
  if (v == verticeNulo) {
 	 ++contador_soluciones; 
@@ -498,15 +505,15 @@ void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<ver
  int index = 0; 
  while (index < grafo.numVertices() && colores < menor_cantidad) {
 	 int conjunto_c = ccc.obtConjunto(index); 		//deme el conjunto del color index. 
-	 int conjunto_a = cca.obtConjunto(v);			//deme el conjunto que corresponde a ese vertice. 
+	 int conjunto_a = cca.obtConjunto(r11.indice(v));			//deme el conjunto que corresponde a ese vertice. 
 	 if (!ccc.existeInterseccion(conjunto_c, cca, conjunto_a)) {		//si entre mis adyacentes no hay ninguno con el color index. 
 		 ccc.agregarAConjunto(v, index); 
 		 bool new_color = false; 
-		 if (index <=menor_cantidad) {				//si se esta llegando a un nuevo ciclo del while osea se esta seleccionando un nuevo color. 
+		 if (index >=menor_cantidad) {				//si se esta llegando a un nuevo ciclo del while osea se esta seleccionando un nuevo color. 
 			 ++colores; 
 			 new_color = true; 
 		 }
-		 colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones);
+		 colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11);
 		 //arrepentimiento. 
 		 ccc.sacarDeConjunto(index, v);
 		 if (new_color) {

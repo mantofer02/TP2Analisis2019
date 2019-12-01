@@ -168,7 +168,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 0
+#if 1
 CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
