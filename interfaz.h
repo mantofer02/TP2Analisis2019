@@ -8,9 +8,10 @@ class Interfaz{
         
         Grafo_MA grafo;
         int* vectorDePesos;
-        vertice* vectorDeVerticesAdyacentes;
+        vertice* vectorVerticeAnterior;
         int** matrizDePesos;
         vertice** matrizDeVerticesIntermedios;
+        Algoritmos_grafo_MA algoritmos;
 
     public:
 
