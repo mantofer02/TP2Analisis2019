@@ -1,4 +1,4 @@
-#include "algoritmos_grafo_MA.h"
+#include "algoritmos_grafo.h"
 
 #if 1					
 
@@ -29,7 +29,7 @@ Algoritmos_grafo_MA algoritmos;
 
 #if 0			//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
-int* VVA = (int*)calloc((grafo.numVertices()-1), sizeof(int)); 	//vector vertice anterior 
+vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
 
 algoritmos.Dijkstra(grafo, 1, VP, VVA); 
@@ -51,13 +51,13 @@ std::cout << std::endl;
 #endif 
 
 
-#if 0 				//PRUEBA DE FLOYD 
+#if 0			//PRUEBA DE FLOYD 
 int** MP = (int**)malloc(grafo.numVertices()*sizeof(int*)); 	//matriz de peso
-int** MVI = (int**)malloc(grafo.numVertices()*sizeof(int*)); 	//matriz de vertice intermedio. 
+vertice** MVI = (vertice**)malloc(grafo.numVertices()*sizeof(vertice*)); 	//matriz de vertice intermedio. 
 
 for (int row = 0; row < grafo.numVertices(); ++row) {
 	MP[row] = (int*)malloc(grafo.numVertices()*sizeof(int)); 
-	MVI[row] = (int*)malloc(grafo.numVertices()*sizeof(int)); 	
+	MVI[row] = (vertice*)malloc(grafo.numVertices()*sizeof(vertice)); 	
 } 
 
 algoritmos.Floyd(grafo, MP, MVI); 
@@ -87,7 +87,7 @@ std::cout << ss.str() << std::endl;
 
 #endif 
 
-#if 0 	//PRUEBA DE PRIM
+#if 0	//PRUEBA DE PRIM
 algoritmos.Prim(grafo, 0);			
 #endif 
 
@@ -121,10 +121,10 @@ else {
  
 
 #if 0 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
-Diccionario D; 
+Diccionario<vertice> D; 
 D.iniciar(); 
-int* Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
-int* mejor_Sol = (int*)calloc(grafo.numVertices()+1, sizeof(int));
+vertice* Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));
+vertice* mejor_Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));
 int costo = 0; 
 int mejor_costo = INFINITY; 
 int contador_soluciones = 0; 
@@ -148,9 +148,9 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 0 		//PRUEBA PUNTOS DE ARTICULACION.
+#if 0	//PRUEBA PUNTOS DE ARTICULACION.
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
-int* puntos = (int*)calloc(grafo.numVertices(), sizeof(int)); 
+vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
 algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
 std::cout << "imprimiendo los puntos de articulacion : " << std::endl; 
 stringstream ss; 
@@ -168,8 +168,8 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1 
-CC mejor_sol; 
+#if 1
+CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
 int colores = 0; 

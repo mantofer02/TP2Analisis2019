@@ -5,25 +5,8 @@
 Grafo :: Grafo(){
     cantidadDeVertices = 0;
     cantidadDeAristas = 0;
-    vertice verticeNulo;
 }
-
-Grafo :: vertice :: vertice(ETIQUETA etiqueta){
-    this->etiqueta = etiqueta;
-    this->indice = 0;
-}
-
-Grafo :: vertice :: vertice(ETIQUETA etiqueta, int indice){
-    this->etiqueta = etiqueta;
-    this->indice = indice;
-}
-
-
-Grafo :: vertice :: vertice(){
-    this->etiqueta = "NULL";
-    this->indice = -1;
-}
-
+    
 void Grafo :: iniciar(){
 
 }
@@ -61,15 +44,13 @@ int Grafo :: peso(vertice v1, vertice v2){
     return peso;
 }
 
-Grafo :: vertice Grafo :: getVertice(ETIQUETA laEtiqueta){
+vertice Grafo :: getVertice(ETIQUETA laEtiqueta){
     int counter = 0;
     while(counter < l1.size() && l1[counter].etiqueta != laEtiqueta){
         counter++;
     }
     if(counter < l1.size()){
         return l1[counter];
-        l1[counter].imprimirVertice();
-        std :: cout << "ME cago" << std :: endl;
     }else{
         return verticeNulo;
     }
@@ -171,7 +152,7 @@ int Grafo :: numAristas(){
 
 
 //Hay que ver como se le hace con el vertice nulo, osea cuando la lista esta vacia
-Grafo :: vertice Grafo :: primerVertice(){
+vertice Grafo :: primerVertice(){
     if(cantidadDeVertices == 0){
         return verticeNulo;
     }else{
@@ -179,31 +160,25 @@ Grafo :: vertice Grafo :: primerVertice(){
     }
 }
 
-Grafo :: vertice Grafo :: steVertice(vertice v1){
+vertice Grafo :: steVertice(vertice v1){
     if(v1.indice + 1 < cantidadDeVertices){
         return l1[v1.indice + 1];
-        l1[v1.indice + 1].imprimirVertice();
-
     }else{
         return verticeNulo;
-        verticeNulo.imprimirVertice();
     }
 } 
 
-Grafo :: vertice Grafo :: primerVtcAdyacente(vertice v1){       
-    std :: cout << "EMPECE" << std :: endl;
-    if(!l2[v1.indice].empty()){
-        std :: cout << "ENTRE" << std :: endl;
+vertice Grafo :: primerVtcAdyacente(vertice v1){       
+    if(l2[v1.indice].size()){
         return l1[l2[v1.indice][0].first];
-        l1[l2[v1.indice][0].first].imprimirVertice();
+        l1[l2[v1.indice][0].first].imprimir();
     }else{
-        verticeNulo.imprimirVertice();
         return verticeNulo;
-        std :: cout << "Termine" << std :: endl;
+        verticeNulo.imprimir();
     }
 }
 
-Grafo :: vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
+vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
     int indice1 = v1.indice;
     int fila1 = indice1;
     int columna1= 0;
@@ -217,23 +192,23 @@ Grafo :: vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
     }
 }
 
-void Grafo :: vertice :: imprimirVertice(){
-    std :: cout << " VERTICE :  " << this->etiqueta;
+void Grafo :: borrarVertice(vertice v1){
+    int indiceDelBorrado = v1.indice;
+    for(int i = indiceDelBorrado; i < l1.size() - 1; i++){
+        l1[i].etiqueta = l1[i + 1].etiqueta;
+    }
+    l1.pop_back();
+    l2.erase(l2.begin() + indiceDelBorrado);
+    cantidadDeVertices--;
 }
 
 void Grafo :: imprimirGrafo(){
-    // std :: cout << "aqui" << std :: endl;
-    if(!vacia()){
-        // std :: cout << "TAMA;O" << l1.size();    
+    if(!vacia()){    
         for(int i = 0; i < cantidadDeVertices; i++){
             std :: cout << " Etiqueta :  " << l1[i].etiqueta << " ||  ";
-            // if(!l2.empty()){
-                // if(l2[i].empty()){
                     for(int j = 0; j < l2[i].size(); j++){
                         std :: cout << " < Etiqueta :  " << l1[l2[i][j].first].etiqueta << " | Peso : " << l2[i][j].second << " > ---> ";
                     }
-                // }
-            // }
             std :: cout << std :: endl;
         }
     }

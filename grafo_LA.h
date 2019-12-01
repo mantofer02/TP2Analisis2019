@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
+#include "verticeLA.h"
 
 // using namespace std;
 
@@ -16,19 +16,11 @@ typedef std :: string ETIQUETA;
 // OJO, AGREGAR LOS GRAFOS POR REFERENCIA, PARA QUE SI MODIFICO LA ETIQUETA DE LA PRIMERA LISTA, SE MODIFIQUE EL DE LA SEGUNDA
 class Grafo{
     private:
-        struct vertice{
-            vertice(ETIQUETA);
-            vertice(ETIQUETA, int);
-            vertice();
-            void imprimirVertice();
-            ETIQUETA etiqueta;
-            int indice;
-        };
         int cantidadDeVertices;
         int cantidadDeAristas;
-        // std :: vector <vertice> l1;
-        // std :: vector <std :: vector<std :: pair<int, int>>> l2;
+  
         vertice verticeNulo;
+  
         /*
         ------------PARA EL PAIR-------
         first = indice del vertice en L1
@@ -37,8 +29,7 @@ class Grafo{
         */
        
        /*
-        El indice es determinado en l
-       
+        El indice es determinado en l     
        */
     
     public:
@@ -63,6 +54,7 @@ class Grafo{
         vertice primerVertice();
         vertice steVertice(vertice);
         vertice primerVtcAdyacente(vertice);
+        void borrarVertice(vertice);
         vertice steVtcAdyacente(vertice, vertice);
         void imprimirGrafo();
         vertice getVertice(ETIQUETA);
