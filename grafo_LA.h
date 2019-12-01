@@ -20,7 +20,7 @@ class Grafo{
             vertice(ETIQUETA);
             vertice(ETIQUETA, int);
             vertice();
-            void imprimir();
+            void imprimirVertice();
             ETIQUETA etiqueta;
             int indice;
         };

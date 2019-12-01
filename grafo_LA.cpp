@@ -5,6 +5,7 @@
 Grafo :: Grafo(){
     cantidadDeVertices = 0;
     cantidadDeAristas = 0;
+    vertice verticeNulo;
 }
 
 Grafo :: vertice :: vertice(ETIQUETA etiqueta){
@@ -19,7 +20,7 @@ Grafo :: vertice :: vertice(ETIQUETA etiqueta, int indice){
 
 
 Grafo :: vertice :: vertice(){
-    this->etiqueta = " ";
+    this->etiqueta = "NULL";
     this->indice = -1;
 }
 
@@ -67,6 +68,8 @@ Grafo :: vertice Grafo :: getVertice(ETIQUETA laEtiqueta){
     }
     if(counter < l1.size()){
         return l1[counter];
+        l1[counter].imprimirVertice();
+        std :: cout << "ME cago" << std :: endl;
     }else{
         return verticeNulo;
     }
@@ -179,18 +182,24 @@ Grafo :: vertice Grafo :: primerVertice(){
 Grafo :: vertice Grafo :: steVertice(vertice v1){
     if(v1.indice + 1 < cantidadDeVertices){
         return l1[v1.indice + 1];
+        l1[v1.indice + 1].imprimirVertice();
+
     }else{
         return verticeNulo;
+        verticeNulo.imprimirVertice();
     }
 } 
 
 Grafo :: vertice Grafo :: primerVtcAdyacente(vertice v1){       
-    if(l2[v1.indice].size()){
+    std :: cout << "EMPECE" << std :: endl;
+    if(!l2[v1.indice].empty()){
+        std :: cout << "ENTRE" << std :: endl;
         return l1[l2[v1.indice][0].first];
-        l1[l2[v1.indice][0].first].imprimir();
+        l1[l2[v1.indice][0].first].imprimirVertice();
     }else{
+        verticeNulo.imprimirVertice();
         return verticeNulo;
-        verticeNulo.imprimir();
+        std :: cout << "Termine" << std :: endl;
     }
 }
 
@@ -208,8 +217,8 @@ Grafo :: vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
     }
 }
 
-void Grafo :: vertice :: imprimir(){
-    std :: cout << " Etiqueta :  " << this->etiqueta;
+void Grafo :: vertice :: imprimirVertice(){
+    std :: cout << " VERTICE :  " << this->etiqueta;
 }
 
 void Grafo :: imprimirGrafo(){
