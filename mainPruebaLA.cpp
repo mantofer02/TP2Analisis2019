@@ -40,21 +40,13 @@ int main(){
     // std :: cout << mio.existeArista(mio.getVertice("C"),mio.getVertice("B"));
     mio.imprimirGrafo();
 
-    mio.borrarVertice(mio.getVertice("D"));
+        mio.borrarVertice(mio.getVertice("D"));
 
 
     std :: cout << std :: endl;
     std :: cout << std :: endl;
     std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-    std :: cout << std :: endl;
-
+    
     mio.imprimirGrafo();
 
     return 0;

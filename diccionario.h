@@ -28,6 +28,19 @@ class Diccionario
             }
             return encontrado;
         }
+        
+        void destruir() {
+			//~Diccionario();
+		}
+		
+		int numElem() {
+			return diccionario.size();
+		}
+		
+		void pop() {
+			int amount_elements = numElem(); 
+			diccionario.erase(diccionario.begin()+amount_elements); //esto o amount_elements-1, no se. 
+		}
 
         virtual ~Diccionario(){
         }

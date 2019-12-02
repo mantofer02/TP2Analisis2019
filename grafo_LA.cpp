@@ -194,17 +194,12 @@ vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
 
 void Grafo :: borrarVertice(vertice v1){
     int indiceDelBorrado = v1.indice;
-    l1.erase(l1.begin() + indiceDelBorrado);
+    for(int i = indiceDelBorrado; i < l1.size() - 1; i++){
+        l1[i].etiqueta = l1[i + 1].etiqueta;
+    }
+    l1.pop_back();
     l2.erase(l2.begin() + indiceDelBorrado);
     cantidadDeVertices--;
-    for(int i = 0; i < cantidadDeAristas; i++){
-        if(l1[i].indice > indiceDelBorrado)
-            l1[i].indice -= 1;
-        for(int j = 0; j < l2[i].size(); j++){
-            if(l2[i][j].first > indiceDelBorrado)
-                l2[i][j].first -=1;
-        }
-    }
 }
 
 void Grafo :: imprimirGrafo(){

@@ -28,7 +28,7 @@ class Algoritmos_grafo_MA {
 		void encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*puntos);
 		void puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice); 
 		void colorear_grafo(Grafo_MA&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones);
-		void colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones); 
+		void colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11); 
 		bool existeCaminoEntreTodoParDeVertices(Grafo_MA&grafo);
 }; 
 

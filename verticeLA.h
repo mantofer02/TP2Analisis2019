@@ -1,5 +1,5 @@
 #include <iostream>
-
+// VConm
 typedef std :: string ETIQUETA;
 
 struct vertice{
