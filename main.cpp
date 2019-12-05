@@ -39,7 +39,7 @@ grafo.agregarArista(1,5,8);
 Algoritmos_grafo algoritmos; 
 
 
-#if 1		//PRUEBA DE DIJKSTRA 
+#if 0		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
@@ -119,7 +119,7 @@ algoritmos.anchoPrimero(grafo);
 #endif 
 
 #if 0	//PRUEBA AISLAR VERTICE. 
-algoritmos.aislarVertice(grafo, 1); 
+algoritmos.aislarVertice(grafo, grafo.primerVertice()); 
 #endif 
 
 #if 0	//PRUEBA DE SI HAY CICLOS EN UN GRAFO 

@@ -6,7 +6,7 @@ Algoritmos_grafo::Algoritmos_grafo() {
 }
 
 
-void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
+void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA){//grafo, vertice, vector peso, vector vertice anterior. 	
 	R11<vertice> r11; 
 	Diccionario<vertice> D;
 	D.iniciar(); 
@@ -14,10 +14,10 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 	vertice v = grafo.primerVertice();
 	int contador_vertice = 0;  
 	while (!(grafo.esVerticeNulo(v))) {						//inicializar VP y VVA. 
-			if (!(v == ver)) {
+			// std :: cout << "ENTRE" << std :: endl;
+            if (v != ver){
 			r11.agregar(v,contador_vertice++);
 			if (grafo.existeArista(ver, v)) {
-				
 				VP[r11.indice(v)] = grafo.peso(ver, v); 
 			}
 			else {
@@ -25,12 +25,14 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 			}
 			VVA[r11.indice(v)] = ver; 
 		}	
-		v = grafo.siguienteVertice(v); 
+		v = grafo.siguienteVertice(v);
+        // std :: cout << "SALI" << std :: endl; 
 	} 
 	D.agregar(ver); 
 	int menor; int contador; int peso_menor; 
 	while (D.numElem() < grafo.numVertices()) {	//hay que recorer todos los vertices, se necesitan n-1 pivotes. 
-		menor = -1; peso_menor = INFINITY; contador = 0; 
+		// std :: cout << D.numElem() << std :: endl;
+        menor = -1; peso_menor = INFINITY; contador = 0; 
 		while (contador < grafo.numVertices()-1) {	//la longitud de VP. 
 			if (VP[contador] <= peso_menor && !D.pertenece(r11.vertice(contador))) {	//si es el menor pero no es un pivote anterior o el vertice de parametro. 
 				menor = contador;
@@ -38,11 +40,11 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 			}
 			contador++; 
 		}
-		int v = r11.vertice(menor);	//pivote. 
+		vertice v = r11.vertice(menor);	//pivote. 
 		D.agregar(v);
-		int v_ady = grafo.primerVerticeAdy(v); 
+		vertice v_ady = grafo.primerVerticeAdy(v); 
 		while (!(grafo.esVerticeNulo(v_ady))) {		//se recorren todos los adyacentes.
-			if (v_ady != ver) {			//pero no me puedo incluir a mi, porque deporsi no posee un campo en VP. 
+			if (v_ady != ver){			//pero no me puedo incluir a mi, porque deporsi no posee un campo en VP. 
 				if (VP[r11.indice(v_ady)] > grafo.peso(v,v_ady) + VP[r11.indice(v)]) {
 					VP[r11.indice(v_ady)] = grafo.peso(v,v_ady) + VP[r11.indice(v)]; 
 					VVA[r11.indice(v_ady)] = v;
@@ -51,7 +53,6 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 			v_ady = grafo.siguienteVerticeAdy(v,v_ady); 	
 		}	
 	} 
-
 	D.destruir(); 
 	r11.destruir();
 }
@@ -59,12 +60,11 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 
 
 
-
-void Algoritmos_grafo::Floyd(Grafo &grafo, int** MP, vertice** MVI) {
+void Algoritmos_grafo :: Floyd(Grafo &grafo, int** MP, vertice** MVI) {
 R11<vertice> r11; 
 r11.iniciar(); 
 vertice v = grafo.primerVertice(); int contador_vertice = 0; 
-while (v != verticeNulo) {
+while (!grafo.esVerticeNulo(v)) {
 	r11.agregar(v, contador_vertice++); 
 	v = grafo.siguienteVertice(v); 
 }
@@ -76,17 +76,17 @@ for (int index_x = 0; index_x < grafo.numVertices(); ++index_x) {
 		if (v_x != v_y) {
 			if (grafo.existeArista(v_x, v_y)) {
 				MP[index_x][index_y] = grafo.peso(v_x, v_y);
-				MVI[index_x][index_y] = verticeNulo;  		
+				MVI[index_x][index_y] = grafo.getVerticeNulo();  		
 			}
 			else {
 				MP[index_x][index_y] = INFINITY; 
-				MVI[index_x][index_y] = verticeNulo; 
+				MVI[index_x][index_y] = grafo.getVerticeNulo(); 
 			} 		
 			
 		}
 		else {	//son los mismos.
 			MP[index_x][index_y] = 0; 
-			MVI[index_x][index_y] = verticeNulo; 
+			MVI[index_x][index_y] = grafo.getVerticeNulo(); 
 		}		
 	}	
 } 
@@ -118,10 +118,10 @@ void Algoritmos_grafo::Prim(Grafo&grafo, vertice ver) {			//ESTE ALGORITMO VA IM
 while (D.numElem() < grafo.numVertices()) {
 	v = grafo.primerVertice(); 
 	peso_minimo = INFINITY; 
-	while (v != verticeNulo) {
+	while (!grafo.esVerticeNulo(v)) {
 		if (D.pertenece(v)) {
 			v_ady = grafo.primerVerticeAdy(v); 
-			while (v_ady != verticeNulo) {
+			while (!grafo.esVerticeNulo(v_ady)) {
 				if (!D.pertenece(v_ady)) {
 					if (grafo.peso(v, v_ady) < peso_minimo) {
 						peso_minimo = grafo.peso(v, v_ady); 
@@ -148,12 +148,12 @@ cc.iniciar(grafo.numVertices());												//YA AHI CADA QUIEN QUE IMPRIMA COMO
 apo.iniciar();  
 vertice v = grafo.primerVertice(); 
 int index_conjunto = 0; 
-while (v != verticeNulo) {
+while (!grafo.esVerticeNulo(v)) {
 	cc.agregarConjunto(index_conjunto);
 	cc.agregarAConjunto(v, index_conjunto);
 	
 	vertice v_ady = grafo.primerVerticeAdy(v);
-	while (v_ady != verticeNulo) {
+	while (!grafo.esVerticeNulo(v_ady)) {
 		apo.insertar(v,v_ady, grafo.peso(v, v_ady));
 		v_ady = grafo.siguienteVerticeAdy(v,v_ady);  	
 	}
@@ -196,11 +196,11 @@ while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar 
 
 
 void Algoritmos_grafo::profundidadPrimero(Grafo&grafo) {
-	if (!grafo.vacio()) {
+	if (!grafo.vacia()){
 		Diccionario<vertice> D; 
 		D.iniciar(); 
 		vertice v = grafo.primerVertice(); 
-		while (v != verticeNulo) {
+		while (!grafo.esVerticeNulo(v)) {
 			if (!D.pertenece(v)) {
 				profundidadPrimeroR(grafo, v, D); 
 			}
@@ -216,9 +216,9 @@ void Algoritmos_grafo::profundidadPrimero(Grafo&grafo) {
 
 void Algoritmos_grafo::profundidadPrimeroR(Grafo&grafo, vertice ver, Diccionario<vertice>&D) {
 	D.agregar(ver); 
-	std::cout << grafo.etiqueta(ver) << std::endl; 
+	// std::cout << grafo.etiqueta(ver) << std::endl; 
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
-	while (v_ady != verticeNulo) {
+	while (!grafo.esVerticeNulo(v_ady)) {
 		if (!D.pertenece(v_ady)) {
 			profundidadPrimeroR(grafo, v_ady, D); 
 		}
@@ -229,36 +229,36 @@ void Algoritmos_grafo::profundidadPrimeroR(Grafo&grafo, vertice ver, Diccionario
 
 void Algoritmos_grafo::anchoPrimero(Grafo&grafo) {
 
- vertice ver = grafo.primerVertice();
- Diccionario<vertice> D; 
- queue<vertice> C; 
- D.iniciar();  
- while (ver != verticeNulo) {
-	 if (!D.pertenece(ver)) {
-		C.push(ver); 
-		D.agregar(ver); 
-		while (!C.empty()) {
-			vertice v = C.front(); 
-			std::cout << grafo.etiqueta(v) << std::endl; 
-			C.pop(); 
-			vertice v_ady = grafo.primerVerticeAdy(v);
-			while (v_ady != verticeNulo) {
-				if (!D.pertenece(v_ady)) {
-					C.push(v_ady); 
-					D.agregar(v_ady); 
-				}
-				v_ady = grafo.siguienteVerticeAdy(v,v_ady); 	
-			}			
+	vertice ver = grafo.primerVertice();
+	Diccionario<vertice> D; 
+	queue<vertice> C; 
+	D.iniciar();  
+	while (!grafo.esVerticeNulo(ver)) {
+		if(!D.pertenece(ver)) {
+			C.push(ver); 
+			D.agregar(ver); 
+			while (!C.empty()) {
+				vertice v = C.front(); 
+				// std::cout << grafo.etiqueta(v) << std::endl; 
+				C.pop(); 
+				vertice v_ady = grafo.primerVerticeAdy(v);
+				while (!grafo.esVerticeNulo(v_ady)) {
+					if (!D.pertenece(v_ady)) {
+						C.push(v_ady); 
+						D.agregar(v_ady); 
+					}
+					v_ady = grafo.siguienteVerticeAdy(v,v_ady); 	
+				}			
+			}
 		}
-	 }
-	 ver = grafo.siguienteVertice(ver); 
- }	
-} 
+		ver = grafo.siguienteVertice(ver); 
+		}	
+	} 
 
 
 void Algoritmos_grafo::aislarVertice(Grafo&grafo, vertice ver) {
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
-	while (v_ady != verticeNulo) {
+	while (!grafo.esVerticeNulo(v_ady)) {
 		grafo.eliminarArista(ver, v_ady);
 		grafo.eliminarArista(v_ady, ver);		//porque es no dirigido. 
 		v_ady = grafo.siguienteVerticeAdy(ver, v_ady);   
@@ -285,12 +285,12 @@ bool is_it_already(std::list<vertice>&L, vertice ver) {
 bool Algoritmos_grafo::is_there_cycles(Grafo&grafo) {
  bool is_there = false; 
  
- if (!grafo.vacio()) {
+ if (!grafo.vacia()) {
 	 vertice v = grafo.primerVertice();
 	 Diccionario<vertice> D; 
 	 list<vertice> L; 
 	 D.iniciar();  
-	 while (v != verticeNulo && !is_there) {
+	 while (!grafo.esVerticeNulo(v) && !is_there) {
 		if (!D.pertenece(v)) {
 			is_there_cyclesR(grafo, v, -1,  D, L, is_there); 
 		} 
@@ -315,7 +315,7 @@ void Algoritmos_grafo::is_there_cyclesR(Grafo&grafo, vertice ver, vertice vertic
 		D.agregar(ver);
 		L.push_back(ver); 
 		vertice v_ady = grafo.primerVerticeAdy(ver);
-		while (v_ady != verticeNulo && !is_there) {
+		while (!grafo.esVerticeNulo(v_ady) && !is_there) {
 			if (!D.pertenece(v_ady)) {
 				is_there_cyclesR(grafo, v_ady, ver, D, L, is_there);
 				L.pop_back();  
@@ -360,7 +360,7 @@ if (indice == grafo.numVertices()) {		//llegue a una posible solucion factible.
 }	
 else {	
 	vertice v_ady = grafo.primerVerticeAdy(v); 
-	while (v_ady != verticeNulo) {
+	while (!grafo.esVerticeNulo(v_ady)) {
 		if (!D.pertenece(v_ady)) {
 			Sol[indice] = v_ady; 
 			costo+= grafo.peso(v,v_ady); 
@@ -374,23 +374,23 @@ else {
 	
 }
 
-
+#if 0 
 void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos) {
 	
-	if (!grafo.vacio()) {
+	if (!grafo.vacia()) {
 		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
 		int* mas_bajo = (int*)calloc(grafo.numVertices(), sizeof(int));
 		Diccionario<vertice> D; 	D.iniciar(); 
 		R11<vertice> r11; 	r11.iniciar(); 
 		vertice v = grafo.primerVertice();
 		int contador_vertice = 0;  
-		while (v != verticeNulo) {
+		while (!grafo.esVerticeNulo(v)) {
 			r11.agregar(v, contador_vertice);
 			++contador_vertice; 
 			v = grafo.siguienteVertice(v);  
 		}
 		v = grafo.primerVertice(); 
-		while (v != verticeNulo) {
+		while (!grafo.esVerticeNulo(v)) {
 			if (!D.pertenece(v)) {
 				puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos,v , 0); 	
 			}
@@ -406,6 +406,7 @@ void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos) 
 		//no hay nada que hacer. 
 	}
 }
+#endif
 
 int min(int a, int b) {
 	if (a < b) {
@@ -416,6 +417,7 @@ int min(int a, int b) {
 	}
 }
 
+#if 0
 //YO AQUI TENIA EN PUNTOS EN LA POS 0, UN CONTADOR, CLARAMENTE SI SE PLANEA QUE SEA UN VECTOR DE VERTICES, ya eso no sirve, 
 //ENTONCES LO DE LA LINEA 434 HABRÍA QUE SACARLO AFUERA O QUE IGUAL SE PASA POR REFERENCIA, PERO COMO UN VECTOR EXTRA QUE ALMANECE ESOS VALORES. 
 void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
@@ -424,7 +426,7 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 	orden[r11.indice(v)] = indice; 
 	int sons = 0; 
 	vertice v_ady = grafo.primerVerticeAdy(v); 
-	while (v_ady != verticeNulo) {
+	while (!grafo.esVerticeNulo(v_ady)) {
 		if (!D.pertenece(v_ady)) {
 			++sons; 
 			puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos, v_ady, indice+1); 
@@ -444,10 +446,10 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 		++puntos[0];
 	}
 }
-
+#endif
 
 void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
-if (!grafo.vacio()) {
+if (!grafo.vacia()){
 	CC<vertice> ccc; 
 	ccc.iniciar(grafo.numVertices()); 
 	CC<vertice> cca; 
@@ -466,11 +468,11 @@ if (!grafo.vacio()) {
 	
 	vertice v = grafo.primerVertice(); 
 	int index_v = 0; 
-	while (v != verticeNulo) {
+	while (!grafo.esVerticeNulo(v)) {
 		r11.agregar(v, index_v);
 		vertice v_ady = grafo.primerVerticeAdy(v); 
-		while (v_ady != verticeNulo) {
-			cca.agregarAConjunto(index_v, v_ady); 
+		while (!grafo.esVerticeNulo(v_ady)) {
+			cca.agregarAConjunto(v_ady, index_v); 
 			v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
 		}
 		v = grafo.siguienteVertice(v); 
@@ -494,7 +496,7 @@ if (!grafo.vacio()) {
 
 void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
 
- if (v == verticeNulo) {
+ if (!grafo.esVerticeNulo(v)) {
 	 ++contador_soluciones; 
 	 if (colores < menor_cantidad) {
 		 menor_cantidad = colores;

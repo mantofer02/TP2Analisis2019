@@ -279,3 +279,7 @@ string Grafo::printMatrix() {
 int Grafo :: esVerticeNulo(vertice v1){
 	return v1 == -1;
 }
+
+vertice Grafo :: getVerticeNulo(){
+	return -1;
+}

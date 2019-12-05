@@ -56,7 +56,8 @@ class Grafo{
         vertice siguienteVerticeAdy(vertice, vertice);
         void imprimirGrafo();
         vertice getVertice(ETIQUETA);
-        int esVerticeNulo(vertice);    
+        int esVerticeNulo(vertice); 
+        vertice getVerticeNulo();   
         // void aislarVertice(vertice)
 };
 #endif

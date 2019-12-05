@@ -236,3 +236,9 @@ void Grafo :: imprimirGrafo(){
 int Grafo :: esVerticeNulo(vertice v1){
     return v1.indice == -1;
 }
+
+vertice Grafo :: getVerticeNulo(){       
+    vertice verticeNulo;
+    verticeNulo.indice = -1;
+    return verticeNulo;
+}
