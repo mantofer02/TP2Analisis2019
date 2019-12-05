@@ -1,5 +1,8 @@
 #include "tester.h"
 
+//PUEDE CORRER make test ó make test1
+//para compilar y ejecutar el test, con el grafoMA y con el grafoLA
+
 
 int main(int argc, char* argv[]) {
 	Tester tester; 
