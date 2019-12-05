@@ -41,7 +41,7 @@ class Grafo{
 		void iniciar(); 
 		void destruir(); 
 		void vaciar(); 
-		bool vacia(); 
+		bool vacio(); 
 		//Debe ser tipo etiqueta, no entero
 		//Peor de los casos, hacemos la etiqueta de LA un entero
 		
@@ -76,6 +76,7 @@ class Grafo{
 		string printEtiquetas(); 
 		string printMatrix(); 
 		int esVerticeNulo(vertice);
+		vertice getVertice(int etiqueta); 
 };
 
 #endif

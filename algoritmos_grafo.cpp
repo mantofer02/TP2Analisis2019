@@ -13,10 +13,11 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 	r11.iniciar(); 
 	vertice v = grafo.primerVertice();
 	int contador_vertice = 0;  
-	while (v != verticeNulo) {						//inicializar VP y VVA. 
-			if (v != ver) {
+	while (!(grafo.esVerticeNulo(v))) {						//inicializar VP y VVA. 
+			if (!(v == ver)) {
 			r11.agregar(v,contador_vertice++);
 			if (grafo.existeArista(ver, v)) {
+				
 				VP[r11.indice(v)] = grafo.peso(ver, v); 
 			}
 			else {
@@ -40,7 +41,7 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 		int v = r11.vertice(menor);	//pivote. 
 		D.agregar(v);
 		int v_ady = grafo.primerVerticeAdy(v); 
-		while (v_ady != verticeNulo) {		//se recorren todos los adyacentes.
+		while (!(grafo.esVerticeNulo(v_ady))) {		//se recorren todos los adyacentes.
 			if (v_ady != ver) {			//pero no me puedo incluir a mi, porque deporsi no posee un campo en VP. 
 				if (VP[r11.indice(v_ady)] > grafo.peso(v,v_ady) + VP[r11.indice(v)]) {
 					VP[r11.indice(v_ady)] = grafo.peso(v,v_ady) + VP[r11.indice(v)]; 
@@ -54,6 +55,7 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 	D.destruir(); 
 	r11.destruir();
 }
+
 
 
 
