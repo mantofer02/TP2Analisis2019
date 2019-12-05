@@ -7,7 +7,7 @@
 int main(int argc, char* argv[]) {
 	Tester tester; 
 	
-	tester.iniciarTest(1);				//iniciarTest(test_id) 
+	//tester.iniciarTest(1);				//iniciarTest(test_id) 
 	//tester.iniciarTest(2);			
 	//tester.iniciarTest(3);			
 	//tester.iniciarTest(4);		
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	//tester.iniciarTest(8);
 	//tester.iniciarTest(9);					//se esta cayendo, no se porque. 
 	//tester.iniciarTest(10);							
-	//tester.iniciarTest(11);			
+	tester.iniciarTest(11);			
 	//tester.iniciarTest(12);					//Aún no esta hecho. 		
 		
 				

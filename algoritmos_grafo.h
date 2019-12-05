@@ -1,4 +1,4 @@
-#include "grafo_LA.h"
+#include "grafo_MA.h"
 #include "apo.h"
 #include "r11.h"
 #include "diccionario.h"
@@ -27,8 +27,8 @@ class Algoritmos_grafo{
 		void CH(Grafo &grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
 		void encontrarPuntosArticulacion(Grafo &grafo, vertice*puntos, int&contador_puntos);
 		void puntosArticulacion(Grafo &grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice, int&contador_puntos); 
-		void colorear_grafo(Grafo &grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones);
-		void colorear(Grafo &grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11); 
+		void colorear_grafo(Grafo &grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones, bool&found);
+		void colorear(Grafo &grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11, bool&found); 
 		bool existeCaminoEntreTodoParDeVertices(Grafo &grafo);
 		void recorrer(Grafo&grafo, vertice ver, Diccionario<vertice>&D); 
 }; 

@@ -33,6 +33,27 @@ void Tester::iniciarTest(int test_id) {
 	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(1),90);
 	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(5),8);  
 	
+	/*
+	grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
+	grafo.agregarVertice(3); //1
+	grafo.agregarVertice(1); //2
+	grafo.agregarVertice(4); //3	
+	grafo.agregarVertice(6); //4
+	grafo.agregarVertice(5); //5
+
+	grafo.agregarArista(0,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
+	grafo.agregarArista(2,0,8);
+	grafo.agregarArista(2,4,1000);
+	grafo.agregarArista(0,3,7);
+	grafo.agregarArista(4,1,40);
+	grafo.agregarArista(3,4,20);
+	grafo.agregarArista(3,5,35);
+	grafo.agregarArista(5,4,5);        
+	grafo.agregarArista(1,2,90);
+	grafo.agregarArista(1,5,8);  
+	
+	*/
+	
 	#if 0 
 	Grafo grafo2; 
 	grafo2.iniciar(); 
@@ -481,6 +502,7 @@ void Tester::testColorearGrafo(Grafo&grafo){
 	int menor_cantidad = INFINITY; 
 	int colores = 0; 
 	int contador_soluciones = 0; 
+	bool found = false; 
 	//--------------------------------------------------------------------------------------------
 
 
@@ -490,16 +512,18 @@ void Tester::testColorearGrafo(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones); 	
+	misAlgoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones, found); 	
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
     std::cout << "El tiempo de duración para Colorear el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
     
-    #if 0 
-    
-    
+    #if 0
+    if (found) {
+		std::cout << "la solucion optima corresponde a : " << std::endl; 
+		std::cout << mejor_sol.printCC() << std::endl; 	
+	}
     #endif		
     		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 

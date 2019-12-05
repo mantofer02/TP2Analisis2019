@@ -18,13 +18,29 @@ class CC {
 		void unir(int conjunto_1, int conjunto_2);
 		bool existeInterseccion(int conjunto, CC<T>&cc_1, int conjunto_cc1);   
 		void sacarDeConjunto(int conjunto, T ver); 
-		int obtConjunto(int index); 
+		int obtConjunto(int index);
+		void moveData(CC<T>&cc_1); 
 		string printCC(); 
 }; 
+
 
 template <class T>
 CC<T>::CC() {
 	
+}
+
+
+template <class T>
+void CC<T>::moveData(CC<T>&cc_1) {
+	for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
+		for (int ver = 1; ver <= this->counter_ver_c[conjunto]; ++ver) {
+			cc_1.cc[conjunto][ver] = this->cc[conjunto][ver]; 
+		} 
+		cc_1.amount_c = this->amount_c;
+		for (int index = 0; index < this->amount_c; ++index) {
+			cc_1.counter_ver_c[index] = this->counter_ver_c[index]; 
+		} 		
+	}	
 }
 
 template <class T>
@@ -129,6 +145,13 @@ void CC<T>::unir(int conjunto_1, int conjunto_2) {
 template <class T>
 string CC<T>::printCC() {
 stringstream ss; 	
+
+std::cout << "conjuntos : " << this->amount_c << std::endl; 
+for (int index = 0; index < this->amount_c; ++index) {
+	ss << this->counter_ver_c[index] << ", "; 
+}
+std::cout << "contador de conjuntos : " << ss.str() << std::endl; 
+ss.str(""); 
 
 for (int conjunto = 0; conjunto < this->amount_c; ++conjunto) {
 	for (int ver = 1; ver <= this->counter_ver_c[conjunto]/*this->cc[conjunto][0]*/; ++ver) {

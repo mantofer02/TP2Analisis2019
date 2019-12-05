@@ -483,7 +483,7 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 }
 
 
-void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
+void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones, bool&found) {
 	if (!grafo.vacia()){
 		CC<vertice> ccc; 
 		ccc.iniciar(grafo.numVertices()); 
@@ -517,21 +517,21 @@ void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&co
 		}
 		
 		v = grafo.primerVertice(); 
-		colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones, r11); 
+		colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones, r11, found); 
 		
 	}
 //else no hay nada que hacer. 
 }
 
 
-void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
+void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11, bool&found){
 
-	if (!grafo.esVerticeNulo(v)) {
+	if (grafo.esVerticeNulo(v)) {
 		++contador_soluciones; 
 		if (colores < menor_cantidad) {
 			menor_cantidad = colores;
-			std::cout << "encontre una solucion factible " << std::endl;  
-			std::cout << ccc.printCC() << std::endl;  
+			found = true; 
+			ccc.moveData(mejor_sol); 	//mueve la solucion actual a la mejor solucion. 
 		}
 	}
 	
@@ -546,7 +546,7 @@ void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&
 				++colores; 
 				new_color = true; 
 			}
-			colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11);
+			colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11, found);
 			ccc.sacarDeConjunto(index, v);
 			if (new_color) {
 				--colores; new_color = false; 
@@ -555,6 +555,8 @@ void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&
 		++index;  
 	}		
 }
+
+
 
 void iniciarM(int** matrix, int rows, int columns) {
 	matrix = (int**)malloc(rows*sizeof(int*));
