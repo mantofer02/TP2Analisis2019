@@ -18,7 +18,6 @@ class Grafo{
         int cantidadDeVertices;
         int cantidadDeAristas;
   
-        vertice verticeNulo;
   
         /*
         ------------PARA EL PAIR-------
@@ -54,7 +53,7 @@ class Grafo{
         vertice siguienteVertice(vertice);
         vertice primerVerticeAdy(vertice);
         void borrarVertice(vertice);
-        vertice steVtcAdyacente(vertice, vertice);
+        vertice siguienteVerticeAdy(vertice, vertice);
         void imprimirGrafo();
         vertice getVertice(ETIQUETA);
         int esVerticeNulo(vertice);    

@@ -24,7 +24,8 @@ struct vertice{
     }
 
     void imprimir(){
-        std :: cout << " Etiqueta :  " << this->etiqueta;
+        std :: cout << " Etiqueta :  " << this->etiqueta << std :: endl;
+        std :: cout << " Indice :  " << this->indice << std :: endl;
     }
 
     int operator==(vertice v1){
@@ -32,8 +33,8 @@ struct vertice{
     }
 
     void operator=(vertice v1){
-        this->etiqueta = etiqueta;
-        this->indice = indice;
+        this->etiqueta = v1.etiqueta;
+        this->indice = v1.indice;
     }
 
     friend std :: ostream& operator<<( std :: ostream &output, const vertice &v1) { 

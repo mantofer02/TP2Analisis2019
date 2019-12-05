@@ -45,6 +45,11 @@ int Grafo :: peso(vertice v1, vertice v2){
 }
 
 vertice Grafo :: getVertice(ETIQUETA laEtiqueta){
+    vertice verticeNulo;
+    verticeNulo.indice = -1;
+
+
+
     int counter = 0;
     while(counter < l1.size() && l1[counter].etiqueta != laEtiqueta){
         counter++;
@@ -153,6 +158,9 @@ int Grafo :: numAristas(){
 
 //Hay que ver como se le hace con el vertice nulo, osea cuando la lista esta vacia
 vertice Grafo :: primerVertice(){
+    vertice verticeNulo;
+    verticeNulo.indice = -1;
+
     if(cantidadDeVertices == 0){
         return verticeNulo;
     }else{
@@ -161,7 +169,12 @@ vertice Grafo :: primerVertice(){
 }
 
 vertice Grafo :: siguienteVertice(vertice v1){
+    vertice verticeNulo;
+    verticeNulo.indice = -1;
+    
+    
     if(v1.indice + 1 < cantidadDeVertices){
+        // l1[v1.indice + 1].imprimir();
         return l1[v1.indice + 1];
     }else{
         return verticeNulo;
@@ -169,6 +182,9 @@ vertice Grafo :: siguienteVertice(vertice v1){
 } 
 
 vertice Grafo :: primerVerticeAdy(vertice v1){       
+    vertice verticeNulo;
+    verticeNulo.indice = -1;
+    
     if(l2[v1.indice].size()){
         return l1[l2[v1.indice][0].first];
         l1[l2[v1.indice][0].first].imprimir();
@@ -178,7 +194,10 @@ vertice Grafo :: primerVerticeAdy(vertice v1){
     }
 }
 
-vertice Grafo :: steVtcAdyacente(vertice v1, vertice adyacente){
+vertice Grafo :: siguienteVerticeAdy(vertice v1, vertice adyacente){
+     vertice verticeNulo;
+    verticeNulo.indice = -1;
+    
     int indice1 = v1.indice;
     int fila1 = indice1;
     int columna1= 0;
