@@ -19,7 +19,7 @@ void Grafo::vaciar() {
 	this->ultimoLleno = 0; 
 }
 
-bool Grafo::vacia() {
+bool Grafo::vacio() {
 	bool empty = true;
 	if (this->ultimoLleno > 0) {
 		empty = false; 
@@ -218,7 +218,7 @@ int Grafo::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
 }
 
 int Grafo::primerVertice() {
-	vertice vertex = -1;
+	vertice vertex = 1;
 	return vertex; 
 } 
 

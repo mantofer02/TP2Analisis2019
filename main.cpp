@@ -24,10 +24,19 @@ grafo.agregarArista(5,4,5);
 grafo.agregarArista(1,2,90);
 grafo.agregarArista(1,5,8);  
 
-Algoritmos_grafo_MA algoritmos; 
+
+/*
+std::cout << "ETIQUETAS" << std::endl; 
+std::cout << grafo.printEtiquetas() << std::endl; 
+std::cout << "MATRIZ ADYACENCIA" << std::endl; 
+std::cout << grafo.printMatrix() << std::endl; 
+*/
 
 
-#if 0			//PRUEBA DE DIJKSTRA 
+Algoritmos_grafo algoritmos; 
+
+
+#if 1		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
@@ -168,7 +177,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1
+#if 0
 CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
