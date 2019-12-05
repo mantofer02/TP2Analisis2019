@@ -242,3 +242,7 @@ vertice Grafo :: getVerticeNulo(){
     verticeNulo.indice = -1;
     return verticeNulo;
 }
+
+ETIQUETA Grafo :: etiqueta(vertice v1){
+    return v1.etiqueta;
+}

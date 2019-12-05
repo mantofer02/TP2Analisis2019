@@ -58,6 +58,7 @@ class Grafo{
         vertice getVertice(ETIQUETA);
         int esVerticeNulo(vertice); 
         vertice getVerticeNulo();   
+        ETIQUETA etiqueta(vertice); 
         // void aislarVertice(vertice)
 };
 #endif

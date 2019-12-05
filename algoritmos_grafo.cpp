@@ -418,6 +418,7 @@ int min(int a, int b) {
 }
 
 #if 0
+// CORREGIR
 void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice, int&contador_puntos) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
@@ -440,6 +441,7 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 		v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
 	}
 	if (indice == 0 && sons >= 2) {
+		//ESTO
 		puntos[puntos[0]+1] = v;
 		++puntos[0];
 	}
@@ -447,47 +449,42 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 #endif
 
 void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
-if (!grafo.vacia()){
-	CC<vertice> ccc; 
-	ccc.iniciar(grafo.numVertices()); 
-	CC<vertice> cca; 
-	cca.iniciar(grafo.numVertices());
-	
-	R11<vertice> r11;
-	r11.iniciar(); 
-	
-	 
-	int index_conjunto = 0; 
-	while (index_conjunto < grafo.numVertices()) {
-		ccc.agregarConjunto(index_conjunto);
-		cca.agregarConjunto(index_conjunto); 
-		++index_conjunto;  
-	}
-	
-	vertice v = grafo.primerVertice(); 
-	int index_v = 0; 
-	while (!grafo.esVerticeNulo(v)) {
-		r11.agregar(v, index_v);
-		vertice v_ady = grafo.primerVerticeAdy(v); 
-		while (!grafo.esVerticeNulo(v_ady)) {
-			cca.agregarAConjunto(v_ady, index_v); 
-			v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
+	if (!grafo.vacia()){
+		CC<vertice> ccc; 
+		ccc.iniciar(grafo.numVertices()); 
+		CC<vertice> cca; 
+		cca.iniciar(grafo.numVertices());
+		R11<vertice> r11;
+		r11.iniciar(); 
+		
+		int index_conjunto = 0; 
+		
+		while (index_conjunto < grafo.numVertices()) {
+			ccc.agregarConjunto(index_conjunto);
+			cca.agregarConjunto(index_conjunto); 
+			++index_conjunto;  
 		}
-		v = grafo.siguienteVertice(v); 
-		++index_v; 
-		 
+		
+		vertice v = grafo.primerVertice(); 
+		
+		int index_v = 0; 
+		
+		while (!grafo.esVerticeNulo(v)) {
+			r11.agregar(v, index_v);
+			vertice v_ady = grafo.primerVerticeAdy(v); 
+			while (!grafo.esVerticeNulo(v_ady)) {
+				cca.agregarAConjunto(v_ady, index_v); 
+				v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
+			}
+			v = grafo.siguienteVertice(v); 
+			++index_v; 
+			
+		}
+		
+		v = grafo.primerVertice(); 
+		colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones, r11); 
+		
 	}
-	
-	v = grafo.primerVertice(); 
-	colorear(grafo, mejor_sol,  ccc, cca, v, colores, menor_cantidad, contador_soluciones, r11); 
-	/*
-	std::cout << "ya se inicializo todo : " << std::endl; 
-	std::cout << "imprimiendo la picha : " << std::endl; 
-	std::cout << ccc.printCC() << std::endl; 
-	std::cout << "-------------" << std::endl; 
-	std::cout << cca.printCC() << std::endl; 
-	*/
-}
 //else no hay nada que hacer. 
 }
 
@@ -499,8 +496,7 @@ void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&
 	 if (colores < menor_cantidad) {
 		 menor_cantidad = colores;
 		 std::cout << "encontre una solucion factible " << std::endl;  
-		 std::cout << ccc.printCC() << std::endl; 
-		 //copiar todo lo de ccc a mejor_sol; 
+		 std::cout << ccc.printCC() << std::endl;  
 	 }
  }
  
@@ -516,7 +512,6 @@ void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&
 			 new_color = true; 
 		 }
 		 colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11);
-		 //arrepentimiento. 
 		 ccc.sacarDeConjunto(index, v);
 		 if (new_color) {
 			 --colores; new_color = false; 
