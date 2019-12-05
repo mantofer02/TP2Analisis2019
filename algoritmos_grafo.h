@@ -25,8 +25,8 @@ class Algoritmos_grafo{
 		bool is_there_cycles(Grafo &grafo); 
 		void is_there_cyclesR(Grafo &grafo, vertice ver, vertice vertice_anterior, Diccionario<vertice>&D, std::list<vertice>&L, bool&is_there); 
 		void CH(Grafo &grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice); 
-		// void encontrarPuntosArticulacion(Grafo &grafo, vertice*puntos);
-		// void puntosArticulacion(Grafo &grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice); 
+		void encontrarPuntosArticulacion(Grafo &grafo, vertice*puntos, int&contador_puntos);
+		void puntosArticulacion(Grafo &grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice, int&contador_puntos); 
 		void colorear_grafo(Grafo &grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones);
 		void colorear(Grafo &grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11); 
 		bool existeCaminoEntreTodoParDeVertices(Grafo &grafo);

@@ -375,7 +375,7 @@ else {
 }
 
 #if 0 
-void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos) {
+void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos, int&contador_puntos) {
 	
 	if (!grafo.vacia()) {
 		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
@@ -392,7 +392,7 @@ void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos) 
 		v = grafo.primerVertice(); 
 		while (!grafo.esVerticeNulo(v)) {
 			if (!D.pertenece(v)) {
-				puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos,v , 0); 	
+				puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos,v , 0, contador_puntos); 	
 			}
 			v = grafo.siguienteVertice(v); 
 		}
@@ -418,9 +418,7 @@ int min(int a, int b) {
 }
 
 #if 0
-//YO AQUI TENIA EN PUNTOS EN LA POS 0, UN CONTADOR, CLARAMENTE SI SE PLANEA QUE SEA UN VECTOR DE VERTICES, ya eso no sirve, 
-//ENTONCES LO DE LA LINEA 434 HABRÍA QUE SACARLO AFUERA O QUE IGUAL SE PASA POR REFERENCIA, PERO COMO UN VECTOR EXTRA QUE ALMANECE ESOS VALORES. 
-void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
+void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice, int&contador_puntos) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
 	orden[r11.indice(v)] = indice; 
@@ -431,8 +429,8 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 			++sons; 
 			puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos, v_ady, indice+1); 
 			if (mas_bajo[r11.indice(v_ady)] >= orden[r11.indice(v)]) {		//encontre un punto de articulacion. 
-				puntos[puntos[0]+1] = v;					//..
-				++puntos[0];
+				puntos[contador_puntos] = v;								
+				++contador_puntos; 
 			}
 			mas_bajo[r11.indice(v)] = min(mas_bajo[r11.indice(v)], mas_bajo[r11.indice(v_ady)]); 
 		}

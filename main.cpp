@@ -163,11 +163,12 @@ std::cout << ss.str() << std::endl;
 #if 0	//PRUEBA PUNTOS DE ARTICULACION.
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
 vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
-algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
+int contador_puntos = 0; 
+algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
 std::cout << "imprimiendo los puntos de articulacion : " << std::endl; 
 stringstream ss; 
-for (int index = 1; index <= puntos[0]; ++index) {
-	if (index != puntos[0]) {
+for (int index = 0; index < contador_puntos; ++index) {
+	if (index != contador_puntos-1) {
 		ss << puntos[index] << ", "; 
 	}
 	else {
