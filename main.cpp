@@ -143,6 +143,7 @@ int costo = 0;
 int mejor_costo = INFINITY; 
 int contador_soluciones = 0; 
 Sol[0] = grafo.primerVertice(); 
+
 algoritmos.CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, 1);   
 
 std::cout << "se finalizo con exito" << std::endl; 
@@ -166,7 +167,9 @@ std::cout << ss.str() << std::endl;
 //hay que inicializar el mas bajo del primer vector y el orden de el tmbn 
 vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
 int contador_puntos = 0; 
+
 algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
+
 std::cout << "imprimiendo los puntos de articulacion : " << std::endl; 
 stringstream ss; 
 for (int index = 0; index < contador_puntos; ++index) {

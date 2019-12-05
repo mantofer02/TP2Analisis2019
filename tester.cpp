@@ -21,16 +21,16 @@ void Tester::iniciarTest(int test_id) {
 	grafo1.agregarVertice(6); 
 	grafo1.agregarVertice(5); 
 
-	grafo1.agregarArista(grafo.getVertice(2),grafo.getVertice(3),500);	
-	grafo1.agregarArista(grafo.getVertice(1),grafo.getVertice(2),8);
-	grafo1.agregarArista(grafo.getVertice(1),grafo.getVertice(6),1000);
-	grafo1.agregarArista(grafo.getVertice(2),grafo.getVertice(4),7);
-	grafo1.agregarArista(grafo.getVertice(6),grafo.getVertice(3),40);
-	grafo1.agregarArista(grafo.getVertice(4),grafo.getVertice(6),20);
-	grafo1.agregarArista(grafo.getVertice(4),grafo.getVertice(5),35);
-	grafo1.agregarArista(grafo.getVertice(5),grafo.getVertice(6),5);        
-	grafo1.agregarArista(grafo.getVertice(3),grafo.getVertice(1),90);
-	grafo1.agregarArista(grafo.getVertice(3),grafo.getVertice(5),8);  
+	grafo1.agregarArista(grafo1.getVertice(2),grafo1.getVertice(3),500);	
+	grafo1.agregarArista(grafo1.getVertice(1),grafo1.getVertice(2),8);
+	grafo1.agregarArista(grafo1.getVertice(1),grafo1.getVertice(6),1000);
+	grafo1.agregarArista(grafo1.getVertice(2),grafo1.getVertice(4),7);
+	grafo1.agregarArista(grafo1.getVertice(6),grafo1.getVertice(3),40);
+	grafo1.agregarArista(grafo1.getVertice(4),grafo1.getVertice(6),20);
+	grafo1.agregarArista(grafo1.getVertice(4),grafo1.getVertice(5),35);
+	grafo1.agregarArista(grafo1.getVertice(5),grafo1.getVertice(6),5);        
+	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(1),90);
+	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(5),8);  
 	
 	#if 0 
 	Grafo grafo2; 
@@ -85,7 +85,6 @@ void Tester::iniciarTest(int test_id) {
 		case 6: 
 			testAnchoPrimero(MIGRAFO); 
 		break; 
-		
 		
 		case 7: 
 			testAislarVertice(MIGRAFO); 
@@ -179,7 +178,7 @@ void Tester::testFloyd(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.Floyd(grafo, MP, MVI); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
@@ -466,7 +465,7 @@ void Tester::testPuntosArticulacion(Grafo&grafo){
     #endif 		
     				
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	free(puntos)
+	free(puntos);
 	//--------------------------------------------------------------------------------------------
 		
 	
@@ -496,7 +495,7 @@ void Tester::testColorearGrafo(Grafo&grafo){
     std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	mejor_sol.destruir(); 
+	//mejor_sol.destruir(); CC aún no tiene destruir. 
 	//--------------------------------------------------------------------------------------------
 		
 	
