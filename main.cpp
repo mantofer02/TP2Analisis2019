@@ -25,6 +25,11 @@ grafo.agregarArista(1,2,90);
 grafo.agregarArista(1,5,8);  
 
 
+std::cout << grafo.getVertice(1) << std::endl; 
+std::cout << grafo.getVertice(4) << std::endl; 
+std::cout << grafo.getVertice(2) << std::endl; 
+std::cout << grafo.getVertice(5) << std::endl; 
+
 /*
 std::cout << "ETIQUETAS" << std::endl; 
 std::cout << grafo.printEtiquetas() << std::endl; 
@@ -36,7 +41,7 @@ std::cout << grafo.printMatrix() << std::endl;
 Algoritmos_grafo algoritmos; 
 
 
-#if 1		//PRUEBA DE DIJKSTRA 
+#if 0		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 

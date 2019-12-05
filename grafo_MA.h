@@ -76,6 +76,7 @@ class Grafo{
 		string printEtiquetas(); 
 		string printMatrix(); 
 		int esVerticeNulo(vertice);
+		vertice getVertice(int etiqueta); 
 };
 
 #endif

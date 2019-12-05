@@ -206,6 +206,17 @@ int Grafo::primerVerticeAdy(int vertice) {
 	return vertex; 
 }
 
+int Grafo::getVertice(int etiqueta) {
+	int ver = -1;
+	for (int index = 0; index < this->ultimoLleno; ++index) {
+		if (this->etiquetas[index] == etiqueta) {
+			ver = index; 
+		}
+	}
+	return ver; 
+}
+
+
 int Grafo::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
   int vertex = -1; 
   for (int column = actual_vertice_ady+1; column < this->ultimoLleno; ++column) {
