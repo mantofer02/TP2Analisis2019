@@ -12,10 +12,10 @@ int main(int argc, char* argv[]) {
 	//tester.iniciarTest(6);			
 	//tester.iniciarTest(7);			
 	//tester.iniciarTest(8);
-	tester.iniciarTest(9);					//se esta cayendo, no se porque. 
+	//tester.iniciarTest(9);					//se esta cayendo, no se porque. 
 	//tester.iniciarTest(10);							
 	//tester.iniciarTest(11);			
-	//tester.iniciarTest(12);					//Aún no esta hecho. 		
+	tester.iniciarTest(12);					//Aún no esta hecho. 		
 		
 				
 		//IDS PARA LOS DIFERENTES TESTS. 

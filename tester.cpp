@@ -113,6 +113,7 @@ void Tester::iniciarTest(int test_id) {
 		break; 
 	}
 	
+	grafo1.destruir(); 
 }
 
 
@@ -493,7 +494,13 @@ void Tester::testColorearGrafo(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
+    std::cout << "El tiempo de duración para Colorear el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
+    		
+    
+    #if 0 
+    
+    
+    #endif		
     		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//mejor_sol.destruir(); CC aún no tiene destruir. 
@@ -518,8 +525,14 @@ void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
-    		
+    std::cout << "El tiempo de duración para determinar si existe camino entre todo par de vertices corresponde a : " << elapsed_seconds << " s." <<endl;	
+    
+    
+    
+    #if 0 
+    
+    
+    #endif 		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------

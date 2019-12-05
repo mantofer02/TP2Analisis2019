@@ -12,6 +12,12 @@ void Grafo::iniciar() {
 
 void Grafo::destruir() {
 	//liberar memoria. 
+	free(etiquetas); 
+	for (int index = 0; index < SIZEGRAFO; ++index) {
+		free(matrix[index]);
+	}
+	free(matrix); 
+	vaciar(); 
 }
 
 

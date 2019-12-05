@@ -569,5 +569,28 @@ void iniciarV(int* vector, int columns) {
 
 
 bool Algoritmos_grafo::existeCaminoEntreTodoParDeVertices(Grafo&grafo) {
-return true; 	
+
+bool existe = false; 
+Diccionario<vertice> D;
+D.iniciar(); 
+vertice v = grafo.primerVertice(); 
+recorrer(grafo, v, D);  
+
+if (D.numElem() == grafo.numVertices()) {
+	existe = true; 
+}
+
+return existe; 
+}
+
+
+void Algoritmos_grafo::recorrer(Grafo&grafo, vertice ver, Diccionario<vertice>&D) {
+	D.agregar(ver); 
+	vertice v_ady = grafo.primerVerticeAdy(ver); 
+	while (!grafo.esVerticeNulo(v_ady)) {
+		if (!D.pertenece(v_ady)) {
+			recorrer(grafo, v_ady, D);	
+		} 
+		v_ady = grafo.siguienteVerticeAdy(ver, v_ady);
+	} 
 }
