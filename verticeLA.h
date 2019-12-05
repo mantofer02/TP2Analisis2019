@@ -41,6 +41,12 @@ struct vertice{
          return output;            
     }
 
-    
+    int operator!=(vertice v1){
+        int sonDiferentes = 0;
+        if(this->etiqueta != v1.etiqueta){
+            sonDiferentes = 1;
+        }
+        return sonDiferentes;
+    }
     
 };

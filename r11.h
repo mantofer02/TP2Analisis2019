@@ -3,7 +3,7 @@
 using namespace std;
 #define INFINITY 999999999
 #define TAMANYO 30		//misma cantidad de vertices del grafo. 
-// #define verticeNulo -1
+#define verticeNulo -1
 
 
 template <class T>
@@ -97,7 +97,7 @@ template <class T>
 T R11<T>::vertice(int indice) {
 	int index = 0; 
 	bool found = false; 
-	T image = this->vertices[0]; 
+	T image = this->vertices[1]; 
 	while (index < this->ultimoLleno && !found) {
 		if (this->indices[index] == indice) {
 			found = true; 
