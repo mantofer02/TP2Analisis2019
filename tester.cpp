@@ -183,7 +183,7 @@ void Tester::testFloyd(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
+    std::cout << "El tiempo de duración de Floyd corresponde a : " << elapsed_seconds << " s." <<endl;	
 	
 	
 	#if 0 							//PARA IMPRIMIR LOS RESULTADOS. 
@@ -233,17 +233,16 @@ void Tester::testPrim(Grafo&grafo) {
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.Prim(grafo, grafo.primerVertice()); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
+    std::cout << "El tiempo de duración de Prim corresponde a : " << elapsed_seconds << " s." <<endl;	
 	
 
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
 	
@@ -251,7 +250,7 @@ void Tester::testPrim(Grafo&grafo) {
 
 void Tester::testKruskal(Grafo&grafo){
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 
@@ -261,15 +260,14 @@ void Tester::testKruskal(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.Kruskal(grafo); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;		
+    std::cout << "El tiempo de duración de Kruskal corresponde a : " << elapsed_seconds << " s." <<endl;		
 	
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 			
 	
@@ -278,7 +276,7 @@ void Tester::testKruskal(Grafo&grafo){
 void Tester::testProfundidadPrimero(Grafo&grafo) {
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 	struct timespec start_time;
@@ -287,15 +285,14 @@ void Tester::testProfundidadPrimero(Grafo&grafo) {
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.profundidadPrimero(grafo); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
+    std::cout << "El tiempo de duración de profundidadPrimero corresponde a : " << elapsed_seconds << " s." <<endl;	
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 			
 }
@@ -303,7 +300,7 @@ void Tester::testProfundidadPrimero(Grafo&grafo) {
 void Tester::testAnchoPrimero(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 	struct timespec start_time;
@@ -312,15 +309,14 @@ void Tester::testAnchoPrimero(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.anchoPrimero(grafo); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;		
+    std::cout << "El tiempo de duración de AnchoPrimero corresponde a : " << elapsed_seconds << " s." <<endl;		
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
 }
@@ -328,7 +324,7 @@ void Tester::testAnchoPrimero(Grafo&grafo){
 void Tester::testAislarVertice(Grafo&grafo){
 	
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 	struct timespec start_time;
@@ -337,15 +333,14 @@ void Tester::testAislarVertice(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.aislarVertice(grafo, grafo.primerVertice()); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;		
+    std::cout << "El tiempo de duración para aislar el vertice ingresado corresponde a : " << elapsed_seconds << " s." <<endl;		
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
 } 
@@ -353,7 +348,7 @@ void Tester::testAislarVertice(Grafo&grafo){
 void Tester::testCiclos(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 	struct timespec start_time;
@@ -362,15 +357,20 @@ void Tester::testCiclos(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	if (misAlgoritmos.is_there_cycles(grafo)) {
+		std::cout << "El grafo ingresado si posee ciclos" << std::endl; 
+	}
+	else {
+		std::cout << "El grafo ingresado no posee ciclos" << std::endl; 
+	}
+	
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;			
+    std::cout << "El tiempo de duración para determinar la existencia de ciclos corresponde a : " << elapsed_seconds << " s." <<endl;			
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
 }
@@ -378,9 +378,15 @@ void Tester::testCiclos(Grafo&grafo){
 void Tester::testCircuitoHamilton(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	Diccionario<vertice> D; 
+	D.iniciar(); 
+	vertice* Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));				//solución temporal
+	vertice* mejor_Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));			//la mejor solución encontrada. 
+	int costo = 0; 																			//costo temporal. 
+	int mejor_costo = INFINITY; 															//el mejor costo encontrado, comienza en inf para la primera iteracion. 
+	int contador_soluciones = 0; 															//cuantas soluciones factibles presenta el grafo. 
+	Sol[0] = grafo.primerVertice(); 														//se comienza ingresando en Sol[0] el vertice de partida. 
 	//--------------------------------------------------------------------------------------------
-
 
 	struct timespec start_time;
     struct timespec finish_time;
@@ -388,15 +394,36 @@ void Tester::testCircuitoHamilton(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, 1);	//el 1 es un indice, dejarlo asi.    
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;			
+    std::cout << "El tiempo de duración de Circuito de Hamilton con menor costo corresponde a : " << elapsed_seconds << " s." <<endl;			
+
+
+	#if 0 				//si se desea ver el resultado del algoritmo. 
+		
+	std::cout << "se finalizo con exito" << std::endl; 
+	std::cout << "soluciones factibles : " << contador_soluciones << std::endl; 
+	stringstream ss; 
+	for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
+		if (index_sol != grafo.numVertices()) {
+			ss << mejor_Sol[index_sol] << ", "; 
+		}
+		else {
+			ss << mejor_Sol[index_sol]; 
+		}	
+	}
+	ss << "\n"; 
+	std::cout << "la mejor solucion corresponde a : " << std::endl; 
+	std::cout << ss.str() << std::endl;   	
+	#endif 
+	
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	free(Sol);
+	free(mejor_Sol);
+	D.destruir(); 
 	//--------------------------------------------------------------------------------------------
 		
 	
@@ -405,7 +432,8 @@ void Tester::testCircuitoHamilton(Grafo&grafo){
 void Tester::testPuntosArticulacion(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
+	vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
+	int contador_puntos = 0; 
 	//--------------------------------------------------------------------------------------------
 
 
@@ -414,16 +442,31 @@ void Tester::testPuntosArticulacion(Grafo&grafo){
     double elapsed_seconds = 0.0; 
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
-    
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
-    
+
+	misAlgoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
+
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
+    std::cout << "El tiempo de duración para encontrar Puntos de Articulacion en el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
+    
+    #if 0 				//si se desean ver los resultados. 
+	std::cout << "imprimiendo los puntos de articulacion : " << std::endl; 
+	stringstream ss; 
+	for (int index = 0; index < contador_puntos; ++index) {
+		if (index != contador_puntos-1) {
+			ss << puntos[index] << ", "; 
+		}
+		else {
+			ss << puntos[index]; 
+		}
+	}
+	ss << "\n"; 
+	std::cout << ss.str() << std::endl;
+    #endif 		
+    				
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	free(puntos)
 	//--------------------------------------------------------------------------------------------
 		
 	
@@ -431,10 +474,14 @@ void Tester::testPuntosArticulacion(Grafo&grafo){
 
 void Tester::testColorearGrafo(Grafo&grafo){
 
-	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
- 	
-
+	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 		
+	CC<vertice> mejor_sol; 
+	mejor_sol.iniciar(grafo.numVertices());
+	int menor_cantidad = INFINITY; 
+	int colores = 0; 
+	int contador_soluciones = 0; 
 	//--------------------------------------------------------------------------------------------
+
 
 	struct timespec start_time;
     struct timespec finish_time;
@@ -442,15 +489,14 @@ void Tester::testColorearGrafo(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones); 	
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
     std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	mejor_sol.destruir(); 
 	//--------------------------------------------------------------------------------------------
 		
 	
@@ -459,8 +505,7 @@ void Tester::testColorearGrafo(Grafo&grafo){
 void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-
-
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 
 	struct timespec start_time;
@@ -469,15 +514,14 @@ void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
         
     clock_gettime(CLOCK_MONOTONIC, &start_time);
     
-	misAlgoritmos.Floyd(grafo, MP, MPI); 
+	misAlgoritmos.existeCaminoEntreTodoParDeVertices(grafo); 
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
     std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
-	
-	
+	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
 	
