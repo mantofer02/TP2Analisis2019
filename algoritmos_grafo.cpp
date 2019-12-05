@@ -417,7 +417,7 @@ int min(int a, int b) {
 	}
 }
 
-#if 0
+
 // CORREGIR
 void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice, int&contador_puntos) {
 	D.agregar(v); 
@@ -428,7 +428,7 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 	while (!grafo.esVerticeNulo(v_ady)) {
 		if (!D.pertenece(v_ady)) {
 			++sons; 
-			puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos, v_ady, indice+1); 
+			puntosArticulacion(grafo, D, mas_bajo, orden, r11, puntos, v_ady, indice+1, contador_puntos); 
 			if (mas_bajo[r11.indice(v_ady)] >= orden[r11.indice(v)]) {		//encontre un punto de articulacion. 
 				puntos[contador_puntos] = v;								
 				++contador_puntos; 
@@ -442,11 +442,11 @@ void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, i
 	}
 	if (indice == 0 && sons >= 2) {
 		//ESTO
-		puntos[puntos[0]+1] = v;
-		++puntos[0];
+		puntos[contador_puntos + 1] = v;
+		++contador_puntos; 
 	}
 }
-#endif
+
 
 void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
 	if (!grafo.vacia()){
@@ -491,36 +491,34 @@ void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&co
 
 void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
 
- if (!grafo.esVerticeNulo(v)) {
-	 ++contador_soluciones; 
-	 if (colores < menor_cantidad) {
-		 menor_cantidad = colores;
-		 std::cout << "encontre una solucion factible " << std::endl;  
-		 std::cout << ccc.printCC() << std::endl;  
-	 }
- }
- 
- int index = 0; 
- while (index < grafo.numVertices() && colores < menor_cantidad) {
-	 int conjunto_c = ccc.obtConjunto(index); 		//deme el conjunto del color index. 
-	 int conjunto_a = cca.obtConjunto(r11.indice(v));			//deme el conjunto que corresponde a ese vertice. 
-	 if (!ccc.existeInterseccion(conjunto_c, cca, conjunto_a)) {		//si entre mis adyacentes no hay ninguno con el color index. 
-		 ccc.agregarAConjunto(v, index); 
-		 bool new_color = false; 
-		 if (index >=menor_cantidad) {				//si se esta llegando a un nuevo ciclo del while osea se esta seleccionando un nuevo color. 
-			 ++colores; 
-			 new_color = true; 
-		 }
-		 colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11);
-		 ccc.sacarDeConjunto(index, v);
-		 if (new_color) {
-			 --colores; new_color = false; 
-		 }   
-	 } 
-	++index;  
- }	
- 	
+	if (!grafo.esVerticeNulo(v)) {
+		++contador_soluciones; 
+		if (colores < menor_cantidad) {
+			menor_cantidad = colores;
+			std::cout << "encontre una solucion factible " << std::endl;  
+			std::cout << ccc.printCC() << std::endl;  
+		}
+	}
 	
+	int index = 0; 
+	while (index < grafo.numVertices() && colores < menor_cantidad) {
+		int conjunto_c = ccc.obtConjunto(index); 		//deme el conjunto del color index. 
+		int conjunto_a = cca.obtConjunto(r11.indice(v));			//deme el conjunto que corresponde a ese vertice. 
+		if (!ccc.existeInterseccion(conjunto_c, cca, conjunto_a)) {		//si entre mis adyacentes no hay ninguno con el color index. 
+			ccc.agregarAConjunto(v, index); 
+			bool new_color = false; 
+			if (index >=menor_cantidad) {				//si se esta llegando a un nuevo ciclo del while osea se esta seleccionando un nuevo color. 
+				++colores; 
+				new_color = true; 
+			}
+			colorear(grafo, mejor_sol, ccc, cca, grafo.siguienteVertice(v), colores, menor_cantidad, contador_soluciones, r11);
+			ccc.sacarDeConjunto(index, v);
+			if (new_color) {
+				--colores; new_color = false; 
+			}   
+		} 
+		++index;  
+	}		
 }
 
 void iniciarM(int** matrix, int rows, int columns) {

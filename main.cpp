@@ -232,9 +232,9 @@ std::cout << "se va a proceder a eliminar un vertice, primero se eliminan las ar
 
 
 int vertex_ady = grafo.primerVerticeAdy(vertex); 
-while (vertex_ady != verticeNulo) {
- grafo.eliminarArista(vertex, vertex_ady); 						//eliminando todas las aristas de salida. 
- vertex_ady = grafo.siguienteVerticeAdy(vertex, vertex_ady); 	
+	while (vertex_ady != verticeNulo) {
+ 		grafo.eliminarArista(vertex, vertex_ady); 						//eliminando todas las aristas de salida. 
+ 		vertex_ady = grafo.siguienteVerticeAdy(vertex, vertex_ady); 	
 }
 
 
