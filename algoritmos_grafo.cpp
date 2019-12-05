@@ -373,7 +373,7 @@ else {
 	
 }
 
-#if 0 
+#if 1 
 void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos, int&contador_puntos) {
 	
 	if (!grafo.vacia()) {
@@ -530,3 +530,8 @@ void iniciarM(int** matrix, int rows, int columns) {
 void iniciarV(int* vector, int columns) {
 	vector = (int*)calloc(columns, sizeof(int)); 	
 } 
+
+
+bool Algoritmos_grafo::existeCaminoEntreTodoParDeVertices(Grafo&grafo) {
+return true; 	
+}

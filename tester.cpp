@@ -10,6 +10,7 @@ Tester::Tester() {
 
 void Tester::iniciarTest(int test_id) {
 	
+	srand(time(NULL));
 	Grafo grafo1; 
 	grafo1.iniciar(); 
 	
