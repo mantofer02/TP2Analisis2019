@@ -1,6 +1,6 @@
 #include "grafo_MA.h"
 
-void Grafo_MA::iniciar() {
+void Grafo::iniciar() {
 	this->etiquetas = (int*)malloc(SIZEGRAFO*sizeof(int));
 	this->matrix = (celda_t**)malloc(SIZEGRAFO*sizeof(celda_t*)); 
 	for (int vertice = 0; vertice < SIZEGRAFO; ++vertice) {
@@ -10,16 +10,16 @@ void Grafo_MA::iniciar() {
 }
 
 
-void Grafo_MA::destruir() {
+void Grafo::destruir() {
 	//liberar memoria. 
 }
 
 
-void Grafo_MA::vaciar() {
+void Grafo::vaciar() {
 	this->ultimoLleno = 0; 
 }
 
-bool Grafo_MA::vacio() {
+bool Grafo::vacia() {
 	bool empty = true;
 	if (this->ultimoLleno > 0) {
 		empty = false; 
@@ -27,7 +27,7 @@ bool Grafo_MA::vacio() {
 	return empty; 
 }
 
-int Grafo_MA :: agregarVertice(int elemento) {
+int Grafo :: agregarVertice(int elemento) {
 	int vertice = this->ultimoLleno; 
 	if (ultimoLleno <SIZEGRAFO) {
 		this->etiquetas[this->ultimoLleno] = elemento; 
@@ -53,7 +53,7 @@ int Grafo_MA :: agregarVertice(int elemento) {
 	return vertice; 			//el vertice es un entero que corresponde al vector de etiquetas. 
 }
 
-void Grafo_MA :: agregarArista(int vertice_1, int vertice_2, int peso) {
+void Grafo :: agregarArista(int vertice_1, int vertice_2, int peso) {
 	//los vertices son validos si son menores al ultimo lleno. 
 	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno && vertice_1 != vertice_2) {
 		this->matrix[vertice_1][vertice_2].conexion = true;	//se crea la conexion en la matriz de adyacencia.  
@@ -66,7 +66,7 @@ void Grafo_MA :: agregarArista(int vertice_1, int vertice_2, int peso) {
 	}
 }
 
-void Grafo_MA :: eliminarArista(int vertice_1, int vertice_2) {
+void Grafo :: eliminarArista(int vertice_1, int vertice_2) {
 	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno) {
 		this->matrix[vertice_1][vertice_2].conexion = false; 	
 		this->matrix[vertice_2][vertice_1].conexion = false; 
@@ -99,7 +99,7 @@ void shift_vertex_info(int current_vertex, int** matrix) {
 
 #endif 
 
-void Grafo_MA::eliminarVertice(int vertice) { //requiere que el vertice este aislado. 
+void Grafo::eliminarVertice(int vertice) { //requiere que el vertice este aislado. 
 	
 	for (int row = 0; row < vertice; ++row) {
 		for (int column = vertice+1; column < this->ultimoLleno; ++column) {
@@ -142,7 +142,7 @@ void Grafo_MA::eliminarVertice(int vertice) { //requiere que el vertice este ais
 	--this->ultimoLleno; 
 }
  
- bool Grafo_MA::existeArista(int vertice_1, int vertice_2) {
+ bool Grafo::existeArista(int vertice_1, int vertice_2) {
 	 if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno) {
 		return this->matrix[vertice_1][vertice_2].conexion; 
 	 }
@@ -152,27 +152,27 @@ void Grafo_MA::eliminarVertice(int vertice) { //requiere que el vertice este ais
 	 }
  }
 
-int Grafo_MA::peso(int vertice_1, int vertice_2) {
+int Grafo::peso(int vertice_1, int vertice_2) {
 	return this->matrix[vertice_1][vertice_2].peso; 
 } 
 
-void Grafo_MA::modificarPeso(int vertice_1, int vertice_2, int peso) {
+void Grafo::modificarPeso(int vertice_1, int vertice_2, int peso) {
 	this->matrix[vertice_1][vertice_2].peso = peso; 
 }
 
-void Grafo_MA::modificarEtiqueta(int vertice, int etiqueta) {
+void Grafo::modificarEtiqueta(int vertice, int etiqueta) {
 	this->etiquetas[vertice] = etiqueta; 
 }
 
-int Grafo_MA::etiqueta(int vertice) {
+int Grafo::etiqueta(int vertice) {
 	return this->etiquetas[vertice];
 }
 
-int Grafo_MA::numVertices() {
+int Grafo::numVertices() {
 	return this->ultimoLleno; 
 }
 
-int Grafo_MA::numAristas() {
+int Grafo::numAristas() {
 	int counter = 0; 
 	for (int row = 0; row < this->ultimoLleno; ++row) {
 		for (int column = 0; column < this->ultimoLleno; ++column) {
@@ -184,7 +184,7 @@ int Grafo_MA::numAristas() {
 	return counter; 
 }
 
-int Grafo_MA::numVerticesAdy(int vertice) {
+int Grafo::numVerticesAdy(int vertice) {
 	int counter = 0; 
 	for (int column = 0; column < this->ultimoLleno; ++column) {
 		if (column != vertice) {
@@ -196,7 +196,7 @@ int Grafo_MA::numVerticesAdy(int vertice) {
 	return counter; 
 }
 
-int Grafo_MA::primerVerticeAdy(int vertice) {
+int Grafo::primerVerticeAdy(int vertice) {
 	int vertex = -1; 
 	for (int column = 0; column < this->ultimoLleno; ++column) {
 		if (vertice != column && this->matrix[vertice][column].conexion == true) {
@@ -206,7 +206,7 @@ int Grafo_MA::primerVerticeAdy(int vertice) {
 	return vertex; 
 }
 
-int Grafo_MA::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
+int Grafo::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
   int vertex = -1; 
   for (int column = actual_vertice_ady+1; column < this->ultimoLleno; ++column) {
 		if (column != vertice && this->matrix[vertice][column].conexion == true) {
@@ -217,15 +217,12 @@ int Grafo_MA::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
 	return vertex; 
 }
 
-int Grafo_MA::primerVertice() {
-	int vertex = -1; 
-	if (!vacio()) {
-		vertex = 0; 
-	} 
+int Grafo::primerVertice() {
+	vertice vertex = -1;
 	return vertex; 
 } 
 
-int Grafo_MA::siguienteVertice(int vertice) {
+int Grafo::siguienteVertice(int vertice) {
 	int vertex = -1; 
 	if (vertice+1 < this->ultimoLleno) {
 		vertex = vertice+1; 
@@ -234,7 +231,7 @@ int Grafo_MA::siguienteVertice(int vertice) {
 }
 
 
-string Grafo_MA::printEtiquetas() {
+string Grafo::printEtiquetas() {
 
 	stringstream ss; 
 	for (int vertex = 0; vertex < this->ultimoLleno; ++vertex) {
@@ -246,7 +243,7 @@ string Grafo_MA::printEtiquetas() {
 }
 
 
-string Grafo_MA::printMatrix() {
+string Grafo::printMatrix() {
 	
 	stringstream ss; 
 	for (int row = 0; row < this->ultimoLleno; ++row) {
@@ -266,4 +263,8 @@ string Grafo_MA::printMatrix() {
 	}
 
 	return ss.str(); 	
+}
+
+int Grafo :: esVerticeNulo(vertice v1){
+	return v1 == -1;
 }

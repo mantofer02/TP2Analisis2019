@@ -1,6 +1,8 @@
 #include <iostream>
-// VConm
-typedef std :: string ETIQUETA;
+
+typedef int ETIQUETA;
+// typedef std :: string ETIQUETA;
+
 
 struct vertice{
     ETIQUETA etiqueta;
@@ -17,7 +19,7 @@ struct vertice{
     }
 
     vertice(){
-        this->etiqueta = " ";
+        this->etiqueta = 0 ;
         this->indice = -1;  
     }
 
@@ -33,5 +35,12 @@ struct vertice{
         this->etiqueta = etiqueta;
         this->indice = indice;
     }
+
+    friend std :: ostream& operator<<( std :: ostream &output, const vertice &v1) { 
+         output << " Etiqueta :  " << v1.etiqueta;
+         return output;            
+    }
+
+    
     
 };

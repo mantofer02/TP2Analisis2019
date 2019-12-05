@@ -18,40 +18,64 @@ typedef struct {
 } celda_t; 
 
 
-class Grafo_MA {
+class Grafo{
 	
 
-private: 	
-int* etiquetas; 
-celda_t** matrix; 
-int ultimoLleno; 
+	private: 	
+		int* etiquetas; 
+		celda_t** matrix; 
+		int ultimoLleno; 
 
 	
 	
-public: 	
-	void iniciar(); 
-	void destruir(); 
-	void vaciar(); 
-	bool vacio(); 
-	int agregarVertice(int etiqueta); 
-	void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
-	void eliminarArista(int vertice_1, int vertice_2); 												//MODIFICAR.
-	void eliminarVertice(int vertice); 																
-	bool existeArista(int vertice_1, int vertice_2); //optional
-	int peso(int vertice_1, int vertice_2); 
-	void modificarPeso(int vertice_1, int vertice_2, int peso); 
-	void modificarEtiqueta(int vertice, int etiqueta); 
-	int etiqueta(int vertice); 
-	int numVertices(); 
-	int numAristas(); 
-	int numVerticesAdy(int vertice); 
-	int primerVerticeAdy(int vertice); 
-	int siguienteVerticeAdy(int vertice, int actual_vertice_ady); 
-	int primerVertice(); 
-	int siguienteVertice(int vertice); 
-	string printEtiquetas(); 
-	string printMatrix(); 
+	public: 	
+		/*\
+		
+		VENDRIA BIEN UN OPERADOR GET VERTICE COMO EN LA LA PARA QUE ASI SE MANEJES LOS LLAMADOS EXTERNOS, Y NO POR TIPO
+		
+		
+		*/
+	
+	
+	
+		void iniciar(); 
+		void destruir(); 
+		void vaciar(); 
+		bool vacia(); 
+		//Debe ser tipo etiqueta, no entero
+		//Peor de los casos, hacemos la etiqueta de LA un entero
+		
+		int agregarVertice(int etiqueta); 
+		
+		void agregarArista(vertice vertice_1, vertice vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
+		void eliminarArista(vertice vertice_1, vertice vertice_2); 												//MODIFICAR.
+		void eliminarVertice(vertice); 																
+		
+		bool existeArista(vertice vertice_1, vertice vertice_2); //optional
+		
+		int peso(vertice vertice_1, vertice vertice_2); 
+		void modificarPeso(vertice vertice_1, vertice vertice_2, int peso); 
+		void modificarEtiqueta(vertice vertice, int etiqueta); 
+		
+		
+		// Este tambien, hay que ver que hacerle
 
+		int etiqueta(int vertice); 
+		
+		int numVertices(); 
+		
+		int numAristas(); 
+		
+		int numVerticesAdy(vertice); 
+		
+		vertice primerVerticeAdy(vertice vertice); 
+		
+		vertice siguienteVerticeAdy(vertice, vertice); 
+		vertice primerVertice(); 
+		vertice siguienteVertice(vertice vertice1); 
+		string printEtiquetas(); 
+		string printMatrix(); 
+		int esVerticeNulo(vertice);
 };
 
 #endif

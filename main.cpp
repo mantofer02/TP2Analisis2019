@@ -4,7 +4,7 @@
 
 int main (int argc, char* argv[]) {
 
-Grafo_MA grafo; 
+Grafo grafo; 
 grafo.iniciar(); 	
 grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
 grafo.agregarVertice(3); //1

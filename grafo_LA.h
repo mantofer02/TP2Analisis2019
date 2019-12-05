@@ -9,7 +9,6 @@
 
 // using namespace std;
 
-typedef std :: string ETIQUETA;
  
 /* Implementado Por Lista de Adyacencia */
 /* NO PUEDEN HABER 2 VERTICES CON ETIQUETAS IGUALES, SI NO SE CAE TODO*/
@@ -40,7 +39,7 @@ class Grafo{
         void destruir();
         void vaciar();
         int vacia();
-        int peso( vertice, vertice);
+        int peso(vertice, vertice);
         int existeArista( vertice, vertice);
         void modificarEtiqueta(vertice, ETIQUETA);
         void modificarPeso(vertice, vertice, int);
@@ -48,16 +47,17 @@ class Grafo{
         void agregarVertice(ETIQUETA);
         void eliminarArista(vertice, vertice);
         void eliminarVertice(vertice); //Se supone que es aislado
-        int numVerticesAdyacentes(vertice);
+        int numVerticesAdy(vertice);
         int numVertices();
         int numAristas();
         vertice primerVertice();
-        vertice steVertice(vertice);
-        vertice primerVtcAdyacente(vertice);
+        vertice siguienteVertice(vertice);
+        vertice primerVerticeAdy(vertice);
         void borrarVertice(vertice);
         vertice steVtcAdyacente(vertice, vertice);
         void imprimirGrafo();
         vertice getVertice(ETIQUETA);
+        int esVerticeNulo(vertice);    
         // void aislarVertice(vertice)
 };
 #endif

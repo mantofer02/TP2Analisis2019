@@ -138,7 +138,7 @@ void Grafo :: eliminarArista(vertice v1, vertice v2){
     }
 }
 
-int Grafo :: numVerticesAdyacentes(vertice v1){
+int Grafo :: numVerticesAdy(vertice v1){
     return l2[v1.indice].size();
 }
 
@@ -160,7 +160,7 @@ vertice Grafo :: primerVertice(){
     }
 }
 
-vertice Grafo :: steVertice(vertice v1){
+vertice Grafo :: siguienteVertice(vertice v1){
     if(v1.indice + 1 < cantidadDeVertices){
         return l1[v1.indice + 1];
     }else{
@@ -168,7 +168,7 @@ vertice Grafo :: steVertice(vertice v1){
     }
 } 
 
-vertice Grafo :: primerVtcAdyacente(vertice v1){       
+vertice Grafo :: primerVerticeAdy(vertice v1){       
     if(l2[v1.indice].size()){
         return l1[l2[v1.indice][0].first];
         l1[l2[v1.indice][0].first].imprimir();
@@ -212,4 +212,8 @@ void Grafo :: imprimirGrafo(){
             std :: cout << std :: endl;
         }
     }
+}
+
+int Grafo :: esVerticeNulo(vertice v1){
+    return v1.indice == -1;
 }

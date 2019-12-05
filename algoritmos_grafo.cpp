@@ -1,12 +1,12 @@
 #include "algoritmos_grafo.h"
 
-Algoritmos_grafo_MA::Algoritmos_grafo_MA() {
+Algoritmos_grafo::Algoritmos_grafo() {
 	
 	
 }
 
 
-void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
+void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) {//grafo, vertice, vector peso, vector vertice anterior. 	
 	R11<vertice> r11; 
 	Diccionario<vertice> D;
 	D.iniciar(); 
@@ -58,7 +58,7 @@ void Algoritmos_grafo_MA::Dijkstra(Grafo_MA&grafo, vertice ver, int*VP, vertice*
 
 
 
-void Algoritmos_grafo_MA::Floyd(Grafo_MA&grafo, int** MP, vertice** MVI) {
+void Algoritmos_grafo::Floyd(Grafo &grafo, int** MP, vertice** MVI) {
 R11<vertice> r11; 
 r11.iniciar(); 
 vertice v = grafo.primerVertice(); int contador_vertice = 0; 
@@ -102,7 +102,7 @@ for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) {
 
 } 
 
-void Algoritmos_grafo_MA::Prim(Grafo_MA&grafo, vertice ver) {			//ESTE ALGORITMO VA IMPRIMIENDO, SE LE PODRIA PONER UN BOOL, PARA QUE IMPRIMA DE FORMAS 
+void Algoritmos_grafo::Prim(Grafo&grafo, vertice ver) {			//ESTE ALGORITMO VA IMPRIMIENDO, SE LE PODRIA PONER UN BOOL, PARA QUE IMPRIMA DE FORMAS 
 	Diccionario<vertice> D; 												//DIFERENTES. 	
 	D.iniciar(); 	
 	D.agregar(ver); 
@@ -140,7 +140,7 @@ D.destruir();
 }
 
 
-void Algoritmos_grafo_MA::Kruskal(Grafo_MA&grafo) {								//LA MISMA COSA DE PRIM, AQUI SE VA IMPRIMIENDO. 
+void Algoritmos_grafo::Kruskal(Grafo&grafo) {								//LA MISMA COSA DE PRIM, AQUI SE VA IMPRIMIENDO. 
 CC<vertice> cc; APO<vertice> apo; 												//O SE PODRIA METER LOS RESUTLADOS EN ALGUN LADO Y QUE LOS RETORNE. 
 cc.iniciar(grafo.numVertices());												//YA AHI CADA QUIEN QUE IMPRIMA COMO QUIERA. 
 apo.iniciar();  
@@ -193,7 +193,7 @@ while (aristas_escogidas < grafo.numVertices()-1) {		//se necesitan seleccionar 
 
 
 
-void Algoritmos_grafo_MA::profundidadPrimero(Grafo_MA&grafo) {
+void Algoritmos_grafo::profundidadPrimero(Grafo&grafo) {
 	if (!grafo.vacio()) {
 		Diccionario<vertice> D; 
 		D.iniciar(); 
@@ -212,7 +212,7 @@ void Algoritmos_grafo_MA::profundidadPrimero(Grafo_MA&grafo) {
 }
 
 
-void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Diccionario<vertice>&D) {
+void Algoritmos_grafo::profundidadPrimeroR(Grafo&grafo, vertice ver, Diccionario<vertice>&D) {
 	D.agregar(ver); 
 	std::cout << grafo.etiqueta(ver) << std::endl; 
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
@@ -225,7 +225,7 @@ void Algoritmos_grafo_MA::profundidadPrimeroR(Grafo_MA&grafo, vertice ver, Dicci
 }
 
 
-void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
+void Algoritmos_grafo::anchoPrimero(Grafo&grafo) {
 
  vertice ver = grafo.primerVertice();
  Diccionario<vertice> D; 
@@ -254,7 +254,7 @@ void Algoritmos_grafo_MA::anchoPrimero(Grafo_MA&grafo) {
 } 
 
 
-void Algoritmos_grafo_MA::aislarVertice(Grafo_MA&grafo, vertice ver) {
+void Algoritmos_grafo::aislarVertice(Grafo&grafo, vertice ver) {
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
 	while (v_ady != verticeNulo) {
 		grafo.eliminarArista(ver, v_ady);
@@ -280,7 +280,7 @@ bool is_it_already(std::list<vertice>&L, vertice ver) {
 }
 
 
-bool Algoritmos_grafo_MA::is_there_cycles(Grafo_MA&grafo) {
+bool Algoritmos_grafo::is_there_cycles(Grafo&grafo) {
  bool is_there = false; 
  
  if (!grafo.vacio()) {
@@ -309,7 +309,7 @@ void showlist(list <vertice>&g)
   
   
 			//AQUI ES EL MISMO PROBLEMA DE PRIM Y KRUSKAL, SE VA IMPRIMIENDO. LO MISMO QUE DIJE ARRIBA. 
-void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice vertice_anterior,  Diccionario<vertice>&D, std::list<vertice>&L, bool&is_there) {
+void Algoritmos_grafo::is_there_cyclesR(Grafo&grafo, vertice ver, vertice vertice_anterior,  Diccionario<vertice>&D, std::list<vertice>&L, bool&is_there) {
 		D.agregar(ver);
 		L.push_back(ver); 
 		vertice v_ady = grafo.primerVerticeAdy(ver);
@@ -333,7 +333,7 @@ void Algoritmos_grafo_MA::is_there_cyclesR(Grafo_MA&grafo, vertice ver, vertice 
 }
 
 
-void Algoritmos_grafo_MA::CH(Grafo_MA&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
+void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
 
 vertice v = Sol[indice-1]; 
 D.agregar(v); 
@@ -373,7 +373,7 @@ else {
 }
 
 
-void Algoritmos_grafo_MA::encontrarPuntosArticulacion(Grafo_MA&grafo, vertice*puntos) {
+void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos) {
 	
 	if (!grafo.vacio()) {
 		int* orden = (int*)calloc(grafo.numVertices(), sizeof(int)); 
@@ -416,7 +416,7 @@ int min(int a, int b) {
 
 //YO AQUI TENIA EN PUNTOS EN LA POS 0, UN CONTADOR, CLARAMENTE SI SE PLANEA QUE SEA UN VECTOR DE VERTICES, ya eso no sirve, 
 //ENTONCES LO DE LA LINEA 434 HABRÍA QUE SACARLO AFUERA O QUE IGUAL SE PASA POR REFERENCIA, PERO COMO UN VECTOR EXTRA QUE ALMANECE ESOS VALORES. 
-void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
+void Algoritmos_grafo::puntosArticulacion(Grafo&grafo, Diccionario<vertice>&D, int*mas_bajo, int*orden, R11<vertice>&r11, vertice*puntos, vertice v, int indice) {
 	D.agregar(v); 
 	mas_bajo[r11.indice(v)] = indice; 
 	orden[r11.indice(v)] = indice; 
@@ -444,7 +444,7 @@ void Algoritmos_grafo_MA::puntosArticulacion(Grafo_MA&grafo, Diccionario<vertice
 }
 
 
-void Algoritmos_grafo_MA::colorear_grafo(Grafo_MA&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
+void Algoritmos_grafo::colorear_grafo(Grafo&grafo, CC<vertice>&mejor_sol, int&colores, int&menor_cantidad, int&contador_soluciones) {
 if (!grafo.vacio()) {
 	CC<vertice> ccc; 
 	ccc.iniciar(grafo.numVertices()); 
@@ -490,7 +490,7 @@ if (!grafo.vacio()) {
 }
 
 
-void Algoritmos_grafo_MA::colorear(Grafo_MA&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
+void Algoritmos_grafo::colorear(Grafo&grafo, CC<vertice>&mejor_sol, CC<vertice>&ccc, CC<vertice>&cca, vertice v, int&colores, int&menor_cantidad, int&contador_soluciones, R11<vertice>&r11){
 
  if (v == verticeNulo) {
 	 ++contador_soluciones; 
