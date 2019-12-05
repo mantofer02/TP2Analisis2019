@@ -14,7 +14,6 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA){
 	vertice v = grafo.primerVertice();
 	int contador_vertice = 0;  
 	while (!(grafo.esVerticeNulo(v))) {						//inicializar VP y VVA. 
-			// std :: cout << "ENTRE" << std :: endl;
             if (v != ver){
 			r11.agregar(v,contador_vertice++);
 			if (grafo.existeArista(ver, v)) {
@@ -26,8 +25,8 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA){
 			VVA[r11.indice(v)] = ver; 
 		}	
 		v = grafo.siguienteVertice(v);
-        // std :: cout << "SALI" << std :: endl; 
 	} 
+	
 	D.agregar(ver); 
 	int menor; int contador; int peso_menor; 
 	while (D.numElem() < grafo.numVertices()) {	//hay que recorer todos los vertices, se necesitan n-1 pivotes. 

@@ -28,20 +28,11 @@ class Grafo{
 
 	
 	
-	public: 	
-		/*\
-		
-		VENDRIA BIEN UN OPERADOR GET VERTICE COMO EN LA LA PARA QUE ASI SE MANEJES LOS LLAMADOS EXTERNOS, Y NO POR TIPO
-		
-		
-		*/
-	
-	
-	
+	public: 
 		void iniciar(); 
 		void destruir(); 
 		void vaciar(); 
-		bool vacio(); 
+		bool vacia(); 
 		//Debe ser tipo etiqueta, no entero
 		//Peor de los casos, hacemos la etiqueta de LA un entero
 		
@@ -49,35 +40,62 @@ class Grafo{
 		
 		void agregarArista(vertice vertice_1, vertice vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
 		void eliminarArista(vertice vertice_1, vertice vertice_2); 												//MODIFICAR.
-		void eliminarVertice(vertice); 																
+		void eliminarVertice(vertice ver); 																
 		
 		bool existeArista(vertice vertice_1, vertice vertice_2); //optional
 		
 		int peso(vertice vertice_1, vertice vertice_2); 
 		void modificarPeso(vertice vertice_1, vertice vertice_2, int peso); 
-		void modificarEtiqueta(vertice vertice, int etiqueta); 
+		void modificarEtiqueta(vertice ver, int etiqueta); 
 		
 		
 		// Este tambien, hay que ver que hacerle
 
-		int etiqueta(int vertice); 
+		int etiqueta(vertice ver); 
 		
 		int numVertices(); 
 		
 		int numAristas(); 
 		
-		int numVerticesAdy(vertice); 
+		int numVerticesAdy(vertice ver); 
 		
-		vertice primerVerticeAdy(vertice vertice); 
+		vertice primerVerticeAdy(vertice ver); 
 		
-		vertice siguienteVerticeAdy(vertice, vertice); 
+		vertice siguienteVerticeAdy(vertice ver, vertice ver_ady); 
 		vertice primerVertice(); 
-		vertice siguienteVertice(vertice vertice1); 
+		vertice siguienteVertice(vertice ver); 
 		string printEtiquetas(); 
 		string printMatrix(); 
-		int esVerticeNulo(vertice);
+		bool esVerticeNulo(vertice ver);
 		vertice getVerticeNulo();
 		vertice getVertice(int etiqueta); 
 };
+
+/*
+public: 	
+	void iniciar(); 
+	void destruir(); 
+	void vaciar(); 
+	bool vacio(); 
+	int agregarVertice(int etiqueta); 
+	void agregarArista(int vertice_1, int vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
+	void eliminarArista(int vertice_1, int vertice_2); 												//MODIFICAR.
+	void eliminarVertice(int vertice); 																
+	bool existeArista(int vertice_1, int vertice_2); //optional
+	int peso(int vertice_1, int vertice_2); 
+	void modificarPeso(int vertice_1, int vertice_2, int peso); 
+	void modificarEtiqueta(int vertice, int etiqueta); 
+	int etiqueta(int vertice); 
+	int numVertices(); 
+	int numAristas(); 
+	int numVerticesAdy(int vertice); 
+	int primerVerticeAdy(int vertice); 
+	int siguienteVerticeAdy(int vertice, int actual_vertice_ady); 
+	int primerVertice(); 
+	int siguienteVertice(int vertice); 
+	string printEtiquetas(); 
+	string printMatrix(); 
+
+*/
 
 #endif

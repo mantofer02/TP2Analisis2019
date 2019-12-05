@@ -19,7 +19,7 @@ void Grafo::vaciar() {
 	this->ultimoLleno = 0; 
 }
 
-bool Grafo::vacio() {
+bool Grafo::vacia() {
 	bool empty = true;
 	if (this->ultimoLleno > 0) {
 		empty = false; 
@@ -229,17 +229,19 @@ int Grafo::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
 }
 
 int Grafo::primerVertice() {
-	vertice vertex = 1;
+	vertice vertex = 0;
 	return vertex; 
 } 
 
-int Grafo::siguienteVertice(int vertice) {
+
+int Grafo::siguienteVertice(vertice ver) {
 	int vertex = -1; 
-	if (vertice+1 < this->ultimoLleno) {
-		vertex = vertice+1; 
+	if (ver+1 < this->ultimoLleno) {
+		vertex = ver+1; 
 	}
 	return vertex; 
 }
+
 
 
 string Grafo::printEtiquetas() {
@@ -276,9 +278,15 @@ string Grafo::printMatrix() {
 	return ss.str(); 	
 }
 
-int Grafo :: esVerticeNulo(vertice v1){
-	return v1 == -1;
-}
+bool Grafo :: esVerticeNulo(vertice v1){
+	int total_vertexes = this->ultimoLleno;
+	bool is_it = false;  
+	if (v1  >= total_vertexes || v1 == -1) {
+		is_it = true; 
+	}
+return is_it; 	
+} 
+
 
 vertice Grafo :: getVerticeNulo(){
 	return -1;

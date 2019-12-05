@@ -6,7 +6,7 @@ int main (int argc, char* argv[]) {
 
 Grafo grafo; 
 grafo.iniciar(); 	
-
+/*
 grafo.agregarVertice(1); //0 
 grafo.agregarVertice(2); //1
 grafo.agregarVertice(3); //2
@@ -14,8 +14,9 @@ grafo.agregarVertice(3); //2
 
 grafo.agregarArista(grafo.getVertice(2),grafo.getVertice(3),5);
 grafo.agregarArista(grafo.getVertice(1),grafo.getVertice(3), 20);   
+*/
 
-/*
+
 grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
 grafo.agregarVertice(3); //1
 grafo.agregarVertice(1); //2
@@ -33,13 +34,14 @@ grafo.agregarArista(3,5,35);
 grafo.agregarArista(5,4,5);        
 grafo.agregarArista(1,2,90);
 grafo.agregarArista(1,5,8);  
-*/
+
+
 
 
 Algoritmos_grafo algoritmos; 
 
 
-#if 0		//PRUEBA DE DIJKSTRA 
+#if 1		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
