@@ -334,6 +334,41 @@ void Algoritmos_grafo::is_there_cyclesR(Grafo&grafo, vertice ver, vertice vertic
 }
 
 
+void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones,  int indice) {
+	D.agregar(Sol[indice-1]); 
+	vertice v_ady = grafo.primerVerticeAdy(Sol[indice-1]); 
+	while (!grafo.esVerticeNulo(v_ady)) {
+		if (!D.pertenece(v_ady)) {
+			costo+= grafo.peso(Sol[indice-1], v_ady); 
+			Sol[indice] = v_ady; 
+			if (indice == grafo.numVertices()-1) {
+				if (grafo.existeArista(v_ady, Sol[0])) {
+					++contador_soluciones; 
+					costo+=  grafo.peso(v_ady, Sol[0]); 
+					if (costo < mejor_costo) {
+						mejor_costo = costo; 
+						std::cout << "se encontro una solucion factible" << std::endl; 
+						for (int index = 0; index < grafo.numVertices(); ++index) {
+							mejor_Sol[index] = Sol[index]; 
+						}
+						costo-= grafo.peso(v_ady, Sol[0]); 
+					}
+				}
+				else {
+					CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, indice); 
+					D.pop(); 
+				}
+				//arrepentimiento. 
+				costo-= grafo.peso(Sol[indice-1], v_ady); 
+			} 
+		} 
+		v_ady = grafo.siguienteVerticeAdy(Sol[indice-1], v_ady); 
+	}
+}
+
+
+
+#if 0 
 void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
 
 vertice v = Sol[indice-1]; 
@@ -373,7 +408,8 @@ else {
 	
 }
 
-#if 1 
+#endif 
+ 
 void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos, int&contador_puntos) {
 	
 	if (!grafo.vacia()) {
@@ -405,7 +441,7 @@ void Algoritmos_grafo::encontrarPuntosArticulacion(Grafo&grafo, vertice*puntos, 
 		//no hay nada que hacer. 
 	}
 }
-#endif
+
 
 int min(int a, int b) {
 	if (a < b) {
