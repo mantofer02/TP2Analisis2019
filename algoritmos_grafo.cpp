@@ -59,6 +59,7 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA) 
 
 
 
+
 void Algoritmos_grafo::Floyd(Grafo &grafo, int** MP, vertice** MVI) {
 R11<vertice> r11; 
 r11.iniciar(); 
