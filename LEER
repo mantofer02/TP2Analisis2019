@@ -1,0 +1,16 @@
+Para intercambiar de un grafo a otro 
+se debe cambiar el include que se encuentra en el archivo 
+algoritmos_grafo.h
+
+el include puede ser 
+"grafo_LA.h" ó "grafo_MA.h"
+
+posteriormente dependiente de que include se encuentre 
+para compilar existe un Makefile donde ambas opciones son tomadas en cuenta 
+
+puede ejecutar tanto make program, como, make program1
+
+para compilar 1 grafo o el otro. 
+
+Las etiquetas del grafo son enteros al igual que los pesos. 
+

@@ -3,6 +3,9 @@
 using namespace std;
 
 Interfaz::Interfaz(){
+	std::cout << "Antes de Comenzar debe recordar Iniciar el grafo y saber que las etiquetas y pesos son numeros enteros" << std::endl; 
+	//seria bueno poner aquí un timer, para que esto se pueda leer. 
+	
     desplegarMenu();
 }
 
@@ -12,7 +15,7 @@ Interfaz::~Interfaz(){
 
 void Interfaz::desplegarMenu(){
     cout << "Bienvenido al programa de grafos. Digite los dígitos correspondientes a los operadores básicos  o algoritmos que desea usar:\n" << endl;
-	
+
 	std::cout << "-------------------------------------" << std::endl; 
 	std::cout << "------------OB------------------" << std::endl; 
 	std::cout << "-------------------------------------" << std::endl; 
