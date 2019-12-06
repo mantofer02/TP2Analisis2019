@@ -19,8 +19,6 @@ typedef struct {
 
 
 class Grafo{
-	
-
 	private: 	
 		int* etiquetas; 
 		celda_t** matrix; 
