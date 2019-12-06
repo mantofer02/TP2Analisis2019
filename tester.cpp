@@ -1,4 +1,6 @@
 #include "tester.h"
+#include <array>
+#include <cstdlib>
 
 Tester::Tester() {
 	
@@ -11,9 +13,44 @@ Tester::Tester() {
 void Tester::iniciarTest(int test_id) {
 	
 	srand(time(NULL));
+	
+	
+	#if 0 	//generador aleatorio de grafos.  hacer en cada case del switch un while para correr cada uno. 
+	array<Grafo, MUESTRA> grafos;
+
+	int min_random_number = 0; 
+	int max_random_number = MAX_VER-1; 
+	int interval = max_random_number - min_random_number; 
+	int random_number = 0; 
+	
+	
+	for (int index_grafo = 0; index_grafo < MUESTRA; ++index_grafo) {
+		grafos[index_grafo].iniciar(); 
+		for (int index_vertex = 0; index_vertex < MAX_VER; ++index_vertex) {
+			grafos[index_grafo].agregarVertice(index_vertex); 
+		}
+		for (int index_arista = 0; index_arista < MAX_ARISTAS; ++index_arista) {
+			int vertex_1 = rand() % interval;
+			vertex_1 += min_random_number; 
+			vertice v1 = grafos[index_grafo].getVertice(vertex_1);
+			  			
+			int vertex_2 = rand() % interval;
+			vertex_2+= min_random_number; 
+			vertice v2 = grafos[index_grafo].getVertice(vertex_2);
+						
+			int peso = rand() % 2500; 
+			
+			grafos[index_grafo].agregarArista(v1, v2, peso); 			 	
+		} 	
+	}
+	
+	
+	std::cout << "los grafos se inicializaron con exito" << std::endl; 
+	
+	#endif 
+	
 	Grafo grafo1; 
 	grafo1.iniciar(); 
-	
 	
 	grafo1.agregarVertice(2); 
 	grafo1.agregarVertice(3); 

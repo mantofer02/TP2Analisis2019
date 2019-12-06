@@ -4,6 +4,11 @@
 #include <time.h>       /* time */
 #include <iostream>
 
+#define MUESTRA 100
+#define MAX_VER 1000
+#define MAX_ARISTAS 500
+
+
 class Tester {
 	private: 
 	Algoritmos_grafo misAlgoritmos; 

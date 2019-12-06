@@ -1,4 +1,4 @@
-#include "grafo_LA.h"
+#include "grafo_MA.h"
 #include "apo.h"
 #include "r11.h"
 #include "diccionario.h"
