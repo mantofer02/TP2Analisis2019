@@ -6,8 +6,8 @@
 class Interfaz{
     private:
         
-        Grafo_MA grafo;
-        Algoritmos_grafo_MA algoritmos;
+        Grafo grafo; 
+        Algoritmos_grafo algoritmos;
 
     public:
 

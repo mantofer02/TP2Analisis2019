@@ -38,8 +38,8 @@ class Grafo{
 		
 		int agregarVertice(int etiqueta); 
 		
-		void agregarArista(vertice vertice_1, vertice vertice_2, int peso);	//ambos vertices deben ser validos.  //MODIFICAR. 
-		void eliminarArista(vertice vertice_1, vertice vertice_2); 												//MODIFICAR.
+		void agregarArista(vertice vertice_1, vertice vertice_2, int peso);	
+		void eliminarArista(vertice vertice_1, vertice vertice_2); 							
 		void eliminarVertice(vertice ver); 																
 		
 		bool existeArista(vertice vertice_1, vertice vertice_2); //optional

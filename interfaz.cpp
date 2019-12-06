@@ -12,17 +12,56 @@ Interfaz::~Interfaz(){
 
 void Interfaz::desplegarMenu(){
     cout << "Bienvenido al programa de grafos. Digite los dígitos correspondientes a los operadores básicos  o algoritmos que desea usar:\n" << endl;
-    cout << "------OPERADORES BASICOS--------\n1. Crear.\n2. Destruir.\n3. Vaciar.\n4. AgregarVertice.\n5. EliminarVertice.\n6. ModificarEtiqueta.\n
-    7. Etiqueta.\n8. AgregarArista.\n9. EliminarArista.\n10. ModificarPeso.\n11. Peso. \n12. PrimerVertice.\n13. SiguienteVertice. \n 14. PrimerVerticeAdyacente.\n
-    15. SiguienteVerticeAdyacente. \n 16. ExisteArista. \n 17. NumAristas. \n 18. NumVertices. \n 19. NumVerticesAdyacentes."; 
-    cout << "------ALGORITMOS--------\n20. Recorrido en Ancho Primero. \n 21. Recorrido en Profundidad Primero. \n 22. Averiguar si el grando tiene ciclos. \n
-    23.Dijkstra. \n24. Floyd. \n25. Encontrar Circuito de Hamilton de Menor Costo. \n26. Colorear el grafo. \n27. Prim.\n28. Kruskal. \n
-    29. Averiguar cuantos componentes conexos tiene el grafo. \n30. Aislar un vértice. \n31. Encontrar los pintos de articulación.\n32. Averiguar si existe camino entre todo par de vertices.\n 
-    33. Salir." << endl;
+	
+	std::cout << "-------------------------------------" << std::endl; 
+	std::cout << "------------OB------------------" << std::endl; 
+	std::cout << "-------------------------------------" << std::endl; 
+	std::cout << "Digite :" << std::endl;
+    std::cout << "1: Iniciar" << std::endl;
+    std::cout << "2: Destruir" << std::endl;
+    std::cout << "3: Vaciar" << std::endl;
+	std::cout << "4: Agregar Vertice" << std::endl;
+	std::cout << "5: Eliminar Vertice" << std::endl;
+    std::cout << "6: Modificar Etiqueta" << std::endl;
+    std::cout << "7: Etiqueta" << std::endl;
+    std::cout << "8: AgregarArista" << std::endl;
+    std::cout << "9: Eliminar Arista" << std::endl;
+	std::cout << "10: Modificar Peso" << std::endl;
+	std::cout << "11: Peso" << std::endl;
+	std::cout << "12: Primer Vertice" << std::endl;
+    std::cout << "13: Siguiente Vertice" << std::endl;
+	std::cout << "14: Primer Vertice Ady" << std::endl;
+    std::cout << "15: Siguiente Vertice Ady" << std::endl;
+    std::cout << "16: Existe Arista" << std::endl;
+    std::cout << "17: Numero de Aristas" << std::endl;
+    std::cout << "18: Numero de Vertices" << std::endl;
+	std::cout << "19: Numero de Vertices Ady" << std::endl;
+	
+	std::cout << "------------------------------------------------" << std::endl; 
+	std::cout << "------------------Algoritmos------------------" << std::endl;  
+	std::cout << "------------------------------------------------" << std::endl; 
+	
+    std::cout << "20: Recorrido Ancho Primero" << std::endl;
+    std::cout << "21: Recorrido Profundodad Primero" << std::endl;
+    std::cout << "22: Averiguar si el grafo posee ciclos" << std::endl;
+    std::cout << "23: Dijkstra" << std::endl;
+	std::cout << "24: Floyd" << std::endl;
+	std::cout << "25: Encontrar Circuito Hamilton de menor costo" << std::endl;
+	std::cout << "26: Colorear el grafo" << std::endl;
+    std::cout << "27: Prim" << std::endl;
+	std::cout << "28: Kruskal" << std::endl;    
+    std::cout << "29: Componentes Conexos(NA)" << std::endl;
+    std::cout << "30: Aislar un vertice" << std::endl;
+    std::cout << "31: Encontrar Puntos de Articulacion" << std::endl;
+    std::cout << "32: Averiguar si existe camino entre todo par de vertices" << std::endl;
+    std::cout << "-----------------------------------" << std::endl; 
+    std::cout << "33: Salir" << std::endl; 
+    std::cout << "-----------------------------------" << std::endl; 
+    
     int decision = 0;
     if(!(cin >> decision)){
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
         desplegarMenu();
     }
@@ -44,7 +83,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 4){
-                string etiqueta; 
+                int etiqueta; 
                 cout << "Ingrese la etiqueta del nuevo vertice." << endl;
                 cin >> etiqueta;
                 grafo.agregarVertice(etiqueta);
@@ -52,35 +91,47 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 5){
-                string etiqueta; 
+                int etiqueta; 
                 cout << "Ingrese la etiqueta del vertice a eliminar." << endl;
                 cin >> etiqueta;
-                grafo.eliminarVertice(etiqueta);
-                cout << "El vertice con etiqueta "<< etiqueta <<" fue eliminado exitosamente." << endl;
+                vertice ver = grafo.getVertice(etiqueta); 
+                if (!grafo.esVerticeNulo(ver)) {
+					grafo.eliminarVertice(ver);
+					cout << "El vertice con etiqueta "<< etiqueta <<" fue eliminado exitosamente." << endl;
+				}
+				else {
+					std::cout << "el vertice que desea eliminar del grafo no existe" << std::endl; 
+				}
                 desplegarMenu();
             }
             if(decision == 6){
-                string etiqueta; 
-                string nuevaEtiqueta;
+                int etiqueta; 
+                int nuevaEtiqueta;
                 cout << "Ingrese la etiqueta del vertice a cambiar(debe ser valido en el grafo)." << endl;
                 cin >> etiqueta;
-                cout << "Ingrese la nueva eiqueta del vertice." << endl;
-                cin >> nuevaEtiqueta;
-                grafo.modificarEtiqueta(etiqueta, nuevaEtiqueta);
-                cout << "La etiqueta fue modificada exitosamente." << endl; 
+                vertice ver = grafo.getVertice(etiqueta); 
+                if (!grafo.esVerticeNulo(ver)) {
+					cout << "Ingrese la nueva eiqueta del vertice." << endl;
+					cin >> nuevaEtiqueta;
+					grafo.modificarEtiqueta(ver, nuevaEtiqueta);
+					cout << "La etiqueta fue modificada exitosamente." << endl;
+				}
+				else {
+					std::cout << "la etiqueta ingresada no corresponde a ningun vertice" << std::endl; 
+				} 
                 desplegarMenu();
             }
             if(decision == 7){
-                int vertice = 0;    
+                vertice ver = 0;    
                 cout << "Ingrese el numero del vertice que desea conocer la etiqueta." << endl;
-                if(!(cin >> vertice)){
+                if(!(cin >> ver)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    string etiquetaRetornada = grafo.etiqueta(vertice);
-                    if(etiquetaRetornada != NULL){
+                    int etiquetaRetornada = grafo.etiqueta(ver);
+                    if(etiquetaRetornada != -1){
                         cout << "La etiqueta correspondiente al vértice ingresado es " << etiquetaRetornada <<endl;
                     }
                     else{                      
@@ -91,108 +142,148 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 8){
-                int vertice1 = 0;    
-                int vertice2 = 0;
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0; 
+                int etiqueta2 = 0; 
                 int peso = 0;                
-                cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                cout << "Ingrese la etiqueta del primer vertice." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    cout << "Ingrese el numero del segundo vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    cout << "Ingrese la etiqueta del segundo vertice." << endl;
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                      //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
                         cout << "Ingrese el peso de la arista." << endl;
                         if(!(cin >> peso)){
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                         }
                         else{
-                            grafo.agregarArista(vertice1, vertice2, peso);
+							
+							vertice1 = grafo.getVertice(etiqueta1); 
+							vertice2 = grafo.getVertice(etiqueta2); 
+							if (!grafo.esVerticeNulo(vertice1) && !grafo.esVerticeNulo(vertice2)) {								
+								grafo.agregarArista(vertice1, vertice2, peso);
+							}     
                         }
                     }    
                 }
                 desplegarMenu();
             }
             if(decision == 9){
-                int vertice1 = 0;    
-                int vertice2 = 0;
-                cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0; 
+                int etiqueta2 = 0; 
+                
+                cout << "Ingrese la etiqueta primer vertice." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    cout << "Ingrese el numero del segundo vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    cout << "Ingrese la etiqueta del segundo vertice." << endl;
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
-                        grafo.eliminarArista(vertice1, vertice2);
+						
+						vertice1 = grafo.getVertice(etiqueta1); 
+						vertice2 = grafo.getVertice(etiqueta2); 
+						
+						if (!grafo.esVerticeNulo(vertice1) && !grafo.esVerticeNulo(vertice2)) {
+							grafo.eliminarArista(vertice1, vertice2);
+						}
+						else {
+							std::cout << "los datos ingresados son invalidos, por favor intente de nuevo" << std::endl; 
+						}
                     }
                 }    
                 desplegarMenu();
             }
             if(decision == 10){
-                int vertice1 = 0;    
-                int vertice2 = 0;
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0;
+                int etiqueta2 = 0; 
                 int peso = 0;                
-                cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                cout << "Ingrese la etiqueta del primer vertice." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    cout << "Ingrese el numero del segundo vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    cout << "Ingrese la etiqueta del segundo vertice." << endl;
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
                         cout << "Ingrese el nuevo peso de la arista." << endl;
                         if(!(cin >> peso)){
                             cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                       //     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                         }
                         else{
-                            grafo.modificarPeso(vertice1, vertice2, peso);
+							
+							vertice1 = grafo.getVertice(etiqueta1); 
+							vertice2 = grafo.getVertice(etiqueta2); 
+							
+							if (!grafo.esVerticeNulo(vertice1) && !grafo.esVerticeNulo(vertice2)) {
+								grafo.modificarPeso(vertice1, vertice2, peso);
+							}
+							else {
+								std::cout << "los datos ingresados son invalidos, por favor intente de nuevo" << std::endl; 
+							}
                         }
                     }    
                 }
                 desplegarMenu();
             }
             if(decision == 11){
-                int vertice1 = 0;    
-                int vertice2 = 0;
-                cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0;
+                int etiqueta2 = 0;  
+                cout << "Ingrese la etiqueta del primer vertice." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    cout << "Ingrese el numero del segundo vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    cout << "Ingrese la etiqueta del segundo vertice." << endl;
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                      //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
-                        int peso = grafo.peso(vertice1, vertice2);
-                        cout << "El peso de la arista entre los vertices solicitados es " << peso << endl;
+						
+						vertice1 = grafo.getVertice(etiqueta1); 
+						vertice2 = grafo.getVertice(etiqueta2); 
+						if (!grafo.esVerticeNulo(vertice1) && !grafo.esVerticeNulo(vertice2)) {						
+							int peso = grafo.peso(vertice1, vertice2);
+							cout << "El peso de la arista entre los vertices solicitados es " << peso << endl;
+						}
+						else {
+							std::cout << "los datos ingresados son invalidos, por favor intente de nuevo" << std::endl; 
+						}
                     }
                 }    
                 desplegarMenu();
@@ -200,45 +291,57 @@ void Interfaz::desplegarMenu(){
             }
 
             if(decision == 12){
-                int vertice = grafo.primerVertice();
-                if(vertice == -1){
+                vertice ver = grafo.primerVertice();
+                if(!grafo.esVerticeNulo(ver)){
                     cout << "El grafo esta vacio." << endl;   
                 }
                 else{
-                    cout << "El primer vertice tiene de etiqueta " << grafo.etiqueta(vertice) << "." << endl;
+                    cout << "El primer vertice tiene de etiqueta " << grafo.etiqueta(ver) << "." << endl;
                 }
                 desplegarMenu();
             }
             if(decision == 13){
-                int vertice1 = 0;    
-                cout << "Ingrese el numero del vertice del que se desea conocer el siguiente vertice." << endl;
-                if(!(cin >> vertice1)){
+                vertice vertice1 = 0;    
+                int etiqueta1 = 0; 
+                cout << "Ingrese la etiqueta del vertice al que desea conocer la etiqueta de su siguiente vertice" << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    int verticeSiguiente = grafo.primerVertice();
-                    if(verticeSiguiente == -1){
-                        cout << "El vertice que quiere averiguar es el ultimo del grafo." << endl;   
-                    }
-                    else{
-                        cout << "El siguiente vertice tiene de etiqueta " << grafo.etiqueta(verticeSiguiente) << "." << endl;
-                    }    
+					
+					vertice1 = grafo.getVertice(etiqueta1); 
+					if (!grafo.esVerticeNulo(vertice1)) {
+						vertice verticeSiguiente = grafo.siguienteVertice(vertice1);
+						if(grafo.esVerticeNulo(verticeSiguiente)){
+							cout << "El vertice que quiere averiguar es el ultimo del grafo." << endl;   
+						}
+						else{
+							cout << "El siguiente vertice tiene de etiqueta " << grafo.etiqueta(verticeSiguiente) << "." << endl;
+						}    
+					}
+					else {
+						std::cout << "la etiqueta ingresada no corresponde a ningun vertice, por favor intente de nuevo" << std::endl; 	
+					}
                 }
                 desplegarMenu();
             }
             if(decision == 14){
-                int vertice1 = 0;    
-                cout << "Ingrese el numero del vertice del que se desea conocer el primer vertice adyacente." << endl;
-                if(!(cin >> vertice1)){
+                vertice vertice1 = 0;
+                int etiqueta1 = 0;     
+                cout << "Ingrese la etiqueta del vertice del que se desea conocer el primer vertice adyacente." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    int primerVerticeAdyacente = grafo.primerVerticeAdy(vertice1);
-                    if(primerVerticeAdyacente == -1){
+					
+					vertice1 = grafo.getVertice(etiqueta1); 
+					
+                    vertice primerVerticeAdyacente = grafo.primerVerticeAdy(vertice1);
+                    if(grafo.esVerticeNulo(primerVerticeAdyacente)){
                         cout << "El vertice no tiene vertices adyacentes." << endl;   
                     }
                     else{
@@ -249,58 +352,85 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 15){
-                int vertice1 = 0;    
-                int vertice2 = 0;
-                cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0; 
+                int etiqueta2 = 0; 
+                cout << "Ingrese la etiqueta del numero del primer vertice." << endl;
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    cout << "Ingrese el numero del vertice adyacente al primer vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    cout << "Ingrese la etiqueta del vertice adyacente al primer vertice." << endl;
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
-                        int verticeAdyacenteSiguiente = grafo.siguienteVerticeAdy(vertice1, vertice2);
-                        if(verticeAdyacenteSiguiente == -1){
-                            cout << "El vertice no tiene mas vertices adyacentes." << endl;   
-                        }
-                        else{
-                            cout << "El siguiente vertice adyacente tiene etiqueta " << grafo.etiqueta(verticeAdyacenteSiguiente) << "." << endl;
-                        }
+						
+						vertice1 = grafo.getVertice(etiqueta1); 
+						vertice2 = grafo.getVertice(etiqueta2); 
+						
+						if (grafo.existeArista(vertice1, vertice2)) {
+							
+							vertice verticeAdyacenteSiguiente = grafo.siguienteVerticeAdy(vertice1, vertice2);
+							if(grafo.esVerticeNulo(verticeAdyacenteSiguiente)){
+								cout << "El vertice no tiene mas vertices adyacentes." << endl;   
+							}
+							else{
+								cout << "El siguiente vertice adyacente tiene etiqueta " << grafo.etiqueta(verticeAdyacenteSiguiente) << "." << endl;
+							}									
+							
+						}
+						else {
+							std::cout << "las etiquetas ingresadas no poseen ningun tipo de relacion de adyacencia" << std::endl; 	
+						}	
                     }    
                 }
                 desplegarMenu();
 
             }
             if(decision == 16){
-                int vertice1 = 0;    
-                int vertice2 = 0;
+                vertice vertice1 = 0;    
+                vertice vertice2 = 0;
+                int etiqueta1 = 0; 
+                int etiqueta2 = 0; 
                 cout << "Ingrese el numero del primer vertice." << endl;
-                if(!(cin >> vertice1)){
+                if(!(cin >> etiqueta1)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese el numero del segundo vertice." << endl;
-                    if(!(cin >> vertice2)){
+                    if(!(cin >> etiqueta2)){
                         cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
-                        bool existeArista = grafo.existeArista(vertice1, vertice2);
-                        if(existeArista){
-                            cout << "Existe una arista entre este par de vertices." << endl;   
-                        }
-                        else{
-                            cout << "No existe arista entre este par de vertices." << endl;
-                        }
+						
+						vertice1 = grafo.getVertice(etiqueta1); 
+						vertice2 = grafo.getVertice(etiqueta2); 
+						
+						if (!grafo.esVerticeNulo(vertice1) && !grafo.esVerticeNulo(vertice2)) {
+							
+							bool existeArista = grafo.existeArista(vertice1, vertice2);
+							if(existeArista){
+								cout << "Existe una arista entre este par de vertices." << endl;   
+							}
+							else{
+								cout << "No existe arista entre este par de vertices." << endl;
+							}
+							
+						}
+						else {
+							std::cout << "los datos ingresados son invalidos, por favor intente de nuevo" << std::endl; 	
+						}
+				
                     }    
                 }
                 desplegarMenu();
@@ -317,16 +447,26 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 19){
-                int vertice = 0;    
-                cout << "Ingrese el numero del vertice que desea conocer el numero de vertices adyacentes." << endl;
-                if(!(cin >> vertice)){
+                vertice ver = 0; 
+                int etiqueta = 0;    
+                cout << "Ingrese la etiqueta del vertice que desea conocer el numero de vertices adyacentes." << endl;
+                if(!(cin >> etiqueta)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    int numVerticesAdyacentes = grafo.numVerticesAdy(vertice);
-                    cout << "El vertice solicitado tiene "<< numVerticesAdyacentes <<" ." << endl;
+					
+					ver = grafo.getVertice(etiqueta); 
+					
+					if (!grafo.esVerticeNulo(ver)) {
+						int numVerticesAdyacentes = grafo.numVerticesAdy(ver);
+						cout << "El vertice solicitado tiene "<< numVerticesAdyacentes <<" ." << endl;						
+					}
+					else {
+						std::cout << "la etiqueta ingresada no corresponde a ningun vertice, por favor intentelo de nuevo" << std::endl; 
+					} 
+					
                 }
                 desplegarMenu();
 
@@ -344,28 +484,44 @@ void Interfaz::desplegarMenu(){
             if(decision == 22){
                 bool respuesta = algoritmos.is_there_cycles(grafo);    
                 if(respuesta){
-                    cout << "El grafo tiene ciclos." << endl;
+                    cout << "El grafo ingresado si posee ciclos" << endl;
                 }
                 else{
-                    cout << "El grafo no tiene ciclos." << endl;                    
+                    cout << "El grafo ingresado no posee ningun ciclo." << endl;                    
                 }
                 desplegarMenu();
             }
             if(decision == 23){
                 int* vectorDePesos = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
                 vertice* vectorVerticeAnterior = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
+				
+				int etiqueta = 0; 
+				vertice ver; 
+				std::cout << "ingrese la etiqueta del vertice desde el cual desea ejecutar el algoritmo de Dijkstra" << std::endl; 
+				cin >> etiqueta; 
+				
+				ver = grafo.getVertice(etiqueta); 
+				
+				if (!grafo.esVerticeNulo(ver)) {
 
-                algoritmos.Dijkstra(grafo, 1, vectorDePesos, vectorVerticeAnterior); 
+                algoritmos.Dijkstra(grafo, grafo.primerVertice(), vectorDePesos, vectorVerticeAnterior); 
 
-                cout << "El resultado del vector de pesos es: " << endl; 
-                for (int index = 0; index < grafo.numVertices()-1; ++index) {
-                    cout << vectorDePesos[index] << ", "; 
-                }
-                cout << endl; 
-                cout << "El resultado del vector de los vertices anteriores es: " << endl; 
-                for (int index = 0; index < grafo.numVertices()-1;  ++index) {
-                    cout << vectorVerticeAnterior[index] << ", "; 
-                }
+					cout << "El resultado del vector de pesos despues de ejecutar el algoritmo de Dijkstra corresponde a : " << endl; 
+					for (int index = 0; index < grafo.numVertices()-1; ++index) {
+						cout << vectorDePesos[index] << ", "; 
+					}
+					cout << endl; 
+					cout << "El resultado del vector de los vertices anteriores despues de ejecutar el algoritmo de Dijkstra corresponde a : " << endl; 
+					for (int index = 0; index < grafo.numVertices()-1;  ++index) {
+						cout << vectorVerticeAnterior[index] << ", "; 
+					}
+					std::cout << std::endl; 
+					std::cout << "para el caso de grafo por matriz de adyacencia los vertices anteriores no se encuentran en terminos de etiquetas, si desea conocer la etiqueta, ejecutar el O.B correspondiente" << std::endl; 								
+				}
+				else {
+					std::cout << "la etiqueta ingresada no es valida, por favor intente de nuevo" << std::endl; 
+				}
+				
                 cout << std::endl;
                 free(vectorDePesos);
                 free(vectorVerticeAnterior); 
@@ -391,7 +547,7 @@ void Interfaz::desplegarMenu(){
                     ss << "\n"; 
                 }
 
-                std::cout << "El resultado de la matriz de pesos es: " << std::endl; 
+                std::cout << "El resultado de la matriz de pesos despues de ejecutar el algoritmo de Floyd corresponde a : " << std::endl; 
                 std::cout << ss.str() << std::endl; 
 
                 ss.str(""); 
@@ -403,9 +559,13 @@ void Interfaz::desplegarMenu(){
                     ss << "\n"; 
                 }
 
-                std::cout << "El resultado de la matriz de vertices intermedios es:" << std::endl; 
+                std::cout << "El resultado de la matriz de vertices intermedios despues de ejecutar el algoritmo de FLoyd corresponde a :" << std::endl; 
                 std::cout << ss.str() << std::endl; 
-
+				
+				std::cout << std::endl; 
+				std::cout << "en el caso del grafo por matriz de adyacencia la matriz de vertice intermedio no se encuentra en terminos de etiquetas, si desea conocer las etiquetas ejecutar el O.B correspondiente " << std::endl; 
+				
+				
                 for (int row = 0; row < grafo.numVertices(); ++row) {
                     free(matrizDePesos[row]); 
                     free(matrizDeVerticesIntermedios[row]); 	
@@ -427,21 +587,28 @@ void Interfaz::desplegarMenu(){
                 algoritmos.CH(grafo, diccionario, soluciones, mejorSolucion, costo, mejor_costo, contador_soluciones, 1);   
                 //std::cout << "se finalizo con exito" << std::endl; 
                 std::cout << "La cantidad de soluciones factibles para el circuito hamilton es: " << contador_soluciones << std::endl; 
-                stringstream ss; 
-                for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
-                    if (index_sol != grafo.numVertices()) {
-                        ss << mejorSolucion[index_sol] << ", "; 
-                    }
-                    else {
-                        ss << mejorSolucion[index_sol]; 
-                    }	
-                }
-                ss << "\n"; 
-                std::cout << "El resultado de la mejor solucion al circuito hamilton es la siguiente: " << std::endl; 
-                std::cout << ss.str() << std::endl;   
+                
+                if (contador_soluciones > 0) {
+					stringstream ss; 
+					for (int index_sol = 0; index_sol <= grafo.numVertices(); ++index_sol) {
+						if (index_sol != grafo.numVertices()) {
+							ss << mejorSolucion[index_sol] << ", "; 
+						}
+						else {
+							ss << mejorSolucion[index_sol]; 
+						}	
+					}
+					ss << "\n"; 
+					std::cout << "El resultado de la mejor solucion al circuito hamilton es la siguiente: " << std::endl; 
+					std::cout << ss.str() << std::endl;
+					std::cout << std::endl; 
+					std::cout << "para el caso del grafo por matriz de adyacencia los vertices de la mejor solucion no se encuentran en terminos de etiquetas, para conocer esta informacion, ejecutar los O.B correspondientes" << std::endl;    												
+				}
+				else {
+					std::cout << "el grafo ingresado no posee ningn circuito de hamilton" << std::endl; 
+				}
                 free(soluciones);
                 free(mejorSolucion);    
-                //HAY QUE VER CUANDO NO TIENE SOLUCION
                 desplegarMenu();
             }
             if(decision == 26){
@@ -450,10 +617,16 @@ void Interfaz::desplegarMenu(){
                 int menor_cantidad = INFINITY; 
                 int colores = 0; 
                 int contador_soluciones = 0; 
-                algoritmos.colorear_grafo(grafo, mejorSolucion, colores, menor_cantidad, contador_soluciones); 
-                string resultado = mejorSolucion.printCC();
-                cout << "El resultado de la mejor solucion al algoritmo de coloreo es la siguiente:\n"<< resultado << std::endl; 
-                //mejorSolucion.destruir();               
+                bool found = false; 
+                algoritmos.colorear_grafo(grafo, mejorSolucion, colores, menor_cantidad, contador_soluciones, found); 
+                if (found) {
+					string resultado = mejorSolucion.printCC();
+					std::cout << "El resultado de la mejor solucion al algoritmo de coloreo es la siguiente:\n"<< resultado << std::endl; 
+					//mejorSolucion.destruir();
+				}
+				else {
+					std::cout << "el grafo no pude ser coloreado exitosamente" << std::endl; 
+				}               
                 desplegarMenu();
 
             }
@@ -464,30 +637,37 @@ void Interfaz::desplegarMenu(){
             if(decision == 28){
                 algoritmos.Kruskal(grafo); 			
                 desplegarMenu();
-
             }
             if(decision == 29){
-                //FALTA COMPONENTES FUERTEMENTE CONEXOS
+                std::cout << "este algoritmo solo corresponde a los grafos dirigidos, por lo tanto no aplica y fue sacado de la tarea programada" << std::endl; 
                 desplegarMenu();
 
             }
             if(decision == 30){
                 vertice vertice1 = 0;
-                cout << "Ingrese el numero del vertice a aislar." << endl;
-                if(!(cin >> vertice1)){
+                int etiqueta = 0; 
+                cout << "Ingrese la etiqueta del vertice a aislar." << endl;
+                if(!(cin >> etiqueta)){
                     cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                 //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
-                else{
-                    algoritmos.aislarVertice(grafo, vertice1);
-                    cout << "El vertice ingresado fue aislado existosamente." << endl;    
+                else{	
+					vertice1 = grafo.getVertice(etiqueta);
+					if (!grafo.esVerticeNulo(vertice1)) {
+						algoritmos.aislarVertice(grafo, vertice1);
+						cout << "El vertice ingresado fue aislado existosamente." << endl;   							
+					} 
+					else {
+						std::cout << "la etiqueta ingresada no corresponde a ningun vertice, por favor intentelo de nuevo" << std::endl; 
+					}
                 }
                 desplegarMenu();
             }
             if(decision == 31){
                 vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
-                algoritmos.encontrarPuntosArticulacion(grafo, puntos); 
+                int contador_puntos = 0; 
+                algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
                 std::cout << "Los puntos de articulacion del grafo son los siguientes: " << std::endl; 
                 stringstream ss; 
                 for (int index = 1; index <= puntos[0]; ++index) {

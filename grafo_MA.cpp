@@ -73,7 +73,7 @@ void Grafo :: agregarArista(int vertice_1, int vertice_2, int peso) {
 }
 
 void Grafo :: eliminarArista(int vertice_1, int vertice_2) {
-	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno) {
+	if (vertice_1 < this->ultimoLleno && vertice_2 < this->ultimoLleno && vertice_1 != vertice_2) {
 		this->matrix[vertice_1][vertice_2].conexion = false; 	
 		this->matrix[vertice_2][vertice_1].conexion = false; 
 	}
@@ -170,8 +170,13 @@ void Grafo::modificarEtiqueta(int vertice, int etiqueta) {
 	this->etiquetas[vertice] = etiqueta; 
 }
 
-int Grafo::etiqueta(int vertice) {
-	return this->etiquetas[vertice];
+int Grafo::etiqueta(int ver) {
+	if (ver < this->ultimoLleno) {
+		return this->etiquetas[ver];
+	}
+	else {
+		return -1; 
+	}
 }
 
 int Grafo::numVertices() {
@@ -236,7 +241,14 @@ int Grafo::siguienteVerticeAdy(int vertice, int actual_vertice_ady) {
 
 int Grafo::primerVertice() {
 	vertice vertex = 0;
-	return vertex; 
+	
+	if (this->ultimoLleno != 0) {	
+		return vertex; 
+	}
+	else {
+		return -1; 
+	}
+
 } 
 
 
