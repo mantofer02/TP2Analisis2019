@@ -6,9 +6,17 @@ Grafo :: Grafo(){
     cantidadDeVertices = 0;
     cantidadDeAristas = 0;
 }
-    
-void Grafo :: iniciar(){
 
+
+
+/*
+Requiere : Un grafo no inicializado. 
+Efecto : Inicializa el grafo.
+Modifica : El grafo, ya que lo inicializa..
+*/
+void Grafo :: iniciar(){
+    cantidadDeVertices = 0;
+    cantidadDeAristas = 0;
 }
 
 void Grafo::eliminarVertice(vertice v) {
