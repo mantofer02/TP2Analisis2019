@@ -8,14 +8,13 @@ Tester::Tester() {
 }
 
 
-#define grafo1 MIGRAFO
 
 void Tester::iniciarTest(int test_id) {
 	
 	srand(time(NULL));
 	
 	
-	#if 0 	//generador aleatorio de grafos.  hacer en cada case del switch un while para correr cada uno. 
+		//generador aleatorio de grafos.  hacer en cada case del switch un while para correr cada uno. 
 	array<Grafo, MUESTRA> grafos;
 
 	int min_random_number = 0; 
@@ -47,8 +46,8 @@ void Tester::iniciarTest(int test_id) {
 	
 	std::cout << "los grafos se inicializaron con exito" << std::endl; 
 	
-	#endif 
 	
+	/*
 	Grafo grafo1; 
 	grafo1.iniciar(); 
 	
@@ -69,27 +68,12 @@ void Tester::iniciarTest(int test_id) {
 	grafo1.agregarArista(grafo1.getVertice(5),grafo1.getVertice(6),5);        
 	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(1),90);
 	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(5),8);  
+	*/
 	
-	#if 0 
-	Grafo grafo2; 
-	grafo2.iniciar(); 
-	#endif 
-
-	#if 0 
-	Grafo grafo3; 
-	grafo3.iniciar(); 
-	#endif 
-		
-	#if 0 
-	Grafo grafo4; 
-	grafo4.iniciar(); 
-	#endif 
 	
-	#if 0 
-	Grafo grafo5; 
-	grafo5.iniciar(); 
-	#endif 
-
+	double total_time = 0.0; 
+	double tiempo_promedio = 0.0; 
+	int  current_grafo = 0; 
 	
 	switch(test_id) {
 		case 0:
@@ -98,63 +82,136 @@ void Tester::iniciarTest(int test_id) {
 		
 		
 		case 1:
-			testDijkstra(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+				total_time+= testDijkstra(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Dijstra corresponde a : " << tiempo_promedio << " s." <<endl;
 			
 		break; 
 		
 		case 2:
-			testFloyd(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+				total_time+= testFloyd(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Floyd corresponde a : " << tiempo_promedio << " s." <<endl;			
+			
 		break; 
 		
 		case 3:
-			testPrim(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+				total_time+= testPrim(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Prim corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 4:
-			testKruskal(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testKruskal(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Kruskal corresponde a : " << tiempo_promedio << " s." <<endl;			
+
 		break; 
 		
 		
 		case 5:
-			testProfundidadPrimero(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testProfundidadPrimero(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Profundidad Primero corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		
 		case 6: 
-			testAnchoPrimero(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testAnchoPrimero(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio de Ancho Primero corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 7: 
-			testAislarVertice(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testAislarVertice(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para aislar un vertice corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 8: 
-			testCiclos(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testCiclos(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para determinar si un grafo posee ciclos corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 9: 
-			testCircuitoHamilton(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testCircuitoHamilton(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para determinar el circuito hamilton de menor costo corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 10:
-			testPuntosArticulacion(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testPuntosArticulacion(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para determinar puntos de articulacion corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		case 11:
-			testColorearGrafo(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testColorearGrafo(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para colorear un grafo corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 		
 		
 		case 12: 
-			testExisteCaminoEntreTodoParDeVertices(MIGRAFO); 
+			total_time = 0.0; 
+			for (current_grafo = 0; current_grafo < MUESTRA; ++current_grafo) {
+			total_time+= testExisteCaminoEntreTodoParDeVertices(grafos[current_grafo]); 
+				std::cout << "contador grafos : " << current_grafo << std::endl; 
+			}
+			tiempo_promedio = total_time/MUESTRA; 
+			std::cout << "El tiempo de duración promedio para determinar si existe camino entre todo par de vertices corresponde a : " << tiempo_promedio << " s." <<endl;	
 		break; 
 	}
 	
-	grafo1.destruir(); 
 }
 
 
-void Tester::testDijkstra(Grafo&grafo) {
+double Tester::testDijkstra(Grafo&grafo) {
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 	
     int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
@@ -171,7 +228,7 @@ void Tester::testDijkstra(Grafo&grafo) {
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;
+    //std::cout << "El tiempo de duración de Dijstra corresponde a : " << elapsed_seconds << " s." <<endl;
 	
 	
 	#if 0 			//si se desea ver los resultados, como es un test, creo que da igual ver los resultados. 
@@ -195,9 +252,10 @@ void Tester::testDijkstra(Grafo&grafo) {
 	free(VP); 
 	free(VVA); 
 	//--------------------------------------------------------------------------------------------
+	return elapsed_seconds;
 }
 
-void Tester::testFloyd(Grafo&grafo){
+double Tester::testFloyd(Grafo&grafo){
 	
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	int** MP = (int**)malloc(grafo.numVertices()*sizeof(int*)); 	//matriz de peso
@@ -221,7 +279,7 @@ void Tester::testFloyd(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Floyd corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración de Floyd corresponde a : " << elapsed_seconds << " s." <<endl;	
 	
 	
 	#if 0 							//PARA IMPRIMIR LOS RESULTADOS. 
@@ -254,10 +312,10 @@ void Tester::testFloyd(Grafo&grafo){
 	
 	//--------------------------------------------------------------------------------------------
 	
-	
+	return elapsed_seconds;	
 }
 
-void Tester::testPrim(Grafo&grafo) {
+double Tester::testPrim(Grafo&grafo) {
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -275,7 +333,7 @@ void Tester::testPrim(Grafo&grafo) {
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Prim corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración de Prim corresponde a : " << elapsed_seconds << " s." <<endl;	
 	
 
 
@@ -283,10 +341,10 @@ void Tester::testPrim(Grafo&grafo) {
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
-	
+	return elapsed_seconds;	
 }
 
-void Tester::testKruskal(Grafo&grafo){
+double Tester::testKruskal(Grafo&grafo){
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
@@ -302,16 +360,16 @@ void Tester::testKruskal(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Kruskal corresponde a : " << elapsed_seconds << " s." <<endl;		
+    //std::cout << "El tiempo de duración de Kruskal corresponde a : " << elapsed_seconds << " s." <<endl;		
 	
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 			
-	
+	return elapsed_seconds;	
 } 
 
-void Tester::testProfundidadPrimero(Grafo&grafo) {
+double Tester::testProfundidadPrimero(Grafo&grafo) {
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -327,15 +385,15 @@ void Tester::testProfundidadPrimero(Grafo&grafo) {
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de profundidadPrimero corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración de profundidadPrimero corresponde a : " << elapsed_seconds << " s." <<endl;	
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
-			
+	return elapsed_seconds;			
 }
 
-void Tester::testAnchoPrimero(Grafo&grafo){
+double Tester::testAnchoPrimero(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -351,15 +409,15 @@ void Tester::testAnchoPrimero(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de AnchoPrimero corresponde a : " << elapsed_seconds << " s." <<endl;		
+    //std::cout << "El tiempo de duración de AnchoPrimero corresponde a : " << elapsed_seconds << " s." <<endl;		
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
-		
+	return elapsed_seconds;		
 }
 
-void Tester::testAislarVertice(Grafo&grafo){
+double Tester::testAislarVertice(Grafo&grafo){
 	
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -375,15 +433,15 @@ void Tester::testAislarVertice(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración para aislar el vertice ingresado corresponde a : " << elapsed_seconds << " s." <<endl;		
+    //std::cout << "El tiempo de duración para aislar el vertice ingresado corresponde a : " << elapsed_seconds << " s." <<endl;		
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
-		
+	return elapsed_seconds;		
 } 
 
-void Tester::testCiclos(Grafo&grafo){
+double Tester::testCiclos(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -405,15 +463,15 @@ void Tester::testCiclos(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración para determinar la existencia de ciclos corresponde a : " << elapsed_seconds << " s." <<endl;			
+    //std::cout << "El tiempo de duración para determinar la existencia de ciclos corresponde a : " << elapsed_seconds << " s." <<endl;			
 
 	//DESTRUCCION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
-		
+	return elapsed_seconds;		
 }
 
-void Tester::testCircuitoHamilton(Grafo&grafo){
+double Tester::testCircuitoHamilton(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	Diccionario<vertice> D; 
@@ -436,7 +494,7 @@ void Tester::testCircuitoHamilton(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración de Circuito de Hamilton con menor costo corresponde a : " << elapsed_seconds << " s." <<endl;			
+    //std::cout << "El tiempo de duración de Circuito de Hamilton con menor costo corresponde a : " << elapsed_seconds << " s." <<endl;			
 
 
 	#if 0 				//si se desea ver el resultado del algoritmo. 
@@ -464,10 +522,10 @@ void Tester::testCircuitoHamilton(Grafo&grafo){
 	D.destruir(); 
 	//--------------------------------------------------------------------------------------------
 		
-	
+	return elapsed_seconds;	
 } 
 
-void Tester::testPuntosArticulacion(Grafo&grafo){
+double Tester::testPuntosArticulacion(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
@@ -485,7 +543,7 @@ void Tester::testPuntosArticulacion(Grafo&grafo){
 
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración para encontrar Puntos de Articulacion en el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración para encontrar Puntos de Articulacion en el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
     
     #if 0 				//si se desean ver los resultados. 
@@ -510,7 +568,7 @@ void Tester::testPuntosArticulacion(Grafo&grafo){
 	
 } 
 
-void Tester::testColorearGrafo(Grafo&grafo){
+double Tester::testColorearGrafo(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 		
 	CC<vertice> mejor_sol; 
@@ -532,7 +590,7 @@ void Tester::testColorearGrafo(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración para Colorear el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración para Colorear el grafo ingresado corresponde a : " << elapsed_seconds << " s." <<endl;	
     		
     
     #if 0
@@ -546,10 +604,10 @@ void Tester::testColorearGrafo(Grafo&grafo){
 	//mejor_sol.destruir(); CC aún no tiene destruir. 
 	//--------------------------------------------------------------------------------------------
 		
-	
+	return elapsed_seconds;	
 }
 
-void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
+double Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
 
 	//INICIALIZACION ESTRUCTURAS DE DATOS DONDE GUARDA LOS RESULTADOS. 
 	//NO APLICA. 
@@ -565,7 +623,7 @@ void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
     
     clock_gettime(CLOCK_MONOTONIC, &finish_time);
     elapsed_seconds = finish_time.tv_sec - start_time.tv_sec	+ 1e-9 * (finish_time.tv_nsec - start_time.tv_nsec);
-    std::cout << "El tiempo de duración para determinar si existe camino entre todo par de vertices corresponde a : " << elapsed_seconds << " s." <<endl;	
+    //std::cout << "El tiempo de duración para determinar si existe camino entre todo par de vertices corresponde a : " << elapsed_seconds << " s." <<endl;	
     
     
     
@@ -577,6 +635,6 @@ void Tester::testExisteCaminoEntreTodoParDeVertices(Grafo&grafo){
 	//NO APLICA. 
 	//--------------------------------------------------------------------------------------------
 		
-	
+	return elapsed_seconds;	
 } 
  

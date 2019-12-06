@@ -7,7 +7,7 @@
 #include <list>
 
 #define INFINITY 999999999
-#define TAMANYO 30		//misma cantidad de vertices del grafo. 
+#define TAMANYO 1000		//misma cantidad de vertices del grafo. 
 
 class Algoritmos_grafo{
 	private: 

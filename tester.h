@@ -4,7 +4,7 @@
 #include <time.h>       /* time */
 #include <iostream>
 
-#define MUESTRA 100
+#define MUESTRA 1
 #define MAX_VER 1000
 #define MAX_ARISTAS 500
 
@@ -18,17 +18,17 @@ class Tester {
 	void iniciarTest(int test_id);
 	
 		
-	void testDijkstra(Grafo&grafo); 
-	void testFloyd(Grafo&grafo);
-	void testPrim(Grafo&grafo); 
-	void testKruskal(Grafo&grafo); 
-	void testProfundidadPrimero(Grafo&grafo); 
-	void testAnchoPrimero(Grafo&grafo); 
-	void testAislarVertice(Grafo&grafo); 
-	void testCiclos(Grafo&grafo); 
-	void testCircuitoHamilton(Grafo&grafo); 
-	void testPuntosArticulacion(Grafo&grafo); 
-	void testColorearGrafo(Grafo&grafo); 
-	void testExisteCaminoEntreTodoParDeVertices(Grafo&grafo);  	
+	double testDijkstra(Grafo&grafo); 
+	double testFloyd(Grafo&grafo);
+	double testPrim(Grafo&grafo); 
+	double testKruskal(Grafo&grafo); 
+	double testProfundidadPrimero(Grafo&grafo); 
+	double testAnchoPrimero(Grafo&grafo); 
+	double testAislarVertice(Grafo&grafo); 
+	double testCiclos(Grafo&grafo); 
+	double testCircuitoHamilton(Grafo&grafo); 
+	double testPuntosArticulacion(Grafo&grafo); 
+	double testColorearGrafo(Grafo&grafo); 
+	double testExisteCaminoEntreTodoParDeVertices(Grafo&grafo);  	
 }; 
 
