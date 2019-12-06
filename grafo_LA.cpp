@@ -11,6 +11,10 @@ void Grafo :: iniciar(){
 
 }
 
+void Grafo::eliminarVertice(vertice v) {
+	//FALTA HACER ESTO, O NO SE SI ES EL BORRAR VERTICE DE MAS ABAJO. 
+}
+
 int Grafo :: vacia(){
     return l1.empty();
 }

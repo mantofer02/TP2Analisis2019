@@ -23,7 +23,7 @@ void Interfaz::desplegarMenu(){
 	std::cout << "4: Agregar Vertice" << std::endl;
 	std::cout << "5: Eliminar Vertice" << std::endl;
     std::cout << "6: Modificar Etiqueta" << std::endl;
-    std::cout << "7: Etiqueta" << std::endl;
+    std::cout << "7: Etiqueta" << std::endl;				//REVISA PARA L.A
     std::cout << "8: AgregarArista" << std::endl;
     std::cout << "9: Eliminar Arista" << std::endl;
 	std::cout << "10: Modificar Peso" << std::endl;
@@ -122,9 +122,10 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 7){
-                vertice ver = 0;    
+                vertice ver = 0;
+                int number = 0;     
                 cout << "Ingrese el numero del vertice que desea conocer la etiqueta." << endl;
-                if(!(cin >> ver)){
+                if(!(cin >> number)){
                     cin.clear();
                    // cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
@@ -668,21 +669,22 @@ void Interfaz::desplegarMenu(){
                 vertice* puntos = (vertice*)calloc(grafo.numVertices(), sizeof(vertice)); 
                 int contador_puntos = 0; 
                 algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
-                std::cout << "Los puntos de articulacion del grafo son los siguientes: " << std::endl; 
                 stringstream ss; 
-                for (int index = 1; index <= puntos[0]; ++index) {
-                    if (index != puntos[0]) {
-                        ss << puntos[index] << ", "; 
-                    }
-                    else {
-                        ss << puntos[index]; 
-                    }
-                }
+				#if 1				
+				std::cout << "Los puntos de articulacion del grafo son : " << std::endl; 
+				for (int index = 0; index < contador_puntos; ++index) {
+					if (index != contador_puntos-1) {
+						ss << puntos[index] << ", "; 
+					}
+					else {
+						ss << puntos[index]; 
+					}
+				}
+				#endif 	
                 ss << "\n"; 
                 std::cout << ss.str() << std::endl; 
                 free(puntos);
                 desplegarMenu();
-
             }
             if(decision == 32){
                 bool resultado = algoritmos.existeCaminoEntreTodoParDeVertices(grafo);
