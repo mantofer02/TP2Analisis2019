@@ -6,7 +6,7 @@
 
 using namespace std; 
 
-#define SIZEGRAFO 1000
+#define SIZEGRAFO 100
 #define verticeNulo -1
 
 typedef int vertice; 

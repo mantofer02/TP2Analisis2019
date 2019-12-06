@@ -7,9 +7,9 @@
 int main(int argc, char* argv[]) {
 	Tester tester; 
 	
-	//tester.iniciarTest(1);				//iniciarTest(test_id) 
+	tester.iniciarTest(1);				//iniciarTest(test_id) 
 	//tester.iniciarTest(2);			
-	tester.iniciarTest(3);			
+	//tester.iniciarTest(3);			
 	//tester.iniciarTest(4);		
 	//tester.iniciarTest(5);			
 	//tester.iniciarTest(6);			

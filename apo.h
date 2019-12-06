@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 using namespace std; 
-#define LONGITUDAPO 50
+#define LONGITUDAPO 100
 #define INFINITY 999999999
 
 template <typename T>

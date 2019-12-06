@@ -2,7 +2,7 @@
 #include <sstream>
 using namespace std;
 #define INFINITY 999999999
-#define TAMANYO 1000		//misma cantidad de vertices del grafo. 
+#define TAMANYO 100		//misma cantidad de vertices del grafo. 
 //#define verticeNulo -1
 
 
