@@ -146,8 +146,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 8){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = ""; 
                 ETIQUETA etiqueta2 = ""; 
                 int peso = 0;                
@@ -184,8 +184,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 9){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = ""; 
                 ETIQUETA etiqueta2 = ""; 
                 
@@ -218,8 +218,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 10){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = "";
                 ETIQUETA etiqueta2 = ""; 
                 int peso = 0;                
@@ -260,8 +260,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 11){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = "";
                 ETIQUETA etiqueta2 = "";  
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
@@ -305,7 +305,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 13){
-                vertice vertice1 = 0;    
+                vertice vertice1;    
                 ETIQUETA etiqueta1 = ""; 
                 cout << "Ingrese la etiqueta del vertice al que desea conocer la etiqueta de su siguiente vertice" << endl;
                 if(!(cin >> etiqueta1)){
@@ -332,7 +332,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 14){
-                vertice vertice1 = 0;
+                vertice vertice1;
                 ETIQUETA etiqueta1 = "";     
                 cout << "Ingrese la etiqueta del vertice del que se desea conocer el primer vertice adyacente." << endl;
                 if(!(cin >> etiqueta1)){
@@ -356,8 +356,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 15){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = ""; 
                 ETIQUETA etiqueta2 = ""; 
                 cout << "Ingrese la etiqueta del numero del primer vertice." << endl;
@@ -398,8 +398,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 16){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
+                vertice vertice1;    
+                vertice vertice2;
                 ETIQUETA etiqueta1 = ""; 
                 ETIQUETA etiqueta2 = ""; 
                 cout << "Ingrese el numero del primer vertice." << endl;
@@ -451,7 +451,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 19){
-                vertice ver = 0; 
+                vertice ver; 
                 ETIQUETA etiqueta = "";    
                 cout << "Ingrese la etiqueta del vertice que desea conocer el numero de vertices adyacentes." << endl;
                 if(!(cin >> etiqueta)){
@@ -652,8 +652,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 30){
-                vertice vertice1 = 0;
-                ETIQUETA etiqueta = 0; 
+                vertice vertice1;
+                ETIQUETA etiqueta = ""; 
                 cout << "Ingrese la etiqueta del vertice a aislar." << endl;
                 if(!(cin >> etiqueta)){
                     cin.clear();
