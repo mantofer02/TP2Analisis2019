@@ -625,6 +625,7 @@ void Interfaz::desplegarMenu(){
                 algoritmos.colorear_grafo(grafo, mejorSolucion, colores, menor_cantidad, contador_soluciones, found); 
                 if (found) {
 					string resultado = mejorSolucion.printCC();
+					std::cout << "A continuacion se mostraran varias lineas con diferentes vertices asociados a cada linea, dicha linea corresponde a un color y los vertices que se agruparon a dicho color" << std::endl; 
 					std::cout << "El resultado de la mejor solucion al algoritmo de coloreo es la siguiente:\n"<< resultado << std::endl; 
 					//mejorSolucion.destruir();
 				}
