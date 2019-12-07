@@ -5,8 +5,8 @@
 #include <iostream>
 
 #define MUESTRA 1
-#define MAX_VER 1000
-#define MAX_ARISTAS 500
+#define MAX_VER 10
+#define MAX_ARISTAS 5
 
 typedef std :: string ETIQUETA;
 

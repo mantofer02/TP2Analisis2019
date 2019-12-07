@@ -23,6 +23,7 @@ void Tester::iniciarTest(int test_id) {
 	int random_number = 0; 
 	
 	
+	
 	for (int index_grafo = 0; index_grafo < MUESTRA; ++index_grafo) {
 		grafos[index_grafo].iniciar(); 
 		for (int index_vertex = 0; index_vertex < MAX_VER; ++index_vertex) {
@@ -44,6 +45,8 @@ void Tester::iniciarTest(int test_id) {
 			grafos[index_grafo].agregarArista(v1, v2, peso); 			 	
 		} 	
 	}
+	
+
 	
 	
 	std::cout << "los grafos se inicializaron con exito" << std::endl; 
