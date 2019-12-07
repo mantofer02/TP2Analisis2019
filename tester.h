@@ -8,6 +8,7 @@
 #define MAX_VER 1000
 #define MAX_ARISTAS 500
 
+typedef std :: string ETIQUETA;
 
 class Tester {
 	private: 
