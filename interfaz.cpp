@@ -476,12 +476,12 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 20){
-                cout << "El resultado de recorrer el grafo por ancho primero es:" << endl;
+                cout << "La impresion de los vertices en ancho primero corresponde a :" << endl;
                 algoritmos.anchoPrimero(grafo);
                 desplegarMenu();
             }
             if(decision == 21){
-                cout << "El resultado de recorrer el grafo por profundidad primero es:" << endl;
+                cout << "La imprsion de los vertices en profundidad primero corresponde a :" << endl;
                 algoritmos.profundidadPrimero(grafo);
                 desplegarMenu();
             }
@@ -674,7 +674,8 @@ void Interfaz::desplegarMenu(){
                 algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
                 stringstream ss; 
 				#if 1				
-				std::cout << "Los puntos de articulacion del grafo son : " << std::endl; 
+				std::cout << "se encontraron un total de : " << contador_puntos << " puntos de articulacion en el grafo" << std::endl; 
+				std::cout << "Los vertices puntos de articulacion del grafo corresponden a : " << std::endl; 
 				for (int index = 0; index < contador_puntos; ++index) {
 					if (index != contador_puntos-1) {
 						ss << puntos[index] << ", "; 
