@@ -2,6 +2,8 @@
 #define INTERFAZ
 #include "algoritmos_grafo.h"
 
+typedef std :: string ETIQUETA;
+
 
 class Interfaz{
     private:

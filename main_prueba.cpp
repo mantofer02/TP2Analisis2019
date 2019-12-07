@@ -17,12 +17,12 @@ grafo.agregarArista(grafo.getVertice(1),grafo.getVertice(3), 20);
 */
 
 
-grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
-grafo.agregarVertice(3); //1
-grafo.agregarVertice(1); //2
-grafo.agregarVertice(4); //3	
-grafo.agregarVertice(6); //4
-grafo.agregarVertice(5); //5
+grafo.agregarVertice("2"); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
+grafo.agregarVertice("3"); //1
+grafo.agregarVertice("1"); //2
+grafo.agregarVertice("4"); //3	
+grafo.agregarVertice("6"); //4
+grafo.agregarVertice("5"); //5
 
 grafo.agregarArista(0,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
 grafo.agregarArista(2,0,8);
@@ -41,7 +41,7 @@ grafo.agregarArista(1,5,8);
 Algoritmos_grafo algoritmos; 
 
 
-#if 1		//PRUEBA DE DIJKSTRA 
+#if 0		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
@@ -186,13 +186,19 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 0
+#if 1
 CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
 int colores = 0; 
 int contador_soluciones = 0; 
-algoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones); 
+bool possible = false; 
+algoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones, possible); 
+
+if (possible) {
+	std::cout << "se logro pintar" << std::endl;
+	std::cout << mejor_sol.printCC() << std::endl; 
+}
 
 #endif    
 } 
