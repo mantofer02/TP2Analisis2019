@@ -19,7 +19,7 @@ struct vertice{
     }
 
     vertice(){
-        this->etiqueta = " " ;
+        this->etiqueta = "";
         this->indice = -1;  
     }
 

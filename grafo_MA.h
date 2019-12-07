@@ -24,6 +24,7 @@ typedef struct {
 
 
 
+
 class Grafo{
 	private: 	
 		ETIQUETA* etiquetas; 

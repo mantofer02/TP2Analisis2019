@@ -234,7 +234,7 @@ void Algoritmos_grafo::profundidadPrimero(Grafo&grafo) {
 
 void Algoritmos_grafo::profundidadPrimeroR(Grafo&grafo, vertice ver, Diccionario<vertice>&D) {
 	D.agregar(ver); 
-	// std::cout << grafo.etiqueta(ver) << std::endl; 
+	std::cout << grafo.etiqueta(ver) << std::endl; 
 	vertice v_ady = grafo.primerVerticeAdy(ver); 
 	while (!grafo.esVerticeNulo(v_ady)) {
 		if (!D.pertenece(v_ady)) {
@@ -260,7 +260,7 @@ void Algoritmos_grafo::anchoPrimero(Grafo&grafo) {
 			D.agregar(ver); 
 			while (!C.empty()) {
 				vertice v = C.front(); 
-				// std::cout << grafo.etiqueta(v) << std::endl; 
+				 std::cout << grafo.etiqueta(v) << std::endl; 
 				C.pop(); 
 				vertice v_ady = grafo.primerVerticeAdy(v);
 				while (!grafo.esVerticeNulo(v_ady)) {
@@ -365,6 +365,8 @@ Requiere : Un grafo ya inicializado; Un diccionario de vertices inicializado; Va
 Efecto : Calcula si el grafo posee un Circuito de hamilton; y de ser asi, calcula el circuito el circuito de menot costo que forme el grafo. 
 Modifica : Modifica las estructuras auxliares y mediante la aplicacion de exhaustiva pura se busca el CH de menor costo.
 */
+
+#if 1
 void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones,  int indice) {
 	D.agregar(Sol[indice-1]); 
 	vertice v_ady = grafo.primerVerticeAdy(Sol[indice-1]); 
@@ -396,50 +398,7 @@ void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, ver
 		v_ady = grafo.siguienteVerticeAdy(Sol[indice-1], v_ady); 
 	}
 }
-
-
-
-#if 0 
-void Algoritmos_grafo::CH(Grafo&grafo, Diccionario<vertice>&D, vertice* Sol, vertice* mejor_Sol, int&costo, int&mejor_costo, int&contador_soluciones, int indice) {
-
-vertice v = Sol[indice-1]; 
-D.agregar(v); 
-
-
-if (indice == grafo.numVertices()) {		//llegue a una posible solucion factible. 
-	if (grafo.existeArista(v,Sol[0])) {		//tengo una solucion factible. 
-		++contador_soluciones; 
-		costo+= grafo.peso(v,Sol[0]); 
-		std::cout << "se encontro una solucion factible" << std::endl; 
-		if (costo < mejor_costo) {
-			mejor_costo = costo; 
-			Sol[indice] = Sol[0];
-			for (int index = 0; index <= grafo.numVertices(); ++index) {
-				mejor_Sol[index] = Sol[index]; 
-			}
-		}
-		//arrepentimiento 
-		costo-= grafo.peso(v, Sol[0]);
-	}
-
-}	
-else {	
-	vertice v_ady = grafo.primerVerticeAdy(v); 
-	while (!grafo.esVerticeNulo(v_ady)) {
-		if (!D.pertenece(v_ady)) {
-			Sol[indice] = v_ady; 
-			costo+= grafo.peso(v,v_ady); 
-			CH(grafo, D, Sol, mejor_Sol, costo, mejor_costo, contador_soluciones, indice+1);
-			D.pop(); 
-			costo-= grafo.peso(v,v_ady);  
-		}
-		v_ady = grafo.siguienteVerticeAdy(v,v_ady); 
-	}
-}
-	
-}
-
-#endif 
+#endif
 
 
 /*

@@ -64,7 +64,7 @@ void Interfaz::desplegarMenu(){
     int decision = 0;
     if(!(cin >> decision)){
         cin.clear();
-        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
         desplegarMenu();
     }
@@ -86,7 +86,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 4){
-                int etiqueta; 
+                ETIQUETA etiqueta; 
                 cout << "Ingrese la etiqueta del nuevo vertice." << endl;
                 cin >> etiqueta;
                 grafo.agregarVertice(etiqueta);
@@ -94,7 +94,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 5){
-                int etiqueta; 
+                ETIQUETA etiqueta; 
                 cout << "Ingrese la etiqueta del vertice a eliminar." << endl;
                 cin >> etiqueta;
                 vertice ver = grafo.getVertice(etiqueta); 
@@ -108,8 +108,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 6){
-                int etiqueta; 
-                int nuevaEtiqueta;
+                ETIQUETA etiqueta; 
+                ETIQUETA nuevaEtiqueta;
                 cout << "Ingrese la etiqueta del vertice a cambiar(debe ser valido en el grafo)." << endl;
                 cin >> etiqueta;
                 vertice ver = grafo.getVertice(etiqueta); 
@@ -125,17 +125,17 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 7){
-                vertice ver = 0;
+                vertice ver;
                 int number = 0;     
                 cout << "Ingrese el numero del vertice que desea conocer la etiqueta." << endl;
                 if(!(cin >> number)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    int etiquetaRetornada = grafo.etiqueta(ver);
-                    if(etiquetaRetornada != -1){
+                    ETIQUETA etiquetaRetornada = grafo.etiqueta(ver);
+                    if(etiquetaRetornada != ""){
                         cout << "La etiqueta correspondiente al vértice ingresado es " << etiquetaRetornada <<endl;
                     }
                     else{                      
@@ -148,27 +148,27 @@ void Interfaz::desplegarMenu(){
             if(decision == 8){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                ETIQUETA etiqueta1 = ""; 
+                ETIQUETA etiqueta2 = ""; 
                 int peso = 0;                
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese la etiqueta del segundo vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                      //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
                         cout << "Ingrese el peso de la arista." << endl;
                         if(!(cin >> peso)){
                             cin.clear();
-                   //         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                         }
                         else{
@@ -186,20 +186,20 @@ void Interfaz::desplegarMenu(){
             if(decision == 9){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                ETIQUETA etiqueta1 = ""; 
+                ETIQUETA etiqueta2 = ""; 
                 
                 cout << "Ingrese la etiqueta primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese la etiqueta del segundo vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
@@ -220,27 +220,27 @@ void Interfaz::desplegarMenu(){
             if(decision == 10){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0;
-                int etiqueta2 = 0; 
+                ETIQUETA etiqueta1 = "";
+                ETIQUETA etiqueta2 = ""; 
                 int peso = 0;                
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese la etiqueta del segundo vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
                         cout << "Ingrese el nuevo peso de la arista." << endl;
                         if(!(cin >> peso)){
                             cin.clear();
-                       //     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                         }
                         else{
@@ -262,19 +262,19 @@ void Interfaz::desplegarMenu(){
             if(decision == 11){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0;
-                int etiqueta2 = 0;  
+                ETIQUETA etiqueta1 = "";
+                ETIQUETA etiqueta2 = "";  
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese la etiqueta del segundo vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                      //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
@@ -306,11 +306,11 @@ void Interfaz::desplegarMenu(){
             }
             if(decision == 13){
                 vertice vertice1 = 0;    
-                int etiqueta1 = 0; 
+                ETIQUETA etiqueta1 = ""; 
                 cout << "Ingrese la etiqueta del vertice al que desea conocer la etiqueta de su siguiente vertice" << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
@@ -333,11 +333,11 @@ void Interfaz::desplegarMenu(){
             }
             if(decision == 14){
                 vertice vertice1 = 0;
-                int etiqueta1 = 0;     
+                ETIQUETA etiqueta1 = "";     
                 cout << "Ingrese la etiqueta del vertice del que se desea conocer el primer vertice adyacente." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
@@ -358,19 +358,19 @@ void Interfaz::desplegarMenu(){
             if(decision == 15){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                ETIQUETA etiqueta1 = ""; 
+                ETIQUETA etiqueta2 = ""; 
                 cout << "Ingrese la etiqueta del numero del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese la etiqueta del vertice adyacente al primer vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
@@ -400,19 +400,19 @@ void Interfaz::desplegarMenu(){
             if(decision == 16){
                 vertice vertice1 = 0;    
                 vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                ETIQUETA etiqueta1 = ""; 
+                ETIQUETA etiqueta2 = ""; 
                 cout << "Ingrese el numero del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
-                   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
                     cout << "Ingrese el numero del segundo vertice." << endl;
                     if(!(cin >> etiqueta2)){
                         cin.clear();
-                     //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                     }
                     else{
@@ -452,11 +452,11 @@ void Interfaz::desplegarMenu(){
             }
             if(decision == 19){
                 vertice ver = 0; 
-                int etiqueta = 0;    
+                ETIQUETA etiqueta = "";    
                 cout << "Ingrese la etiqueta del vertice que desea conocer el numero de vertices adyacentes." << endl;
                 if(!(cin >> etiqueta)){
                     cin.clear();
-                  //  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
@@ -476,12 +476,12 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 20){
-                cout << "El resultado de recorrer el grafo por ancho primero es:" << endl;
+                cout << "La impresion de los vertices en ancho primero corresponde a :" << endl;
                 algoritmos.anchoPrimero(grafo);
                 desplegarMenu();
             }
             if(decision == 21){
-                cout << "El resultado de recorrer el grafo por profundidad primero es:" << endl;
+                cout << "La imprsion de los vertices en profundidad primero corresponde a :" << endl;
                 algoritmos.profundidadPrimero(grafo);
                 desplegarMenu();
             }
@@ -499,7 +499,7 @@ void Interfaz::desplegarMenu(){
                 int* vectorDePesos = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
                 vertice* vectorVerticeAnterior = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 				
-				int etiqueta = 0; 
+				ETIQUETA etiqueta = ""; 
 				vertice ver; 
 				std::cout << "ingrese la etiqueta del vertice desde el cual desea ejecutar el algoritmo de Dijkstra" << std::endl; 
 				cin >> etiqueta; 
@@ -625,6 +625,7 @@ void Interfaz::desplegarMenu(){
                 algoritmos.colorear_grafo(grafo, mejorSolucion, colores, menor_cantidad, contador_soluciones, found); 
                 if (found) {
 					string resultado = mejorSolucion.printCC();
+					std::cout << "A continuacion se mostraran varias lineas con diferentes vertices asociados a cada linea, dicha linea corresponde a un color y los vertices que se agruparon a dicho color" << std::endl; 
 					std::cout << "El resultado de la mejor solucion al algoritmo de coloreo es la siguiente:\n"<< resultado << std::endl; 
 					//mejorSolucion.destruir();
 				}
@@ -635,7 +636,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 27){
-                algoritmos.Prim(grafo, 0);			
+                vertice vertice = grafo.primerVertice(); 
+                algoritmos.Prim(grafo, vertice);			
                 desplegarMenu();
             }
             if(decision == 28){
@@ -649,11 +651,11 @@ void Interfaz::desplegarMenu(){
             }
             if(decision == 30){
                 vertice vertice1 = 0;
-                int etiqueta = 0; 
+                ETIQUETA etiqueta = 0; 
                 cout << "Ingrese la etiqueta del vertice a aislar." << endl;
                 if(!(cin >> etiqueta)){
                     cin.clear();
-                 //   cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{	
@@ -674,7 +676,8 @@ void Interfaz::desplegarMenu(){
                 algoritmos.encontrarPuntosArticulacion(grafo, puntos, contador_puntos); 
                 stringstream ss; 
 				#if 1				
-				std::cout << "Los puntos de articulacion del grafo son : " << std::endl; 
+				std::cout << "se encontraron un total de : " << contador_puntos << " puntos de articulacion en el grafo" << std::endl; 
+				std::cout << "Los vertices puntos de articulacion del grafo corresponden a : " << std::endl; 
 				for (int index = 0; index < contador_puntos; ++index) {
 					if (index != contador_puntos-1) {
 						ss << puntos[index] << ", "; 

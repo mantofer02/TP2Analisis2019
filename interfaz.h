@@ -1,6 +1,12 @@
 #ifndef INTERFAZ
 #define INTERFAZ
 #include "algoritmos_grafo.h"
+#include <algorithm>
+#include <array>
+#include <iostream>
+#include <limits>
+
+typedef std :: string ETIQUETA;
 
 
 class Interfaz{

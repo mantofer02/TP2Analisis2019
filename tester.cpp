@@ -23,19 +23,22 @@ void Tester::iniciarTest(int test_id) {
 	int random_number = 0; 
 	
 	
+	
 	for (int index_grafo = 0; index_grafo < MUESTRA; ++index_grafo) {
 		grafos[index_grafo].iniciar(); 
 		for (int index_vertex = 0; index_vertex < MAX_VER; ++index_vertex) {
-			grafos[index_grafo].agregarVertice(index_vertex); 
+			grafos[index_grafo].agregarVertice(std::to_string(index_vertex)); 
 		}
 		for (int index_arista = 0; index_arista < MAX_ARISTAS; ++index_arista) {
 			int vertex_1 = rand() % interval;
 			vertex_1 += min_random_number; 
-			vertice v1 = grafos[index_grafo].getVertice(vertex_1);
+			ETIQUETA v_1 = std::to_string(vertex_1); 
+			vertice v1 = grafos[index_grafo].getVertice(v_1);
 			  			
 			int vertex_2 = rand() % interval;
-			vertex_2+= min_random_number; 
-			vertice v2 = grafos[index_grafo].getVertice(vertex_2);
+			vertex_2+= min_random_number;
+			ETIQUETA v_2 = std::to_string(vertex_2);  
+			vertice v2 = grafos[index_grafo].getVertice(v_2);
 						
 			int peso = rand() % 2500; 
 			
@@ -43,33 +46,36 @@ void Tester::iniciarTest(int test_id) {
 		} 	
 	}
 	
+
+	
 	
 	std::cout << "los grafos se inicializaron con exito" << std::endl; 
 	
 	
-	/*
+	
 	Grafo grafo1; 
 	grafo1.iniciar(); 
 	
-	grafo1.agregarVertice(2); 
-	grafo1.agregarVertice(3); 
-	grafo1.agregarVertice(1); 
-	grafo1.agregarVertice(4); 	
-	grafo1.agregarVertice(6); 
-	grafo1.agregarVertice(5); 
+	grafo1.agregarVertice("2"); 
+	grafo1.agregarVertice("3"); 
+	grafo1.agregarVertice("1"); 
+	grafo1.agregarVertice("4"); 	
+	grafo1.agregarVertice("6"); 
+	grafo1.agregarVertice("5"); 
 
-	grafo1.agregarArista(grafo1.getVertice(2),grafo1.getVertice(3),500);	
-	grafo1.agregarArista(grafo1.getVertice(1),grafo1.getVertice(2),8);
-	grafo1.agregarArista(grafo1.getVertice(1),grafo1.getVertice(6),1000);
-	grafo1.agregarArista(grafo1.getVertice(2),grafo1.getVertice(4),7);
-	grafo1.agregarArista(grafo1.getVertice(6),grafo1.getVertice(3),40);
-	grafo1.agregarArista(grafo1.getVertice(4),grafo1.getVertice(6),20);
-	grafo1.agregarArista(grafo1.getVertice(4),grafo1.getVertice(5),35);
-	grafo1.agregarArista(grafo1.getVertice(5),grafo1.getVertice(6),5);        
-	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(1),90);
-	grafo1.agregarArista(grafo1.getVertice(3),grafo1.getVertice(5),8);  
-	*/
+	grafo1.agregarArista(grafo1.getVertice("2"),grafo1.getVertice("3"),500);	
+	grafo1.agregarArista(grafo1.getVertice("1"),grafo1.getVertice("2"),8);
+	grafo1.agregarArista(grafo1.getVertice("1"),grafo1.getVertice("6"),1000);
+	grafo1.agregarArista(grafo1.getVertice("2"),grafo1.getVertice("4"),7);
+	grafo1.agregarArista(grafo1.getVertice("6"),grafo1.getVertice("3"),40);
+	grafo1.agregarArista(grafo1.getVertice("4"),grafo1.getVertice("6"),20);
+	grafo1.agregarArista(grafo1.getVertice("4"),grafo1.getVertice("5"),35);
+	grafo1.agregarArista(grafo1.getVertice("5"),grafo1.getVertice("6"),5);        
+	grafo1.agregarArista(grafo1.getVertice("3"),grafo1.getVertice("1"),90);
+	grafo1.agregarArista(grafo1.getVertice("3"),grafo1.getVertice("5"),8);  
 	
+	
+	grafos[0] = grafo1; 
 	
 	double total_time = 0.0; 
 	double tiempo_promedio = 0.0; 
