@@ -254,12 +254,12 @@ Requiere : Un grafo ya inicializado ; un vertice de parametro.
 Efecto : Retorna la etiqueta de un grafo.
 Modifica : N/A
 */
-int Grafo::etiqueta(int ver) {
+ETIQUETA Grafo::etiqueta(int ver) {
 	if (ver < this->ultimoLleno) {
 		return this->etiquetas[ver];
 	}
 	else {
-		return -1; 
+		return " "; 
 	}
 }
 

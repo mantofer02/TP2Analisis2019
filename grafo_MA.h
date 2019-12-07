@@ -9,7 +9,11 @@ using namespace std;
 #define SIZEGRAFO 100
 #define verticeNulo -1
 
+#include <string>
+
 typedef int vertice; 
+typedef std :: string ETIQUETA;
+
 
 typedef struct {
 	bool conexion; 
@@ -18,9 +22,11 @@ typedef struct {
 } celda_t; 
 
 
+
+
 class Grafo{
 	private: 	
-		int* etiquetas; 
+		ETIQUETA* etiquetas; 
 		celda_t** matrix; 
 		int ultimoLleno; 
 
@@ -116,7 +122,7 @@ class Grafo{
 		 * Modifica : La etiqueta de un vertice. 
 		 *
 		 * */
-		void modificarEtiqueta(vertice ver, int etiqueta); 
+		void modificarEtiqueta(vertice ver, ETIQUETA etiqueta); 
 		
 		
 		/*
@@ -126,7 +132,7 @@ class Grafo{
 		 *
 		 * */
 
-		int etiqueta(vertice ver); 
+		ETIQUETA etiqueta(vertice ver); 
 		
 		/*
 		 * Efecto : Retorna la cantidad de vertices que posee el grafo. 
