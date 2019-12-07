@@ -9,7 +9,7 @@ Efecto : Inicializa el grafo.
 Modifica : El grafo, ya que lo inicializa..
 */
 void Grafo::iniciar() {
-	this->etiquetas = (int*)malloc(SIZEGRAFO*sizeof(int));
+	this->etiquetas = (ETIQUETA*)malloc(SIZEGRAFO*sizeof(ETIQUETA));
 	this->matrix = (celda_t**)malloc(SIZEGRAFO*sizeof(celda_t*)); 
 	for (int vertice = 0; vertice < SIZEGRAFO; ++vertice) {
 		this->matrix[vertice] = (celda_t*)malloc(SIZEGRAFO*sizeof(celda_t)); 
@@ -67,10 +67,10 @@ Requiere : Un grafo ya inicializado ; una etiqueta.
 Efecto : Agrega un vertice al grafo.
 Modifica : El grafo, agregando un vertice nuevo.
 */
-int Grafo :: agregarVertice(int elemento) {
+int Grafo :: agregarVertice(ETIQUETA etiqueta) {
 	int vertice = this->ultimoLleno; 
 	if (ultimoLleno <SIZEGRAFO) {
-		this->etiquetas[this->ultimoLleno] = elemento; 
+		this->etiquetas[this->ultimoLleno] = etiqueta; 
 		++this->ultimoLleno; 
 		
 		for (int column_matrix = 0; column_matrix < this->ultimoLleno; ++column_matrix) {

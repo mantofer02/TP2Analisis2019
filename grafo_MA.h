@@ -68,7 +68,7 @@ class Grafo{
 		 * Modifica : El vector de etiquetas y la matriz de adyacencia, al igual que los contadores correspondientes. 
 		 *
 		 * */		
-		int agregarVertice(int etiqueta); 
+		int agregarVertice(ETIQUETA etiqueta); 
 
 		/*
 		 * Efecto : Agrega una arista entre 2 vertices existentes. 
