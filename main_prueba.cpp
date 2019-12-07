@@ -17,12 +17,12 @@ grafo.agregarArista(grafo.getVertice(1),grafo.getVertice(3), 20);
 */
 
 
-grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
-grafo.agregarVertice(3); //1
-grafo.agregarVertice(1); //2
-grafo.agregarVertice(4); //3	
-grafo.agregarVertice(6); //4
-grafo.agregarVertice(5); //5
+grafo.agregarVertice("2"); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
+grafo.agregarVertice("3"); //1
+grafo.agregarVertice("1"); //2
+grafo.agregarVertice("4"); //3	
+grafo.agregarVertice("6"); //4
+grafo.agregarVertice("5"); //5
 
 grafo.agregarArista(0,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
 grafo.agregarArista(2,0,8);
@@ -41,7 +41,7 @@ grafo.agregarArista(1,5,8);
 Algoritmos_grafo algoritmos; 
 
 
-#if 1		//PRUEBA DE DIJKSTRA 
+#if 0		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
@@ -134,7 +134,7 @@ else {
 #endif
  
 
-#if 0 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
+#if 1 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
 Diccionario<vertice> D; 
 D.iniciar(); 
 vertice* Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));
