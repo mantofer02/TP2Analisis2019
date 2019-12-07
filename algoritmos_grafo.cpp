@@ -320,7 +320,7 @@ bool Algoritmos_grafo::is_there_cycles(Grafo&grafo) {
 	 	D.iniciar();  
 	 	while (!grafo.esVerticeNulo(v) && !is_there) {
 			if (!D.pertenece(v)) {
-				is_there_cyclesR(grafo, v, -1,  D, L, is_there); 
+				is_there_cyclesR(grafo, v, grafo.getVerticeNulo(),  D, L, is_there); 
 			} 
 			v = grafo.siguienteVertice(v);  
 	 	} 	
