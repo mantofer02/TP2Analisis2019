@@ -90,7 +90,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 4){
-                int etiqueta; 
+                string etiqueta; 
                 cout << "Ingrese la etiqueta del nuevo vertice." << endl;
                 cin >> etiqueta;
                 grafo.agregarVertice(etiqueta);
@@ -98,7 +98,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 5){
-                int etiqueta; 
+                string etiqueta; 
                 cout << "Ingrese la etiqueta del vertice a eliminar." << endl;
                 cin >> etiqueta;
                 vertice ver = grafo.getVertice(etiqueta); 
@@ -112,8 +112,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 6){
-                int etiqueta; 
-                int nuevaEtiqueta;
+                string etiqueta; 
+                string nuevaEtiqueta;
                 cout << "Ingrese la etiqueta del vertice a cambiar(debe ser valido en el grafo)." << endl;
                 cin >> etiqueta;
                 vertice ver = grafo.getVertice(etiqueta); 
@@ -129,7 +129,7 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 7){
-                vertice ver = 0;
+                vertice ver;
                 int number = 0;     
                 cout << "Ingrese el numero del vertice que desea conocer la etiqueta." << endl;
                 if(!(cin >> number)){
@@ -138,8 +138,8 @@ void Interfaz::desplegarMenu(){
                     cout << "El valor que introdujo no es valido. Por favor intente de nuevo." << endl;
                 }
                 else{
-                    int etiquetaRetornada = grafo.etiqueta(ver);
-                    if(etiquetaRetornada != -1){
+                    string etiquetaRetornada = grafo.etiqueta(ver);
+                    if(etiquetaRetornada != ""){
                         cout << "La etiqueta correspondiente al vértice ingresado es " << etiquetaRetornada <<endl;
                     }
                     else{                      
@@ -150,10 +150,10 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 8){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = 0; 
+                string etiqueta2 = 0; 
                 int peso = 0;                
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
@@ -188,10 +188,10 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 9){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = 0; 
+                string etiqueta2 = 0; 
                 
                 cout << "Ingrese la etiqueta primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
@@ -222,10 +222,10 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 10){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0;
-                int etiqueta2 = 0; 
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = 0;
+                string etiqueta2 = 0; 
                 int peso = 0;                
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
@@ -264,10 +264,10 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 11){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0;
-                int etiqueta2 = 0;  
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = 0;
+                string etiqueta2 = 0;  
                 cout << "Ingrese la etiqueta del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
@@ -309,8 +309,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 13){
-                vertice vertice1 = 0;    
-                int etiqueta1 = 0; 
+                vertice vertice1;    
+                string etiqueta1 = 0; 
                 cout << "Ingrese la etiqueta del vertice al que desea conocer la etiqueta de su siguiente vertice" << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
@@ -336,8 +336,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 14){
-                vertice vertice1 = 0;
-                int etiqueta1 = 0;     
+                vertice vertice1;
+                string etiqueta1 = 0;     
                 cout << "Ingrese la etiqueta del vertice del que se desea conocer el primer vertice adyacente." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
@@ -360,10 +360,10 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 15){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = 0; 
+                string etiqueta2 = 0; 
                 cout << "Ingrese la etiqueta del numero del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
@@ -402,10 +402,10 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 16){
-                vertice vertice1 = 0;    
-                vertice vertice2 = 0;
-                int etiqueta1 = 0; 
-                int etiqueta2 = 0; 
+                vertice vertice1;    
+                vertice vertice2;
+                string etiqueta1 = ""; 
+                string etiqueta2 = ""; 
                 cout << "Ingrese el numero del primer vertice." << endl;
                 if(!(cin >> etiqueta1)){
                     cin.clear();
@@ -455,8 +455,8 @@ void Interfaz::desplegarMenu(){
                 desplegarMenu();
             }
             if(decision == 19){
-                vertice ver = 0; 
-                int etiqueta = 0;    
+                vertice ver; 
+                string etiqueta = 0;    
                 cout << "Ingrese la etiqueta del vertice que desea conocer el numero de vertices adyacentes." << endl;
                 if(!(cin >> etiqueta)){
                     cin.clear();
@@ -503,7 +503,7 @@ void Interfaz::desplegarMenu(){
                 int* vectorDePesos = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
                 vertice* vectorVerticeAnterior = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 				
-				int etiqueta = 0; 
+				string etiqueta = 0; 
 				vertice ver; 
 				std::cout << "ingrese la etiqueta del vertice desde el cual desea ejecutar el algoritmo de Dijkstra" << std::endl; 
 				cin >> etiqueta; 
@@ -639,7 +639,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 27){
-                algoritmos.Prim(grafo, 0);			
+                vertice vertice = grafo.primerVertice(); 
+                algoritmos.Prim(grafo, vertice);			
                 desplegarMenu();
             }
             if(decision == 28){
@@ -652,8 +653,8 @@ void Interfaz::desplegarMenu(){
 
             }
             if(decision == 30){
-                vertice vertice1 = 0;
-                int etiqueta = 0; 
+                vertice vertice1;
+                string etiqueta = ""; 
                 cout << "Ingrese la etiqueta del vertice a aislar." << endl;
                 if(!(cin >> etiqueta)){
                     cin.clear();
