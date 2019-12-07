@@ -290,7 +290,7 @@ int Grafo::numAristas() {
 			}
 		}	
 	}
-	return counter; 
+	return counter/2; 
 }
 
 
