@@ -32,7 +32,6 @@ void Algoritmos_grafo::Dijkstra(Grafo &grafo, vertice ver, int*VP, vertice*VVA){
 	D.agregar(ver); 
 	int menor; int contador; int peso_menor; 
 	while (D.numElem() < grafo.numVertices()) {	//hay que recorer todos los vertices, se necesitan n-1 pivotes. 
-		// std :: cout << D.numElem() << std :: endl;
         menor = -1; peso_menor = INFINITY; contador = 0; 
 		while (contador < grafo.numVertices()-1) {	//la longitud de VP. 
 			if (VP[contador] <= peso_menor && !D.pertenece(r11.vertice(contador))) {	//si es el menor pero no es un pivote anterior o el vertice de parametro. 

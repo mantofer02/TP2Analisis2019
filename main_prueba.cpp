@@ -17,21 +17,12 @@ grafo.agregarArista(grafo.getVertice(1),grafo.getVertice(3), 20);
 */
 
 
-<<<<<<< HEAD
-grafo.agregarVertice("1"); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
-grafo.agregarVertice("2"); //1
-grafo.agregarVertice("3"); //2
-// grafo.agregarVertice("4"); //3	
-// grafo.agregarVertice("6"); //4
-// grafo.agregarVertice("5"); //5
-=======
 grafo.agregarVertice("2"); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
 grafo.agregarVertice("3"); //1
 grafo.agregarVertice("1"); //2
 grafo.agregarVertice("4"); //3	
 grafo.agregarVertice("6"); //4
 grafo.agregarVertice("5"); //5
->>>>>>> 3b2fa17a447537ffffd1812356cc204f96ab9960
 
 // grafo.agregarArista(,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
 // grafo.agregarArista(2,0,8);
@@ -51,7 +42,7 @@ grafo.agregarArista(grafo.getVertice("1"), grafo.getVertice("3"), 10);
 Algoritmos_grafo algoritmos; 
 
 
-#if 0		//PRUEBA DE DIJKSTRA 
+#if 1		//PRUEBA DE DIJKSTRA 
 int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
@@ -196,7 +187,7 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 1
+#if 0
 CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
