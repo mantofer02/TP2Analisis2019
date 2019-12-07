@@ -134,7 +134,7 @@ else {
 #endif
  
 
-#if 1 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
+#if 0 //PRUEBA CIRCUITO HAMILTON DE MENOR COSTO. 
 Diccionario<vertice> D; 
 D.iniciar(); 
 vertice* Sol = (vertice*)calloc(grafo.numVertices()+1, sizeof(vertice));
@@ -186,13 +186,19 @@ std::cout << ss.str() << std::endl;
 #endif
 
 
-#if 0
+#if 1
 CC<vertice> mejor_sol; 
 mejor_sol.iniciar(grafo.numVertices());
 int menor_cantidad = INFINITY; 
 int colores = 0; 
 int contador_soluciones = 0; 
-algoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones); 
+bool possible = false; 
+algoritmos.colorear_grafo(grafo, mejor_sol, colores, menor_cantidad, contador_soluciones, possible); 
+
+if (possible) {
+	std::cout << "se logro pintar" << std::endl;
+	std::cout << mejor_sol.printCC() << std::endl; 
+}
 
 #endif    
 } 
