@@ -96,12 +96,13 @@ void Algoritmos_grafo :: Floyd(Grafo &grafo, int** MP, vertice** MVI) {
 		}	
 	} 
 
+	vertice primerV = grafo.primerVertice();
 	for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) { 
 		for (int origen = 0; origen < grafo.numVertices(); ++origen) {
 			for (int destino = 0; destino < grafo.numVertices(); ++destino) {
 				if (MP[origen][destino] > MP[origen][pivote] + MP[pivote][destino]) {
 					MP[origen][destino] = MP[origen][pivote] + MP[pivote][destino]; 
-					MVI[origen][destino] = pivote; 
+					MVI[origen][destino] = grafo.siguienteVertice(primerV); 
 				}
 			} 	
 		} 
@@ -312,7 +313,6 @@ Modifica : Las variables locales para identificar si hay lazos dentro del arbol
 */
 bool Algoritmos_grafo::is_there_cycles(Grafo&grafo) {
 	bool is_there = false; 
- 
 	 if (!grafo.vacia()) {
 		 vertice v = grafo.primerVertice();
 		 Diccionario<vertice> D; 

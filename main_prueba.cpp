@@ -17,23 +17,24 @@ grafo.agregarArista(grafo.getVertice(1),grafo.getVertice(3), 20);
 */
 
 
-grafo.agregarVertice(2); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
-grafo.agregarVertice(3); //1
-grafo.agregarVertice(1); //2
-grafo.agregarVertice(4); //3	
-grafo.agregarVertice(6); //4
-grafo.agregarVertice(5); //5
+grafo.agregarVertice("1"); //0	el parametro solo es la etiqueta, lo que importa es el numero comentado. 
+grafo.agregarVertice("2"); //1
+grafo.agregarVertice("3"); //2
+// grafo.agregarVertice("4"); //3	
+// grafo.agregarVertice("6"); //4
+// grafo.agregarVertice("5"); //5
 
-grafo.agregarArista(0,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
-grafo.agregarArista(2,0,8);
-grafo.agregarArista(2,4,1000);
-grafo.agregarArista(0,3,7);
-grafo.agregarArista(4,1,40);
-grafo.agregarArista(3,4,20);
-grafo.agregarArista(3,5,35);
-grafo.agregarArista(5,4,5);        
-grafo.agregarArista(1,2,90);
-grafo.agregarArista(1,5,8);  
+// grafo.agregarArista(,1,500);	//agrega arista del vertice 0 al 1, si se traduce a las etiquetas sería del 2 al 3
+// grafo.agregarArista(2,0,8);
+// grafo.agregarArista(2,4,1000);
+// grafo.agregarArista(0,3,7);
+// grafo.agregarArista(4,1,40);
+// grafo.agregarArista(3,4,20);
+// grafo.agregarArista(3,5,35);
+// grafo.agregarArista(5,4,5);        
+grafo.agregarArista(grafo.getVertice("1"), grafo.getVertice("2"), 3);
+grafo.agregarArista(grafo.getVertice("2"), grafo.getVertice("3"), 4);
+grafo.agregarArista(grafo.getVertice("1"), grafo.getVertice("3"), 10);  
 
 
 
@@ -46,7 +47,7 @@ int* VP = (int*)calloc((grafo.numVertices()-1), sizeof(int)); //vector peso
 vertice* VVA = (vertice*)calloc((grafo.numVertices()-1), sizeof(vertice)); 	//vector vertice anterior 
 
 
-algoritmos.Dijkstra(grafo, 1, VP, VVA); 
+algoritmos.Dijkstra(grafo, grafo.primerVertice(), VP, VVA); 
 
 
 std::cout << "imprimiendo VP : " << std::endl; 
