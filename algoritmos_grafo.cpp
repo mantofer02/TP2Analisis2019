@@ -95,18 +95,18 @@ void Algoritmos_grafo :: Floyd(Grafo &grafo, int** MP, vertice** MVI) {
 		}	
 	} 
 
-	vertice primerV = grafo.primerVertice();
+	vertice vertice_pivote = grafo.primerVertice();
 	for (int pivote = 0; pivote < grafo.numVertices(); ++pivote) { 
 		for (int origen = 0; origen < grafo.numVertices(); ++origen) {
 			for (int destino = 0; destino < grafo.numVertices(); ++destino) {
 				if (MP[origen][destino] > MP[origen][pivote] + MP[pivote][destino]) {
 					MP[origen][destino] = MP[origen][pivote] + MP[pivote][destino]; 
-					MVI[origen][destino] = grafo.siguienteVertice(primerV); 
+					MVI[origen][destino] = vertice_pivote; 
 				}
-			} 	
-		} 
+			}	 	
+		}
+		vertice_pivote = grafo.siguienteVertice(vertice_pivote); 
 	}
-
 } 
 
 

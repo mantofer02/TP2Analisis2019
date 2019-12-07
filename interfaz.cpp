@@ -517,7 +517,9 @@ void Interfaz::desplegarMenu(){
 					cout << endl; 
 					cout << "El resultado del vector de los vertices anteriores despues de ejecutar el algoritmo de Dijkstra corresponde a : " << endl; 
 					for (int index = 0; index < grafo.numVertices()-1;  ++index) {
-						cout << vectorVerticeAnterior[index] << ", "; 
+						vertice current_vertex = vectorVerticeAnterior[index]; 
+						ETIQUETA current_etiqueta = grafo.etiqueta(current_vertex); 
+						cout << current_etiqueta << ", "; 
 					}
 					std::cout << std::endl; 
 					std::cout << "para el caso de grafo por matriz de adyacencia los vertices anteriores no se encuentran en terminos de etiquetas, si desea conocer la etiqueta, ejecutar el O.B correspondiente" << std::endl; 								
