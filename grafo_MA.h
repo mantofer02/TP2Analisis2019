@@ -230,7 +230,7 @@ class Grafo{
 		 * Modifica : 
 		 *
 		 * */
-		vertice getVertice(int etiqueta); 
+		vertice getVertice(ETIQUETA etiqueta); 
 };
 
 /*

@@ -243,7 +243,7 @@ Requiere : Un grafo ya inicializado ; un vertice de parametro ; una nueva etique
 Efecto : Cambia la etiqueta de un vertice.
 Modifica : La etiqueta del vertice enviado por parametro.
 */
-void Grafo::modificarEtiqueta(int vertice, int etiqueta) {
+void Grafo::modificarEtiqueta(int vertice, ETIQUETA etiqueta) {
 	this->etiquetas[vertice] = etiqueta; 
 }
 
@@ -333,7 +333,7 @@ Requiere : Una etiqueta.
 Efecto : Devuelve el vertice que tiene la etiqueta en el parametro.
 Modifica : N/A
 */
-int Grafo::getVertice(int etiqueta) {
+int Grafo::getVertice(ETIQUETA etiqueta) {
 	int ver = -1;
 	for (int index = 0; index < this->ultimoLleno; ++index) {
 		if (this->etiquetas[index] == etiqueta) {
