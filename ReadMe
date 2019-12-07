@@ -12,5 +12,5 @@ puede ejecutar tanto make program, como, make program1
 
 para compilar 1 grafo o el otro. 
 
-Las etiquetas del grafo son enteros al igual que los pesos. 
+Las etiquetas del grafo son strings y los pesos son integers. 
 
