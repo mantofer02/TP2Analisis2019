@@ -9,7 +9,7 @@ Efecto : Inicializa el grafo.
 Modifica : El grafo, ya que lo inicializa..
 */
 void Grafo::iniciar() {
-	this->etiquetas = (int*)malloc(SIZEGRAFO*sizeof(int));
+	this->etiquetas = (ETIQUETA*)malloc(SIZEGRAFO*sizeof(ETIQUETA));
 	this->matrix = (celda_t**)malloc(SIZEGRAFO*sizeof(celda_t*)); 
 	for (int vertice = 0; vertice < SIZEGRAFO; ++vertice) {
 		this->matrix[vertice] = (celda_t*)malloc(SIZEGRAFO*sizeof(celda_t)); 
@@ -67,10 +67,10 @@ Requiere : Un grafo ya inicializado ; una etiqueta.
 Efecto : Agrega un vertice al grafo.
 Modifica : El grafo, agregando un vertice nuevo.
 */
-int Grafo :: agregarVertice(int elemento) {
+int Grafo :: agregarVertice(ETIQUETA etiqueta) {
 	int vertice = this->ultimoLleno; 
 	if (ultimoLleno <SIZEGRAFO) {
-		this->etiquetas[this->ultimoLleno] = elemento; 
+		this->etiquetas[this->ultimoLleno] = etiqueta; 
 		++this->ultimoLleno; 
 		
 		for (int column_matrix = 0; column_matrix < this->ultimoLleno; ++column_matrix) {
@@ -243,7 +243,7 @@ Requiere : Un grafo ya inicializado ; un vertice de parametro ; una nueva etique
 Efecto : Cambia la etiqueta de un vertice.
 Modifica : La etiqueta del vertice enviado por parametro.
 */
-void Grafo::modificarEtiqueta(int vertice, int etiqueta) {
+void Grafo::modificarEtiqueta(int vertice, ETIQUETA etiqueta) {
 	this->etiquetas[vertice] = etiqueta; 
 }
 
@@ -254,12 +254,12 @@ Requiere : Un grafo ya inicializado ; un vertice de parametro.
 Efecto : Retorna la etiqueta de un grafo.
 Modifica : N/A
 */
-int Grafo::etiqueta(int ver) {
+ETIQUETA Grafo::etiqueta(int ver) {
 	if (ver < this->ultimoLleno) {
 		return this->etiquetas[ver];
 	}
 	else {
-		return -1; 
+		return " "; 
 	}
 }
 
@@ -290,7 +290,7 @@ int Grafo::numAristas() {
 			}
 		}	
 	}
-	return counter; 
+	return counter/2; 
 }
 
 
@@ -333,7 +333,7 @@ Requiere : Una etiqueta.
 Efecto : Devuelve el vertice que tiene la etiqueta en el parametro.
 Modifica : N/A
 */
-int Grafo::getVertice(int etiqueta) {
+int Grafo::getVertice(ETIQUETA etiqueta) {
 	int ver = -1;
 	for (int index = 0; index < this->ultimoLleno; ++index) {
 		if (this->etiquetas[index] == etiqueta) {

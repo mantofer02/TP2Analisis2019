@@ -1,6 +1,6 @@
 #include <iostream>
 
-typedef int ETIQUETA;
+typedef std :: string ETIQUETA;
 // typedef std :: string ETIQUETA;
 
 
